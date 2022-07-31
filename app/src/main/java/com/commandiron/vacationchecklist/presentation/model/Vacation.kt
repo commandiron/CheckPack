@@ -7,33 +7,38 @@ data class Vacation(
     val id: Int,
     val name: String,
     @DrawableRes
-    val iconId: Int
+    val iconDrawable: Int
 )
 
 val vacations = listOf(
     Vacation(
         id = 0,
         name = "Summer Holiday",
-        iconId = R.drawable.ic_launcher_foreground
+        iconDrawable = R.drawable.beach_chair
     ),
     Vacation(
         id = 1,
         name = "Winter Break",
-        iconId = R.drawable.ic_launcher_foreground
+        iconDrawable = R.drawable.snowboard
     ),
     Vacation(
         id = 2,
         name = "Camping",
-        iconId = R.drawable.ic_launcher_foreground
+        iconDrawable = R.drawable.camping_tent
     ),
     Vacation(
         id = 3,
-        name = "Digital Detox",
-        iconId = R.drawable.ic_launcher_foreground
+        name = "Caravan",
+        iconDrawable = R.drawable.caravan
     ),
     Vacation(
         id = 4,
+        name = "Digital Detox",
+        iconDrawable = R.drawable.digital
+    ),
+    Vacation(
+        id = 5,
         name = "Backpacking",
-        iconId = R.drawable.ic_launcher_foreground
+        iconDrawable = R.drawable.backpack
     ),
 )

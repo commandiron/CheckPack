@@ -3,7 +3,6 @@ package com.commandiron.vacationchecklist.navigation
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,9 +11,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import com.commandiron.vacationchecklist.util.LocalSpacing
 import com.commandiron.vacationchecklist.util.NoRippleTheme
 
@@ -26,7 +23,7 @@ fun BottomNavigation(
 ) {
     val spacing = LocalSpacing.current
     val navigationItems = listOf(
-        NavigationItem.MyCheckListScreen,
+        NavigationItem.ChecklistScreen,
         NavigationItem.AddVacationScreen,
         NavigationItem.SettingsScreen
     )
@@ -38,11 +35,7 @@ fun BottomNavigation(
         ) {
             Surface(
                 modifier = Modifier
-                    .padding(
-                        bottom = 24.dp,
-                        start = 24.dp,
-                        end = 24.dp
-                    )
+                    .padding(spacing.bottomNavigationPadding)
                     .height(spacing.bottomNavigationHeight)
                     .fillMaxWidth(),
                 color = MaterialTheme.colorScheme.primaryContainer,
@@ -70,7 +63,7 @@ fun BottomNavigation(
                             ) {
                                 Icon(
                                     modifier = Modifier
-                                        .fillMaxWidth(0.3f)
+                                        .fillMaxHeight(0.40f)
                                         .aspectRatio(1f),
                                     imageVector = if(currentRoute == item.route) {
                                         item.selectedIcon!!
@@ -96,74 +89,6 @@ fun BottomNavigation(
                     }
                 }
             }
-//            Box {
-//                NavigationBar(
-//                    modifier = modifier.height(spacing.bottomNavigationHeight),
-//                    containerColor = MaterialTheme.colorScheme.background,
-//                    contentColor = MaterialTheme.colorScheme.onBackground
-//                ) {
-//                    val iconUnselectedHeight = (spacing.bottomNavigationHeight / 4).value
-//                    navigationItems.forEachIndexed { index, item ->
-//                        val iconHeightAnim = remember {
-//                            Animatable(iconUnselectedHeight)
-//                        }
-//                        LaunchedEffect(key1 = currentRoute){
-//                            if(currentRoute == item.route){
-//                                launch {
-//                                    bottomNavLineOffsetXAnim.animateTo(
-//                                        targetValue = screenWidth.value / navigationItems.size * index,
-//                                        animationSpec = tween(durationMillis = 700)
-//                                    )
-//                                }
-//                                launch {
-//                                    iconHeightAnim.animateTo(
-//                                        targetValue = iconUnselectedHeight
-//                                                + (spacing.bottomNavigationHeight / 10).value
-//                                    )
-//                                }
-//                            }else{
-//                                launch {
-//                                    iconHeightAnim.animateTo(
-//                                        targetValue = iconUnselectedHeight
-//                                    )
-//                                }
-//                            }
-//                        }
-//                        NavigationBarItem(
-//                            selected = currentRoute == item.route,
-//                            onClick = { onBottomNavItemClick(item.route) },
-//                            icon = {
-//                                Icon(
-//                                    modifier = Modifier.height(iconHeightAnim.value.dp),
-//                                    imageVector = item.icon!!,
-//                                    contentDescription = null,
-//                                    tint = if(currentRoute == item.route) {
-//                                        MaterialTheme.colorScheme.onBackground
-//                                    } else MaterialTheme.colorScheme.onBackground.copy(alpha = 0.2f)
-//                                )
-//                            },
-//                            label = {
-//                                Text(
-//                                    text = item.title,
-//                                    style = MaterialTheme.typography.labelLarge.copy(
-//                                        fontWeight = FontWeight.Bold
-//                                    )
-//                                )
-//                            },
-//                            alwaysShowLabel = false,
-//                            colors = NavigationBarItemDefaults.colors(
-//                                indicatorColor = MaterialTheme.colorScheme.background,
-//                            )
-//                        )
-//                    }
-//                }
-//                Divider(
-//                    modifier = Modifier
-//                        .align(Alignment.BottomStart)
-//                        .fillMaxWidth(1f / navigationItems.size)
-//                        .offset(x = Dp(bottomNavLineOffsetXAnim.value))
-//                )
-//            }
         }
     }
 }

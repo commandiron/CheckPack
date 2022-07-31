@@ -16,7 +16,7 @@ import com.commandiron.vacationchecklist.navigation.currentRoute
 import com.commandiron.vacationchecklist.presentation.add_vacation.AddVacationScreen
 import com.commandiron.vacationchecklist.presentation.get_started.GetStartedScreen
 import com.commandiron.vacationchecklist.presentation.hot_splash.HotSplashScreen
-import com.commandiron.vacationchecklist.presentation.my_checklist.MyCheckListScreen
+import com.commandiron.vacationchecklist.presentation.checklist.ChecklistScreen
 import com.commandiron.vacationchecklist.presentation.settings.SettingsScreen
 import com.commandiron.vacationchecklist.ui.theme.VacationCheckListTheme
 import com.google.accompanist.navigation.animation.AnimatedNavHost
@@ -57,7 +57,7 @@ class MainActivity : ComponentActivity() {
                             startDestination = if(shouldShowHotSplash) {
                                 NavigationItem.HotSplashScreen.route
                             } else {
-                                NavigationItem.MyCheckListScreen.route
+                                NavigationItem.ChecklistScreen.route
                             }
                         ){
                             composable(
@@ -91,7 +91,7 @@ class MainActivity : ComponentActivity() {
                                 GetStartedScreen()
                             }
                             composable(
-                                route = NavigationItem.MyCheckListScreen.route,
+                                route = NavigationItem.ChecklistScreen.route,
                                 enterTransition = {
                                     when(initialState.destination.route){
                                         else -> null
@@ -103,7 +103,7 @@ class MainActivity : ComponentActivity() {
                                     }
                                 }
                             ){
-                                MyCheckListScreen()
+                                ChecklistScreen()
                             }
                             composable(
                                 route = NavigationItem.AddVacationScreen.route,

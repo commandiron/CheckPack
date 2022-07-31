@@ -18,15 +18,15 @@ sealed class NavigationItem(
     object GetStartedScreen : NavigationItem(
         route = "getStarted"
     )
-    object MyCheckListScreen : NavigationItem(
-        route = "myCheckList",
-        title = "Check List",
+    object ChecklistScreen : NavigationItem(
+        route = "checklist",
+        title = "Checklist",
         selectedIcon = Icons.Default.LibraryAddCheck,
         unSelectedIcon = Icons.Outlined.LibraryAddCheck
     )
     object AddVacationScreen : NavigationItem(
         route = "addVacation",
-        title = "Add New Vacation",
+        title = "Change Vacation",
         selectedIcon = Icons.Default.DirectionsCar,
         unSelectedIcon = Icons.Outlined.DirectionsCar
     )

@@ -24,7 +24,12 @@ data class Dimensions(
     val spaceXXLarge: Dp = 128.dp,
     val spaceXXXLarge: Dp = 256.dp,
 
-    val bottomNavigationHeight: Dp = 72.dp,
+    val bottomNavigationHeight: Dp = 64.dp,
+    val bottomNavigationPadding: PaddingValues = PaddingValues(
+        bottom = 24.dp,
+        start = 24.dp,
+        end = 24.dp
+    ),
     val defaultScreenPadding: PaddingValues = PaddingValues(
         top = spaceLarge,
         start = spaceLarge,
@@ -33,7 +38,6 @@ data class Dimensions(
 )
 
 fun getProvidedValues(
-    systemUiController: SystemUiController
 ): Array<ProvidedValue<*>> {
     return arrayOf()
 }
