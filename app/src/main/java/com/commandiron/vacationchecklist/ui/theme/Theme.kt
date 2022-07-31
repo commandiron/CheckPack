@@ -5,19 +5,28 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
 private val DarkColorPalette = darkColorScheme(
     background = Cultured,
     onBackground = OxfordBlue,
     primaryContainer = OxfordBlue,
-    onPrimaryContainer = White
+    onPrimaryContainer = Color.White,
+    secondaryContainer = Color.White,
+    onSecondaryContainer = Color.Black,
+    tertiaryContainer = Bluetiful,
+    onTertiaryContainer = Color.White
 )
 
 private val LightColorPalette = lightColorScheme(
     background = Cultured,
     onBackground = OxfordBlue,
     primaryContainer = OxfordBlue,
-    onPrimaryContainer = White
+    onPrimaryContainer = Color.White,
+    secondaryContainer = Color.White,
+    onSecondaryContainer = Color.Black,
+    tertiaryContainer = Bluetiful,
+    onTertiaryContainer = Color.White
 )
 
 @Composable

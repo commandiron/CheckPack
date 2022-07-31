@@ -7,20 +7,23 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun CircularVacationIcon(
+fun VacationIcon(
     modifier: Modifier = Modifier,
+    surfaceShape: Shape = CircleShape,
+    surfaceColor: Color = Color.White,
     iconPadding: Dp = 0.dp,
     iconDrawable: Int,
 ) {
     Surface(
         modifier = modifier,
-        shape = CircleShape,
-        color = Color.White
+        shape = surfaceShape,
+        color = surfaceColor
     ) {
         Icon(
             modifier = Modifier.padding(iconPadding),
