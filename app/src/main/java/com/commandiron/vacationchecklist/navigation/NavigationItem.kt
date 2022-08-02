@@ -24,11 +24,11 @@ sealed class NavigationItem(
         selectedIcon = Icons.Default.LibraryAddCheck,
         unSelectedIcon = Icons.Outlined.LibraryAddCheck
     )
-    object AddVacationScreen : NavigationItem(
-        route = "addVacation",
-        title = "Change Vacation",
-        selectedIcon = Icons.Default.DirectionsCar,
-        unSelectedIcon = Icons.Outlined.DirectionsCar
+    object CreateVacationScreen : NavigationItem(
+        route = "createVacation",
+        title = "Create Vacation",
+        selectedIcon = Icons.Default.Add,
+        unSelectedIcon = Icons.Outlined.Add
     )
     object SettingsScreen : NavigationItem(
         route = "settings",

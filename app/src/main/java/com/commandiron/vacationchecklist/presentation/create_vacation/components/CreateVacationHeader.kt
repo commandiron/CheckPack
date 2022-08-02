@@ -1,4 +1,4 @@
-package com.commandiron.vacationchecklist.presentation.add_vacation.components
+package com.commandiron.vacationchecklist.presentation.create_vacation.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.LocalContentColor
@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 
 @Composable
-fun AddVacationHeader(
+fun CreateVacationHeader(
     modifier: Modifier = Modifier,
     title: String,
     subTitle: String

@@ -24,7 +24,7 @@ fun BottomNavigation(
     val spacing = LocalSpacing.current
     val navigationItems = listOf(
         NavigationItem.ChecklistScreen,
-        NavigationItem.AddVacationScreen,
+        NavigationItem.CreateVacationScreen,
         NavigationItem.SettingsScreen
     )
     CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme) {
@@ -47,7 +47,7 @@ fun BottomNavigation(
                         .fillMaxSize()
                         .padding(horizontal = spacing.spaceLarge)
                 ) {
-                    navigationItems.forEachIndexed { index, item ->
+                    navigationItems.forEach { item ->
                         Box(
                             modifier = Modifier
                                 .weight(1f)

@@ -5,15 +5,20 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.material3.Text
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import com.commandiron.vacationchecklist.domain.preferences.Preferences
 import com.commandiron.vacationchecklist.navigation.BottomNavigation
 import com.commandiron.vacationchecklist.navigation.NavigationItem
 import com.commandiron.vacationchecklist.navigation.bottomNavigate
 import com.commandiron.vacationchecklist.navigation.currentRoute
-import com.commandiron.vacationchecklist.presentation.add_vacation.AddVacationScreen
+import com.commandiron.vacationchecklist.presentation.create_vacation.CreateVacationScreen
 import com.commandiron.vacationchecklist.presentation.get_started.GetStartedScreen
 import com.commandiron.vacationchecklist.presentation.hot_splash.HotSplashScreen
 import com.commandiron.vacationchecklist.presentation.checklist.ChecklistScreen
@@ -103,10 +108,14 @@ class MainActivity : ComponentActivity() {
                                     }
                                 }
                             ){
-                                ChecklistScreen()
+                                ChecklistScreen(
+                                    navigate = {
+                                        navController.navigate(it)
+                                    }
+                                )
                             }
                             composable(
-                                route = NavigationItem.AddVacationScreen.route,
+                                route = NavigationItem.CreateVacationScreen.route,
                                 enterTransition = {
                                     when(initialState.destination.route){
                                         else -> null
@@ -118,7 +127,11 @@ class MainActivity : ComponentActivity() {
                                     }
                                 }
                             ){
-                                AddVacationScreen()
+                                CreateVacationScreen(
+                                    navigate = {
+                                        navController.navigate(it)
+                                    }
+                                )
                             }
                             composable(
                                 route = NavigationItem.SettingsScreen.route,

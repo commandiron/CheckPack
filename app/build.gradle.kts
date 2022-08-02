@@ -71,6 +71,7 @@ dependencies {
     implementation(Google.material3)
     implementation(Google.materialIconsCore)
     implementation(Google.materialIconsExtended)
+    implementation(Google.gson)
 
     implementation(Room.runtime)
     kapt(Room.compiler)

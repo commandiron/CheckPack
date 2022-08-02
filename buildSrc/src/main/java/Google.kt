@@ -10,4 +10,7 @@ object Google {
 
     private const val materialIconsExtendedVersion = "1.1.1"
     const val materialIconsExtended = "androidx.compose.material:material-icons-extended:$materialIconsExtendedVersion"
+
+    private const val gsonVersion = "2.9.1"
+    const val gson = "com.google.code.gson:gson:$gsonVersion"
 }
