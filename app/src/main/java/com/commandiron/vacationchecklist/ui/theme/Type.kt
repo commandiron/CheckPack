@@ -79,4 +79,8 @@ val Typography = Typography(
         fontFamily = Poppins,
         fontSize = 8.sp
     ),
+    labelMedium = TextStyle(
+        fontFamily = Poppins,
+        fontSize = 6.sp
+    )
 )

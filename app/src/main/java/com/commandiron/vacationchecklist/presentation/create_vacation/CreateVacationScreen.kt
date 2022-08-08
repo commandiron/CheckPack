@@ -10,9 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.commandiron.vacationchecklist.presentation.create_vacation.components.CreateVacationHeader
-import com.commandiron.vacationchecklist.presentation.components.VacationItem
-import com.commandiron.vacationchecklist.presentation.components.VacationsVerticalList
+import com.commandiron.vacationchecklist.presentation.components.*
 import com.commandiron.vacationchecklist.util.LocalSpacing
 import com.commandiron.vacationchecklist.util.UiEvent
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -44,7 +42,7 @@ fun CreateVacationScreen(
             .fillMaxSize()
             .padding(spacing.defaultScreenPadding),
     ) {
-        CreateVacationHeader(
+        CustomHeader(
             modifier = Modifier.fillMaxWidth(),
             title = "Create New Vacation",
             subTitle = "You can create new vacation for generate checklist",
@@ -53,135 +51,42 @@ fun CreateVacationScreen(
         Divider(color = LocalContentColor.current.copy(alpha = 0.2f))
         Spacer(modifier = Modifier.height(spacing.spaceMedium))
         if(!state.fakeLoading){
-            state.vacations?.let {
-                HorizontalPager(
-                    count = 2,
-                    state = pagerState,
-                    userScrollEnabled = false,
-                    verticalAlignment = Alignment.Top
-                ) { page ->
-                    when(page){
-                        0 -> {
-                            Column {
-                                VacationsVerticalList(
-                                    vacations = it, //Bu kısım domainden gelecek.
-                                    onSelect = { viewModel.onEvent(CreateVacationUserEvent.OnSelect(it)) }
-                                )
-                                state.selectedVacation?.let {
-                                    Button(
-                                        modifier = Modifier.align(Alignment.CenterHorizontally),
-                                        onClick = {
-                                            coroutineScope.launch {
-                                                pagerState.animateScrollToPage(1)
-                                            }
-                                        },
-                                        colors = ButtonDefaults.buttonColors(
-                                            containerColor = MaterialTheme.colorScheme.primaryContainer
-                                        )
-                                    ) {
-                                        Text(
-                                            text = "NEXT",
-                                            style = MaterialTheme.typography.titleMedium,
-                                            textAlign = TextAlign.Center
-                                        )
-                                    }
-                                }
-                            }
+            state.vacations?.let { vacations ->
+                CreateVacationBody(
+                    pagerState = pagerState,
+                    vacations = vacations,
+                    onSelect = { vacation ->
+                        viewModel.onEvent(CreateVacationUserEvent.OnSelect(vacation))
+                    },
+                    selectedVacation = state.selectedVacation,
+                    onNextClick = {
+                        coroutineScope.launch {
+                            pagerState.animateScrollToPage(1)
                         }
-                        1 -> {
-                            Column(
-                                modifier = Modifier.fillMaxSize(),
-                                horizontalAlignment = Alignment.CenterHorizontally
-                            ) {
-                                state.selectedVacation?.let {
-                                    Text(
-                                        text = "Enter vacation name",
-                                        style = MaterialTheme.typography.titleMedium
-                                    )
-                                    Spacer(modifier = Modifier.height(spacing.spaceLarge))
-                                    Column(modifier = Modifier.weight(1f)) {
-                                        VacationItem(
-                                            showTitle = false,
-                                            vacation = it,
-                                            iconPadding = spacing.spaceSmall
-                                        )
-                                    }
-                                    Spacer(modifier = Modifier.height(spacing.spaceLarge))
-                                    Column(modifier = Modifier.weight(2f)) {
-                                        TextField(
-                                            value = it.name,
-                                            onValueChange = { viewModel.onEvent(CreateVacationUserEvent.OnNameChange(it)) },
-                                            singleLine = true
-                                        )
-                                        Spacer(modifier = Modifier.height(spacing.spaceLarge))
-                                        Button(
-                                            modifier = Modifier.align(Alignment.CenterHorizontally),
-                                            onClick = { viewModel.onEvent(CreateVacationUserEvent.OnFinish) },
-                                            colors = ButtonDefaults.buttonColors(
-                                                containerColor = MaterialTheme.colorScheme.primaryContainer
-                                            )
-                                        ) {
-                                            Text(
-                                                text = "FINISH",
-                                                style = MaterialTheme.typography.titleMedium,
-                                                textAlign = TextAlign.Center
-                                            )
-                                        }
-                                    }
-                                    if(state.showAlertDialog){
-                                        AlertDialog(
-                                            onDismissRequest = { viewModel.onEvent(CreateVacationUserEvent.OnAlertDialogDismiss) },
-                                            confirmButton = {
-                                                Button(
-                                                    onClick = { viewModel.onEvent(CreateVacationUserEvent.OnAlertDialogConfirm(it)) },
-                                                    colors = ButtonDefaults.buttonColors(
-                                                        containerColor = MaterialTheme.colorScheme.tertiaryContainer
-                                                    )
-                                                ) {
-                                                    Text(
-                                                        text = "Yes",
-                                                        style = MaterialTheme.typography.titleSmall
-                                                    )
-                                                }
-                                            },
-                                            dismissButton = {
-                                                Button(
-                                                    onClick = { viewModel.onEvent(CreateVacationUserEvent.OnAlertDialogDismiss) },
-                                                    colors = ButtonDefaults.buttonColors(
-                                                        containerColor = MaterialTheme.colorScheme.tertiaryContainer
-                                                    )
-                                                ) {
-                                                    Text(
-                                                        text = "No",
-                                                        style = MaterialTheme.typography.titleSmall
-                                                    )
-                                                }
-                                            },
-                                            title = {
-                                                Text(
-                                                    text = "Your previous data will be lost, are you sure?",
-                                                    style = MaterialTheme.typography.bodyLarge
-                                                )
-                                            },
-                                            containerColor = MaterialTheme.colorScheme.primaryContainer,
-                                            titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
-                                        )
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                    },
+                    onVacationNameChange = { vacationName ->
+                        viewModel.onEvent(CreateVacationUserEvent.OnNameChange(vacationName))
+                    },
+                    onFinishClick = { viewModel.onEvent(CreateVacationUserEvent.OnFinish) },
+                    showAlertDialog = state.showAlertDialog,
+                    onAlertDismiss = { viewModel.onEvent(CreateVacationUserEvent.OnAlertDialogDismiss) },
+                    onAlertConfirm = { viewModel.onEvent(CreateVacationUserEvent.OnAlertDialogConfirm(it)) }
+                )
             }
         }else{
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = spacing.bottomNavigationPadding.calculateBottomPadding())
+                    .padding(bottom = spacing.bottomNavigationHeight),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ){
-                Text(text = "Loading...")
+                LoadingBarAnimation(loadingBarDurationMillis = state.fakeLoadingDelay.toInt())
+                Spacer(modifier = Modifier.height(spacing.spaceSmall))
+                LoadingThreeDotAnimation(text = "Creating")
             }
         }
-
     }
     BackHandler(enabled = pagerState.currentPage == 1) {
         coroutineScope.launch {

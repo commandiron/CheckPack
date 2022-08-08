@@ -2,6 +2,7 @@
 <resources>
 
     <style name="Theme.VacationCheckList" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/purple_700</item>
+        <item name="android:statusBarColor">@color/backGroundColor</item>
+        <item name="android:navigationBarColor">@color/backGroundColor</item>
     </style>
 </resources>

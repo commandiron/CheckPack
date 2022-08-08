@@ -1,9 +1,11 @@
 package com.commandiron.vacationchecklist
 
 import android.annotation.SuppressLint
+import android.app.NotificationManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.commandiron.vacationchecklist.domain.preferences.Preferences
 import com.commandiron.vacationchecklist.navigation.BottomNavigation
 import com.commandiron.vacationchecklist.navigation.NavigationItem
@@ -27,12 +30,14 @@ import com.commandiron.vacationchecklist.ui.theme.VacationCheckListTheme
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    private val viewModel: AppViewModel by viewModels()
     @Inject
     lateinit var preferences: Preferences
 
@@ -40,10 +45,17 @@ class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen().setKeepOnScreenCondition{
+            viewModel.state.isColdSplashScreenVisible
+        }
         val shouldShowHotSplash = preferences.loadShouldShowHotSplash()
         setContent {
             VacationCheckListTheme {
                 val navController = rememberAnimatedNavController()
+                val systemUiController = rememberSystemUiController()
+                systemUiController.setSystemBarsColor(
+                    color = MaterialTheme.colorScheme.background
+                )
                 CompositionLocalProvider {
                     Scaffold(
                         bottomBar = {
@@ -78,7 +90,13 @@ class MainActivity : ComponentActivity() {
                                     }
                                 }
                             ){
-                                HotSplashScreen()
+                                HotSplashScreen(
+                                    onFinish = {
+                                        navController.navigate(
+                                            NavigationItem.GetStartedScreen.route
+                                        )
+                                    }
+                                )
                             }
                             composable(
                                 route = NavigationItem.GetStartedScreen.route,
@@ -93,7 +111,11 @@ class MainActivity : ComponentActivity() {
                                     }
                                 }
                             ){
-                                GetStartedScreen()
+                                GetStartedScreen(
+                                    navigate = {
+                                        navController.navigate(it)
+                                    }
+                                )
                             }
                             composable(
                                 route = NavigationItem.ChecklistScreen.route,

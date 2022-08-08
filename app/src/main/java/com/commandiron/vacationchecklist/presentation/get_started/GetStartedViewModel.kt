@@ -1,4 +1,4 @@
-package com.commandiron.vacationchecklist.presentation.create_vacation
+package com.commandiron.vacationchecklist.presentation.get_started
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -17,12 +17,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CreateVacationViewModel @Inject constructor(
+class GetStartedViewModel @Inject constructor(
     private val useCases: UseCases,
     private val preferences: Preferences
 ): ViewModel() {
 
-    var state by mutableStateOf(CreateVacationState())
+    var state by mutableStateOf(GetStartedState())
         private set
 
     private val _uiEvent = Channel<UiEvent>()
@@ -37,34 +37,21 @@ class CreateVacationViewModel @Inject constructor(
         )
     }
 
-    fun onEvent(userEvent: CreateVacationUserEvent) {
+    fun onEvent(userEvent: GetStartedUserEvent) {
         when (userEvent) {
-            is CreateVacationUserEvent.OnSelect -> {
+            is GetStartedUserEvent.OnSelect -> {
                 state = state.copy(
                     selectedVacation = userEvent.vacation
                 )
             }
-            is CreateVacationUserEvent.OnNameChange -> {
+            is GetStartedUserEvent.OnNameChange -> {
                 state = state.copy(
                     selectedVacation = state.selectedVacation?.copy(
                         name = userEvent.text
                     )
                 )
             }
-            is CreateVacationUserEvent.OnFinish -> {
-                state = state.copy(
-                    showAlertDialog = true
-                )
-            }
-            CreateVacationUserEvent.OnAlertDialogDismiss -> {
-                state = state.copy(
-                    showAlertDialog = false
-                )
-            }
-            is CreateVacationUserEvent.OnAlertDialogConfirm -> {
-                state = state.copy(
-                    showAlertDialog = false
-                )
+            is GetStartedUserEvent.OnFinish -> {
                 viewModelScope.launch {
                     useCases.createVacation(userEvent.vacation)
                 }
@@ -77,7 +64,6 @@ class CreateVacationViewModel @Inject constructor(
                     sendUiEvent(UiEvent.Navigate(NavigationItem.ChecklistScreen.route))
                 }
             }
-
         }
     }
 

@@ -25,6 +25,7 @@ data class Dimensions(
     val spaceXXXLarge: Dp = 256.dp,
 
     val bottomNavigationHeight: Dp = 64.dp,
+    val defaultButtonHeight: Dp = 52.dp,
     val bottomNavigationPadding: PaddingValues = PaddingValues(
         bottom = 24.dp,
         start = 24.dp,

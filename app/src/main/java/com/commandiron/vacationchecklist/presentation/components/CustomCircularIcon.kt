@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun VacationIcon(
+fun CustomCircularIcon(
     modifier: Modifier = Modifier,
     surfaceShape: Shape = CircleShape,
     surfaceColor: Color = Color.White,

@@ -29,7 +29,7 @@ fun VacationItem(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        VacationIcon(
+        CustomCircularIcon(
             modifier = Modifier
                 .aspectRatio(1f)
                 .weight(2f)
@@ -62,7 +62,7 @@ fun VacationItem(
             ){
                 Text(
                     text = vacation.name,
-                    style = MaterialTheme.typography.labelMedium,
+                    style = MaterialTheme.typography.bodyMedium,
                     textAlign = TextAlign.Center,
                     color = MaterialTheme.colorScheme.onBackground
                 )

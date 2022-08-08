@@ -1,24 +1,31 @@
 package com.commandiron.vacationchecklist.presentation.checklist
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.GridView
+import androidx.compose.material.icons.rounded.ViewList
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.commandiron.vacationchecklist.presentation.components.VacationIcon
+import com.commandiron.vacationchecklist.presentation.checklist.components.ChecklistHeader
+import com.commandiron.vacationchecklist.presentation.checklist.components.ColumnItem
+import com.commandiron.vacationchecklist.presentation.checklist.components.GridItem
+import com.commandiron.vacationchecklist.presentation.checklist.components.ReadyToGoView
+import com.commandiron.vacationchecklist.presentation.components.LoadingThreeDotAnimation
 import com.commandiron.vacationchecklist.util.LocalSpacing
 import com.commandiron.vacationchecklist.util.UiEvent
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChecklistScreen(
     viewModel: ChecklistViewModel = hiltViewModel(),
@@ -41,119 +48,108 @@ fun ChecklistScreen(
                 .fillMaxSize()
                 .padding(top = spacing.defaultScreenPadding.calculateTopPadding())
         ) {
-            Row {
-                Column(
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(spacing.bottomNavigationHeight)
-                        .padding(horizontal = spacing.spaceMedium),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = "Checklist",
-                        style = MaterialTheme.typography.displayMedium
-                    )
-                    Divider(color = LocalContentColor.current.copy(alpha = 0.2f))
-                }
-                Surface(
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(spacing.bottomNavigationHeight),
-                    shape = RoundedCornerShape(
-                        topStart = spacing.spaceLarge,
-                        bottomStart = spacing.spaceLarge
-                    ),
-                    color = MaterialTheme.colorScheme.primaryContainer
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(spacing.spaceSmall),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        VacationIcon(
-                            iconDrawable = vacation.iconDrawable
-                        )
-                        Spacer(modifier = Modifier.width(spacing.spaceMedium))
-                        Text(
-                            text = vacation.name,
-                            style = MaterialTheme.typography.titleSmall
-                        )
-                    }
-                }
-            }
-            Spacer(modifier = Modifier.height(spacing.spaceLarge))
-            LazyColumn(
-                modifier = Modifier
-                    .padding(horizontal = spacing.spaceMedium)
+            ChecklistHeader(
+                vacation = vacation,
+                checkCount = state.checkCount,
+                totalCount = state.totalCheckCount,
+                isChecklistCompeted = state.isChecklistCompeted
+            )
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(horizontal = spacing.spaceLarge),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                itemsIndexed(vacation.checklistItems){ index, checklistItem ->
-                    Surface(
+                IconButton(
+                    modifier = Modifier.border(1.dp, if(!state.gridViewEnabled) Color.Gray else Color.LightGray),
+                    onClick = { viewModel.onEvent(ChecklistUserEvent.OnListViewClick) }
+                ) {
+                    Icon(
+                        imageVector = Icons.Rounded.ViewList,
+                        contentDescription = null,
+                        tint = if(!state.gridViewEnabled){
+                            MaterialTheme.colorScheme.tertiaryContainer
+                        } else Color.Gray.copy(
+                            alpha = 0.2f
+                        )
+                    )
+                }
+                IconButton(
+                    modifier = Modifier.border(1.dp, if(state.gridViewEnabled) Color.Gray else Color.LightGray),
+                    onClick = { viewModel.onEvent(ChecklistUserEvent.OnGridViewClick) }
+                ) {
+                    Icon(
+                        imageVector = Icons.Rounded.GridView,
+                        contentDescription = null,
+                        tint = if(state.gridViewEnabled){
+                            MaterialTheme.colorScheme.tertiaryContainer
+                        } else Color.Gray.copy(
+                            alpha = 0.2f
+                        )
+                    )
+                }
+                Spacer(modifier = Modifier.width(spacing.spaceSmall))
+                Slider(
+                    modifier = Modifier.fillMaxWidth(),
+                    value = state.sliderValue,
+                    onValueChange = { viewModel.onEvent(ChecklistUserEvent.OnSliderChange(it)) },
+                    colors = SliderDefaults.colors(
+                        thumbColor = MaterialTheme.colorScheme.tertiaryContainer,
+                        activeTrackColor = MaterialTheme.colorScheme.tertiaryContainer
+                    )
+                )
+            }
+            Spacer(modifier = Modifier.height(spacing.spaceMedium))
+            if(state.isChecklistCompeted){
+                ReadyToGoView(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(bottom = spacing.bottomNavigationPadding.calculateBottomPadding())
+                        .padding(bottom = spacing.bottomNavigationHeight)
+                        .padding(bottom = spacing.spaceExtraLarge),
+                    onClick = {viewModel.onEvent(ChecklistUserEvent.OnChecklistCompleteBack)}
+                )
+            }else{
+                if(state.gridViewEnabled){
+                    LazyVerticalGrid(
                         modifier = Modifier
-                            .height(spacing.bottomNavigationHeight)
-                            .fillMaxWidth(),
-                        color = MaterialTheme.colorScheme.secondaryContainer,
-                        shape = RoundedCornerShape(spacing.spaceMedium)
-                    ) {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(spacing.spaceSmall),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Box(
-                                modifier = Modifier
-                                    .weight(1f),
-                                contentAlignment = Alignment.CenterStart
-                            ) {
-                                VacationIcon(
-                                    surfaceShape = RoundedCornerShape(spacing.spaceSmall),
-                                    surfaceColor = Color(0xFFECEFF3),
-                                    iconDrawable = checklistItem.iconDrawable,
-                                    iconPadding = spacing.spaceExtraSmall
-                                )
+                            .padding(horizontal = spacing.spaceMedium),
+                        columns = GridCells.Fixed(
+                            when(state.listScale){
+                                1 -> 4
+                                2 -> 3
+                                3 -> 2
+                                else -> 3
                             }
-                            Row(
-                                modifier = Modifier.weight(3f),
-                                horizontalArrangement = Arrangement.Start,
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Surface(
-                                    modifier = Modifier.size(spacing.spaceExtraSmall),
-                                    color = Color.Red,
-                                    shape = CircleShape
-                                ) {
-                                }
-                                Spacer(modifier = Modifier.width(spacing.spaceSmall))
-                                Text(
-                                    text = checklistItem.name,
-                                    style = MaterialTheme.typography.bodyLarge.copy(
-                                        fontWeight = FontWeight.SemiBold
-                                    )
-                                )
-                            }
-                            Box(
-                                modifier = Modifier.weight(1f),
-                                contentAlignment = Alignment.CenterEnd
-                            ) {
-                                Checkbox(
-                                    checked = checklistItem.isChecked,
-                                    onCheckedChange = {
-                                        viewModel.onEvent(ChecklistUserEvent.OnCheck(index))
-                                    },
-                                    colors = CheckboxDefaults.colors(
-                                        checkedColor = MaterialTheme.colorScheme.tertiaryContainer,
-                                        uncheckedColor = MaterialTheme.colorScheme.tertiaryContainer,
-                                        checkmarkColor = MaterialTheme.colorScheme.onTertiaryContainer
-                                    )
-                                )
-                            }
+                        )
+                    ){
+                        itemsIndexed(vacation.checklistItems){ index, checklistItem ->
+                            GridItem(
+                                checklistItem = checklistItem,
+                                isChecked = checklistItem.isChecked,
+                                listScale = state.listScale,
+                                onClick = { viewModel.onEvent(ChecklistUserEvent.OnCheck(index)) }
+                            )
+                        }
+                        item {
+                            Spacer(modifier = Modifier.height(spacing.spaceXXXLarge))
                         }
                     }
-                    Spacer(modifier = Modifier.height(spacing.spaceMedium))
-                }
-                item {
-                    Spacer(modifier = Modifier.height(spacing.spaceXXLarge))
+                }else{
+                    LazyColumn(
+                        modifier = Modifier
+                            .padding(horizontal = spacing.spaceMedium)
+                    ) {
+                        itemsIndexed(vacation.checklistItems){ index, checklistItem ->
+                            ColumnItem(
+                                checklistItem = checklistItem,
+                                listScale = state.listScale,
+                                onCheckedChange = { viewModel.onEvent(ChecklistUserEvent.OnCheck(index)) }
+                            )
+                            Spacer(modifier = Modifier.height(spacing.spaceMedium))
+                        }
+                        item {
+                            Spacer(modifier = Modifier.height(spacing.spaceXXLarge))
+                        }
+                    }
                 }
             }
         }
@@ -165,7 +161,7 @@ fun ChecklistScreen(
                 .padding(top = spacing.defaultScreenPadding.calculateTopPadding()),
             contentAlignment = Alignment.Center
         ) {
-            Text(text = "Loading...")
+            LoadingThreeDotAnimation(text = "Loading")
         }
     }else{
         if(state.activeVacation == null){

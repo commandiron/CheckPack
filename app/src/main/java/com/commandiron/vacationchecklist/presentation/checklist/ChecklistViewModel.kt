@@ -28,28 +28,7 @@ class ChecklistViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
 
     init {
-        viewModelScope.launch {
-            useCases.getVacation(preferences.loadActiveVacationId()).collect{ response ->
-                when(response){
-                    is Response.Error -> {
-                        state = state.copy(
-                            isLoading = false
-                        )
-                    }
-                    Response.Loading -> {
-                        state = state.copy(
-                            isLoading = true
-                        )
-                    }
-                    is Response.Success -> {
-                        state = state.copy(
-                            activeVacation = response.data,
-                            isLoading = false
-                        )
-                    }
-                }
-            }
-        }
+        getVacation()
     }
 
     fun onEvent(userEvent: ChecklistUserEvent) {
@@ -66,9 +45,85 @@ class ChecklistViewModel @Inject constructor(
                             }
                         )
                     )
+                    calculateCheckCount()
                     createVacation()
                 }
             }
+            ChecklistUserEvent.OnChecklistCompleteBack -> {
+                state = state.copy(
+                    isChecklistCompeted = false
+                )
+            }
+            ChecklistUserEvent.OnGridViewClick -> {
+                state = state.copy(
+                    gridViewEnabled = true
+                )
+            }
+            ChecklistUserEvent.OnListViewClick -> {
+                state = state.copy(
+                    gridViewEnabled = false
+                )
+            }
+            is ChecklistUserEvent.OnSliderChange -> {
+                if(userEvent.value > 0f && userEvent.value <= 0.25f ){
+                    state = state.copy(
+                        listScale = 1,
+                        sliderValue = userEvent.value
+                    )
+                }
+                if(userEvent.value > 0.25f && userEvent.value <= 0.75f ){
+                    state = state.copy(
+                        listScale = 2,
+                        sliderValue = userEvent.value
+                    )
+                }
+                if(userEvent.value > 0.75f && userEvent.value <= 1f ){
+                    state = state.copy(
+                        listScale = 3,
+                        sliderValue = userEvent.value
+                    )
+                }
+            }
+        }
+    }
+
+    private fun getVacation() {
+        viewModelScope.launch {
+            useCases.getVacation(preferences.loadActiveVacationId()).collect{ response ->
+                when(response){
+                    is Response.Error -> {
+                        state = state.copy(
+                            isLoading = false
+                        )
+                    }
+                    Response.Loading -> {
+                        state = state.copy(
+                            isLoading = true
+                        )
+                    }
+                    is Response.Success -> {
+                        state = state.copy(
+                            activeVacation = response.data,
+                            isLoading = false,
+                            totalCheckCount = response.data.checklistItems.size
+                        )
+                        calculateCheckCount()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun calculateCheckCount(){
+        state.activeVacation?.let { vacation ->
+            state = state.copy(
+                checkCount = vacation.checklistItems.filter { it.isChecked }.size
+            )
+        }
+        if(state.checkCount == state.totalCheckCount){
+            state = state.copy(
+                isChecklistCompeted = true
+            )
         }
     }
 

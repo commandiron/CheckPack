@@ -1,18 +1,109 @@
 package com.commandiron.vacationchecklist.presentation.get_started
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
+import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.commandiron.vacationchecklist.presentation.components.*
+import com.commandiron.vacationchecklist.util.LocalSpacing
+import com.commandiron.vacationchecklist.util.UiEvent
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.rememberPagerState
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
-fun GetStartedScreen() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+fun GetStartedScreen(
+    viewModel: GetStartedViewModel = hiltViewModel(),
+    navigate: (String) -> Unit
+) {
+    LaunchedEffect(key1 = true){
+        viewModel.uiEvent.collect{ event ->
+            when(event) {
+                is UiEvent.Navigate -> {
+                    navigate(event.route)
+                }
+            }
+        }
+    }
+    val state = viewModel.state
+    val spacing = LocalSpacing.current
+    val pagerState = rememberPagerState()
+    val coroutineScope = rememberCoroutineScope()
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(spacing.defaultScreenPadding),
     ) {
-        Text(text = "GetStartedScreen")
+        CustomHeader(
+            modifier = Modifier.fillMaxWidth(),
+            title = "Select Vacation",
+            subTitle = "Select a vacation for generate checklist",
+        )
+        Spacer(modifier = Modifier.height(spacing.spaceMedium))
+        Divider(color = LocalContentColor.current.copy(alpha = 0.2f))
+        Spacer(modifier = Modifier.height(spacing.spaceMedium))
+        if(!state.fakeLoading){
+            state.vacations?.let { vacations ->
+                CreateVacationBody(
+                    pagerState = pagerState,
+                    vacations = vacations,
+                    onSelect = { vacation ->
+                        viewModel.onEvent(GetStartedUserEvent.OnSelect(vacation))
+                    },
+                    selectedVacation = state.selectedVacation,
+                    nextButtonEnabled = false,
+                    onVacationNameChange = { vacationName ->
+                        viewModel.onEvent(GetStartedUserEvent.OnNameChange(vacationName))
+                    },
+                    onFinishClick = { viewModel.onEvent(GetStartedUserEvent.OnFinish(it)) },
+                )
+            }
+        }else{
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = spacing.bottomNavigationPadding.calculateBottomPadding())
+                    .padding(bottom = spacing.bottomNavigationHeight),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ){
+                LoadingBarAnimation(loadingBarDurationMillis = state.fakeLoadingDelay.toInt())
+                Spacer(modifier = Modifier.height(spacing.spaceSmall))
+                LoadingThreeDotAnimation(text = "Creating")
+            }
+        }
+        BackHandler(enabled = pagerState.currentPage == 1) {
+            coroutineScope.launch {
+                pagerState.animateScrollToPage(0)
+            }
+        }
+    }
+    state.selectedVacation?.let {
+        if(pagerState.currentPage != 1){
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = spacing.bottomNavigationPadding.calculateBottomPadding())
+                    .padding(bottom = spacing.bottomNavigationHeight),
+                contentAlignment = Alignment.BottomCenter
+            ) {
+                CustomButton(
+                    modifier = Modifier.fillMaxWidth(0.60f),
+                    text = "Get Started",
+                    onClick = {
+                        coroutineScope.launch {
+                            pagerState.animateScrollToPage(1)
+                        }
+                    }
+                )
+            }
+        }
     }
 }
