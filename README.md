@@ -4,7 +4,7 @@ CheckPack is a native android checklist app for those going on vacation, written
 
 * Screenshots 🖼️
 
-<img src="https://user-images.githubusercontent.com/50905347/177814247-03837c5f-60bd-4d1e-acac-622356a7ad82.png" width="125" height="265">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/177772775-bc3fbbe7-5aac-411f-a791-26288fda540f.png" width="125" height="265">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/177772776-b0c9cdc0-a706-4a1a-8d20-e9e5b9c87128.png" width="125" height="265">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/177772779-be6434de-01c2-42fe-81d9-b4c2c43cbdf1.png" width="125" height="265">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/177773247-16fbdb60-29c9-44cc-9376-7165e35cc391.png" width="125" height="265">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/177773255-3ff0d8e9-627f-4d01-934b-a8b33201dfd6.png" width="125" height="265">
+<img src="https://user-images.githubusercontent.com/50905347/177814247-03837c5f-60bd-4d1e-acac-622356a7ad82.png" width="125" height="265">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/177772775-bc3fbbe7-5aac-411f-a791-26288fda540f.png" width="125" height="265">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/177772776-b0c9cdc0-a706-4a1a-8d20-e9e5b9c87128.png" width="125" height="265">
 
 * Application - Features ☕
    * One time splash screen
