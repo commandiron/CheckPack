@@ -36,10 +36,18 @@ class ChecklistViewModel @Inject constructor(
         when (userEvent) {
             is ChecklistUserEvent.OnCheck -> {
                 if(state.doubleCheckEnabled){
-                    state = state.copy(
-                        showAlertDialog = true,
-                        selectedIndex = userEvent.index
-                    )
+                    if(userEvent.checklistItem.isChecked){
+                        state = state.copy(
+                            selectedIndex = userEvent.index
+                        )
+                        check()
+                    }else{
+                        state = state.copy(
+                            showAlertDialog = true,
+                            selectedIndex = userEvent.index
+                        )
+                    }
+
                 }else{
                     state = state.copy(
                         selectedIndex = userEvent.index

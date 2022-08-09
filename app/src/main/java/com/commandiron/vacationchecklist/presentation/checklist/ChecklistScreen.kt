@@ -136,7 +136,9 @@ fun ChecklistScreen(
                                 checklistItem = checklistItem,
                                 isChecked = checklistItem.isChecked,
                                 listScale = state.listScale,
-                                onClick = { viewModel.onEvent(ChecklistUserEvent.OnCheck(index)) }
+                                onClick = {
+                                    viewModel.onEvent(ChecklistUserEvent.OnCheck(index, checklistItem))
+                                }
                             )
                             if(state.showAlertDialog){
                                 CustomAlertDialog(
@@ -159,8 +161,11 @@ fun ChecklistScreen(
                             ColumnItem(
                                 checklistItem = checklistItem,
                                 listScale = state.listScale,
-                                onCheckedChange = { viewModel.onEvent(ChecklistUserEvent.OnCheck(index)) }
+                                onCheckedChange = {
+                                    viewModel.onEvent(ChecklistUserEvent.OnCheck(index, checklistItem))
+                                }
                             )
+                            Spacer(modifier = Modifier.height(spacing.spaceSmall))
                             if(state.showAlertDialog){
                                 CustomAlertDialog(
                                     title = IN_YOUR_BAG,

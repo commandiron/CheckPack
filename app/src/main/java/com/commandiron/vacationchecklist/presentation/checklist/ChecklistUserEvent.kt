@@ -1,7 +1,9 @@
 package com.commandiron.vacationchecklist.presentation.checklist
 
+import com.commandiron.vacationchecklist.domain.model.ChecklistItem
+
 sealed class ChecklistUserEvent{
-    data class OnCheck(val index: Int): ChecklistUserEvent()
+    data class OnCheck(val index: Int, val checklistItem: ChecklistItem): ChecklistUserEvent()
     object OnAlertDialogDismiss : ChecklistUserEvent()
     object OnAlertDialogConfirm : ChecklistUserEvent()
     object OnChecklistCompleteBack: ChecklistUserEvent()
