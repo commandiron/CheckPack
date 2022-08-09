@@ -12,6 +12,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import com.commandiron.vacationchecklist.domain.model.Vacation
 import com.commandiron.vacationchecklist.presentation.components.CustomCircularIcon
 import com.commandiron.vacationchecklist.util.LocalSpacing
+import com.commandiron.vacationchecklist.util.Strings
+import com.commandiron.vacationchecklist.util.Strings.English.CHECKLIST
 
 @Composable
 fun ChecklistHeader(
@@ -30,7 +32,7 @@ fun ChecklistHeader(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Checklist",
+                text = CHECKLIST,
                 style = MaterialTheme.typography.displayMedium
             )
             Divider(color = LocalContentColor.current.copy(alpha = 0.2f))

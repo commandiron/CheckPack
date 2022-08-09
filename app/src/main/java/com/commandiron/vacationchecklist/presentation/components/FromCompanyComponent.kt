@@ -14,12 +14,14 @@ import androidx.compose.ui.unit.dp
 import com.commandiron.vacationchecklist.R
 import com.commandiron.vacationchecklist.ui.theme.companyColor
 import com.commandiron.vacationchecklist.util.LocalSpacing
+import com.commandiron.vacationchecklist.util.Strings.COMPANY_NAME
+import com.commandiron.vacationchecklist.util.Strings.English.FROM
 
 @Composable
 fun FromCompanyComponent(
     modifier: Modifier = Modifier,
-    companyName: String = "CITECH",
-    fromText: String = "from"
+    companyName: String = COMPANY_NAME,
+    fromText: String = FROM
 ) {
     val spacing = LocalSpacing.current
     Column(

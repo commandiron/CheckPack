@@ -11,6 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import com.commandiron.vacationchecklist.domain.model.Vacation
 import com.commandiron.vacationchecklist.util.LocalSpacing
+import com.commandiron.vacationchecklist.util.Strings.English.ENTER_VACATION_NAME
+import com.commandiron.vacationchecklist.util.Strings.English.FINISH
+import com.commandiron.vacationchecklist.util.Strings.English.NEXT
+import com.commandiron.vacationchecklist.util.Strings.English.NO
+import com.commandiron.vacationchecklist.util.Strings.English.YES
+import com.commandiron.vacationchecklist.util.Strings.English.YOUR_PREVIOUS_CHECKLIST_WILL_BE_LOST_ARE_YOU_SURE
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
@@ -41,7 +47,7 @@ fun CreateVacationBody(
             0 -> {
                 Column {
                     VacationsVerticalList(
-                        vacations = vacations, //Bu kısım domainden gelecek.
+                        vacations = vacations,
                         onSelect = onSelect
                     )
                     if(nextButtonEnabled){
@@ -54,7 +60,7 @@ fun CreateVacationBody(
                                 )
                             ) {
                                 Text(
-                                    text = "NEXT",
+                                    text = NEXT,
                                     style = MaterialTheme.typography.titleMedium,
                                     textAlign = TextAlign.Center
                                 )
@@ -70,7 +76,7 @@ fun CreateVacationBody(
                 ) {
                     selectedVacation?.let {
                         Text(
-                            text = "Enter vacation name",
+                            text = ENTER_VACATION_NAME,
                             style = MaterialTheme.typography.titleMedium
                         )
                         Spacer(modifier = Modifier.height(spacing.spaceLarge))
@@ -97,7 +103,7 @@ fun CreateVacationBody(
                                 )
                             ) {
                                 Text(
-                                    text = "FINISH",
+                                    text = FINISH,
                                     style = MaterialTheme.typography.titleMedium,
                                     textAlign = TextAlign.Center
                                 )
@@ -114,7 +120,7 @@ fun CreateVacationBody(
                                         )
                                     ) {
                                         Text(
-                                            text = "Yes",
+                                            text = YES,
                                             style = MaterialTheme.typography.titleSmall
                                         )
                                     }
@@ -127,14 +133,14 @@ fun CreateVacationBody(
                                         )
                                     ) {
                                         Text(
-                                            text = "No",
+                                            text = NO,
                                             style = MaterialTheme.typography.titleSmall
                                         )
                                     }
                                 },
                                 title = {
                                     Text(
-                                        text = "Your previous checklist will be lost, are you sure?",
+                                        text = YOUR_PREVIOUS_CHECKLIST_WILL_BE_LOST_ARE_YOU_SURE,
                                         style = MaterialTheme.typography.bodyLarge
                                     )
                                 },

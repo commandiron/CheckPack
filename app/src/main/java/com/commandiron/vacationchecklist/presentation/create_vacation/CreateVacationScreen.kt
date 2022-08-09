@@ -12,6 +12,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.commandiron.vacationchecklist.presentation.components.*
 import com.commandiron.vacationchecklist.util.LocalSpacing
+import com.commandiron.vacationchecklist.util.Strings.English.CREATE_NEW_VACATION
+import com.commandiron.vacationchecklist.util.Strings.English.CREATING
+import com.commandiron.vacationchecklist.util.Strings.English.YOU_CAN_CREATE_NEW_VACATION_FOR_GENERATE_CHECKLIST
 import com.commandiron.vacationchecklist.util.UiEvent
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -44,8 +47,8 @@ fun CreateVacationScreen(
     ) {
         CustomHeader(
             modifier = Modifier.fillMaxWidth(),
-            title = "Create New Vacation",
-            subTitle = "You can create new vacation for generate checklist",
+            title = CREATE_NEW_VACATION,
+            subTitle = YOU_CAN_CREATE_NEW_VACATION_FOR_GENERATE_CHECKLIST,
         )
         Spacer(modifier = Modifier.height(spacing.spaceMedium))
         Divider(color = LocalContentColor.current.copy(alpha = 0.2f))
@@ -84,7 +87,7 @@ fun CreateVacationScreen(
             ){
                 LoadingBarAnimation(loadingBarDurationMillis = state.fakeLoadingDelay.toInt())
                 Spacer(modifier = Modifier.height(spacing.spaceSmall))
-                LoadingThreeDotAnimation(text = "Creating")
+                LoadingThreeDotAnimation(text = CREATING)
             }
         }
     }

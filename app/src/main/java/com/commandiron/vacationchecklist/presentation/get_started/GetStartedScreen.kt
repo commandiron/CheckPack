@@ -12,6 +12,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.commandiron.vacationchecklist.presentation.components.*
 import com.commandiron.vacationchecklist.util.LocalSpacing
+import com.commandiron.vacationchecklist.util.Strings.English.CREATING
+import com.commandiron.vacationchecklist.util.Strings.English.GET_STARTED
+import com.commandiron.vacationchecklist.util.Strings.English.SELECT_A_VACATION_FOR_GENERATE_CHECKLIST
+import com.commandiron.vacationchecklist.util.Strings.English.SELECT_VACATION
 import com.commandiron.vacationchecklist.util.UiEvent
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.rememberPagerState
@@ -43,8 +47,8 @@ fun GetStartedScreen(
     ) {
         CustomHeader(
             modifier = Modifier.fillMaxWidth(),
-            title = "Select Vacation",
-            subTitle = "Select a vacation for generate checklist",
+            title = SELECT_VACATION,
+            subTitle = SELECT_A_VACATION_FOR_GENERATE_CHECKLIST,
         )
         Spacer(modifier = Modifier.height(spacing.spaceMedium))
         Divider(color = LocalContentColor.current.copy(alpha = 0.2f))
@@ -76,7 +80,7 @@ fun GetStartedScreen(
             ){
                 LoadingBarAnimation(loadingBarDurationMillis = state.fakeLoadingDelay.toInt())
                 Spacer(modifier = Modifier.height(spacing.spaceSmall))
-                LoadingThreeDotAnimation(text = "Creating")
+                LoadingThreeDotAnimation(text = CREATING)
             }
         }
         BackHandler(enabled = pagerState.currentPage == 1) {
@@ -96,7 +100,7 @@ fun GetStartedScreen(
             ) {
                 CustomButton(
                     modifier = Modifier.fillMaxWidth(0.60f),
-                    text = "Get Started",
+                    text = GET_STARTED,
                     onClick = {
                         coroutineScope.launch {
                             pagerState.animateScrollToPage(1)

@@ -24,6 +24,8 @@ import com.commandiron.vacationchecklist.presentation.checklist.components.GridI
 import com.commandiron.vacationchecklist.presentation.checklist.components.ReadyToGoView
 import com.commandiron.vacationchecklist.presentation.components.LoadingThreeDotAnimation
 import com.commandiron.vacationchecklist.util.LocalSpacing
+import com.commandiron.vacationchecklist.util.Strings.English.LOADING
+import com.commandiron.vacationchecklist.util.Strings.English.PLEASE_CREATE_VACATION
 import com.commandiron.vacationchecklist.util.UiEvent
 
 @Composable
@@ -161,7 +163,7 @@ fun ChecklistScreen(
                 .padding(top = spacing.defaultScreenPadding.calculateTopPadding()),
             contentAlignment = Alignment.Center
         ) {
-            LoadingThreeDotAnimation(text = "Loading")
+            LoadingThreeDotAnimation(text = LOADING)
         }
     }else{
         if(state.activeVacation == null){
@@ -171,7 +173,7 @@ fun ChecklistScreen(
                     .padding(top = spacing.defaultScreenPadding.calculateTopPadding()),
                 contentAlignment = Alignment.Center
             ) {
-                Text(text = "Please create vacation.")
+                Text(text = PLEASE_CREATE_VACATION)
             }
         }
     }

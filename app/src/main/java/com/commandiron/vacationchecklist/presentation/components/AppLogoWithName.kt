@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.commandiron.vacationchecklist.R
 import com.commandiron.vacationchecklist.util.LocalSpacing
+import com.commandiron.vacationchecklist.util.Strings.APP_NAME_FIRST_WORD
 
 @Composable
 fun AppLogoWithName(
@@ -51,7 +52,7 @@ fun AppName(
 ) {
     Text(
         modifier = modifier,
-        text = "Check",
+        text = APP_NAME_FIRST_WORD,
         style = MaterialTheme.typography.titleMedium.copy(
             fontWeight = FontWeight.Bold
         ),
