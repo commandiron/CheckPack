@@ -8,13 +8,9 @@ CheckPack is a native android checklist app for those going on vacation, written
 
 * Application - Features ☕
    * One time splash screen
-   * Geolocation - permissions
-   * Various calculation tools
-   * Web scrapping
-   * Database operations - CRUD
-   * Various animations
-   * Unit tests
-   * Language - Turkish
+   * Multiple view mode for checklist.
+   * View scale for checklist.
+   * Language - English
 * Tech-stack ⚛️
     * [Kotlin](https://kotlinlang.org/) + [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operation
     * [Jetpack](https://developer.android.com/jetpack)
@@ -30,5 +26,4 @@ CheckPack is a native android checklist app for those going on vacation, written
     * [Android Architecture components](https://developer.android.com/topic/libraries/architecture) ([ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), [Navigation](https://developer.android.com/jetpack/androidx/releases/navigation))
  
  * Todo ✔️
-   * Tests ❌ - working on
-   * Dark Theme ✔️
+   * Dark Theme ❌
