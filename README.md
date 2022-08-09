@@ -21,6 +21,7 @@ CheckPack is a native android checklist app for those going on vacation, written
         * [Navigation](https://developer.android.com/topic/libraries/architecture/navigation/) - deal with whole in-app navigation      
         * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - store and manage UI-related data in a lifecycle conscious way
     * [Room](https://developer.android.com/jetpack/androidx/releases/room) - database object mapping
+    * [Gson](https://github.com/google/gson) - serialization/deserialization library
     * [Accompanist](https://github.com/google/accompanist)
         * systemUi
     * [Hilt](https://dagger.dev/hilt/) - DI
