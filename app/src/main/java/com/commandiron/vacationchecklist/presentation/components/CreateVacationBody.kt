@@ -110,42 +110,10 @@ fun CreateVacationBody(
                             }
                         }
                         if(showAlertDialog){
-                            AlertDialog(
-                                onDismissRequest = onAlertDismiss,
-                                confirmButton = {
-                                    Button(
-                                        onClick = { onAlertConfirm(it) },
-                                        colors = ButtonDefaults.buttonColors(
-                                            containerColor = MaterialTheme.colorScheme.tertiaryContainer
-                                        )
-                                    ) {
-                                        Text(
-                                            text = YES,
-                                            style = MaterialTheme.typography.titleSmall
-                                        )
-                                    }
-                                },
-                                dismissButton = {
-                                    Button(
-                                        onClick = onAlertDismiss,
-                                        colors = ButtonDefaults.buttonColors(
-                                            containerColor = MaterialTheme.colorScheme.tertiaryContainer
-                                        )
-                                    ) {
-                                        Text(
-                                            text = NO,
-                                            style = MaterialTheme.typography.titleSmall
-                                        )
-                                    }
-                                },
-                                title = {
-                                    Text(
-                                        text = YOUR_PREVIOUS_CHECKLIST_WILL_BE_LOST_ARE_YOU_SURE,
-                                        style = MaterialTheme.typography.bodyLarge
-                                    )
-                                },
-                                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                                titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                            CustomAlertDialog(
+                                title = YOUR_PREVIOUS_CHECKLIST_WILL_BE_LOST_ARE_YOU_SURE,
+                                onDismiss = onAlertDismiss,
+                                onConfirm = { onAlertConfirm(it) }
                             )
                         }
                     }

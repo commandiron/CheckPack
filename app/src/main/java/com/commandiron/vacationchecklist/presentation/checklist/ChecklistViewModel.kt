@@ -28,25 +28,23 @@ class ChecklistViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
 
     init {
+        loadSettings()
         getVacation()
     }
 
     fun onEvent(userEvent: ChecklistUserEvent) {
         when (userEvent) {
             is ChecklistUserEvent.OnCheck -> {
-                state.activeVacation?.let { vacation ->
+                if(state.doubleCheckEnabled){
                     state = state.copy(
-                        activeVacation = vacation.copy(
-                            checklistItems = vacation.checklistItems.toMutableList().also {
-                                it[userEvent.index] = it[userEvent.index].copy(
-                                    isChecked = !it[userEvent.index].isChecked
-                                )
-
-                            }
-                        )
+                        showAlertDialog = true,
+                        selectedIndex = userEvent.index
                     )
-                    calculateCheckCount()
-                    createVacation()
+                }else{
+                    state = state.copy(
+                        selectedIndex = userEvent.index
+                    )
+                    check()
                 }
             }
             ChecklistUserEvent.OnChecklistCompleteBack -> {
@@ -55,34 +53,83 @@ class ChecklistViewModel @Inject constructor(
                 )
             }
             ChecklistUserEvent.OnGridViewClick -> {
-                state = state.copy(
-                    gridViewEnabled = true
-                )
+                preferences.saveShouldShowGridView(true)
+                loadSettings()
+
             }
             ChecklistUserEvent.OnListViewClick -> {
-                state = state.copy(
-                    gridViewEnabled = false
-                )
+                preferences.saveShouldShowGridView(false)
+                loadSettings()
             }
             is ChecklistUserEvent.OnSliderChange -> {
                 if(userEvent.value > 0f && userEvent.value <= 0.25f ){
                     state = state.copy(
-                        listScale = 1,
-                        sliderValue = userEvent.value
+                        sliderValue = userEvent.value,
+                        listScale = 1
                     )
                 }
                 if(userEvent.value > 0.25f && userEvent.value <= 0.75f ){
                     state = state.copy(
-                        listScale = 2,
-                        sliderValue = userEvent.value
+                        sliderValue = userEvent.value,
+                        listScale = 2
                     )
                 }
                 if(userEvent.value > 0.75f && userEvent.value <= 1f ){
                     state = state.copy(
-                        listScale = 3,
-                        sliderValue = userEvent.value
+                        sliderValue = userEvent.value,
+                        listScale = 3
                     )
                 }
+            }
+            ChecklistUserEvent.OnSliderValueChangeFinished -> {
+                preferences.saveListScale(state.listScale)
+            }
+            is ChecklistUserEvent.OnAlertDialogConfirm -> {
+                state = state.copy(
+                    showAlertDialog = false
+                )
+                check()
+            }
+            ChecklistUserEvent.OnAlertDialogDismiss -> {
+                state = state.copy(
+                    showAlertDialog = false
+                )
+            }
+
+        }
+    }
+
+    private fun loadSettings() {
+        state = state.copy(
+            doubleCheckEnabled = preferences.loadShouldDoubleCheck(),
+            gridViewEnabled = preferences.loadShouldShowGridView(),
+            listScale = preferences.loadListScale()
+        )
+        state = state.copy(
+            sliderValue = when(state.listScale){
+                1 -> 0f
+                2 -> 0.5f
+                3 -> 1f
+                else -> 0.5f
+            }
+        )
+    }
+
+    private fun check(){
+        state.activeVacation?.let { vacation ->
+            state.selectedIndex?.let { selectedIndex ->
+                state = state.copy(
+                    activeVacation = vacation.copy(
+                        checklistItems = vacation.checklistItems.toMutableList().also {
+                            it[selectedIndex] = it[selectedIndex].copy(
+                                isChecked = !it[selectedIndex].isChecked
+                            )
+
+                        }
+                    )
+                )
+                calculateCheckCount()
+                createVacation()
             }
         }
     }

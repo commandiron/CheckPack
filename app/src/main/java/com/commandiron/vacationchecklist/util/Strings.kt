@@ -21,8 +21,11 @@ object Strings {
         const val PLEASE_CREATE_VACATION = "Please create vacation."
         const val CREATE_NEW_VACATION = "Create New Vacation"
         const val ENTER_VACATION_NAME = "Enter vacation name"
+        const val IN_YOUR_BAG = "In your bag?"
         const val YOUR_PREVIOUS_CHECKLIST_WILL_BE_LOST_ARE_YOU_SURE = "Your previous checklist will be lost, are you sure?"
         const val YOU_CAN_CREATE_NEW_VACATION_FOR_GENERATE_CHECKLIST = "You can create new vacation for generate checklist"
         const val SELECT_A_VACATION_FOR_GENERATE_CHECKLIST = "Select a vacation for generate checklist"
+        const val SETTINGS = "Settings"
+        const val DOUBLE_CHECK = "Double Check"
     }
 }

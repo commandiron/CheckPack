@@ -22,10 +22,15 @@ import com.commandiron.vacationchecklist.presentation.checklist.components.Check
 import com.commandiron.vacationchecklist.presentation.checklist.components.ColumnItem
 import com.commandiron.vacationchecklist.presentation.checklist.components.GridItem
 import com.commandiron.vacationchecklist.presentation.checklist.components.ReadyToGoView
+import com.commandiron.vacationchecklist.presentation.components.CustomAlertDialog
 import com.commandiron.vacationchecklist.presentation.components.LoadingThreeDotAnimation
 import com.commandiron.vacationchecklist.util.LocalSpacing
+import com.commandiron.vacationchecklist.util.Strings
+import com.commandiron.vacationchecklist.util.Strings.English.IN_YOUR_BAG
 import com.commandiron.vacationchecklist.util.Strings.English.LOADING
+import com.commandiron.vacationchecklist.util.Strings.English.NO
 import com.commandiron.vacationchecklist.util.Strings.English.PLEASE_CREATE_VACATION
+import com.commandiron.vacationchecklist.util.Strings.English.YES
 import com.commandiron.vacationchecklist.util.UiEvent
 
 @Composable
@@ -57,7 +62,9 @@ fun ChecklistScreen(
                 isChecklistCompeted = state.isChecklistCompeted
             )
             Row(
-                modifier = Modifier.fillMaxWidth().padding(horizontal = spacing.spaceLarge),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = spacing.spaceLarge),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(
@@ -96,7 +103,8 @@ fun ChecklistScreen(
                     colors = SliderDefaults.colors(
                         thumbColor = MaterialTheme.colorScheme.tertiaryContainer,
                         activeTrackColor = MaterialTheme.colorScheme.tertiaryContainer
-                    )
+                    ),
+                    onValueChangeFinished = { viewModel.onEvent(ChecklistUserEvent.OnSliderValueChangeFinished) }
                 )
             }
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
@@ -130,6 +138,13 @@ fun ChecklistScreen(
                                 listScale = state.listScale,
                                 onClick = { viewModel.onEvent(ChecklistUserEvent.OnCheck(index)) }
                             )
+                            if(state.showAlertDialog){
+                                CustomAlertDialog(
+                                    title = IN_YOUR_BAG,
+                                    onDismiss = { viewModel.onEvent(ChecklistUserEvent.OnAlertDialogDismiss) },
+                                    onConfirm = { viewModel.onEvent(ChecklistUserEvent.OnAlertDialogConfirm) }
+                                )
+                            }
                         }
                         item {
                             Spacer(modifier = Modifier.height(spacing.spaceXXXLarge))
@@ -146,7 +161,13 @@ fun ChecklistScreen(
                                 listScale = state.listScale,
                                 onCheckedChange = { viewModel.onEvent(ChecklistUserEvent.OnCheck(index)) }
                             )
-                            Spacer(modifier = Modifier.height(spacing.spaceMedium))
+                            if(state.showAlertDialog){
+                                CustomAlertDialog(
+                                    title = IN_YOUR_BAG,
+                                    onDismiss = { viewModel.onEvent(ChecklistUserEvent.OnAlertDialogDismiss) },
+                                    onConfirm = { viewModel.onEvent(ChecklistUserEvent.OnAlertDialogConfirm) }
+                                )
+                            }
                         }
                         item {
                             Spacer(modifier = Modifier.height(spacing.spaceXXLarge))

@@ -13,7 +13,7 @@ import androidx.compose.ui.text.style.TextAlign
 fun CustomHeader(
     modifier: Modifier = Modifier,
     title: String,
-    subTitle: String
+    subTitle: String? = null
 ) {
     Column(
         modifier = modifier,
@@ -23,11 +23,13 @@ fun CustomHeader(
             text = title,
             style = MaterialTheme.typography.displayMedium
         )
-        Text(
-            text = subTitle,
-            style = MaterialTheme.typography.bodyMedium,
-            color = LocalContentColor.current.copy(alpha = 0.5f),
-            textAlign = TextAlign.Center
-        )
+        subTitle?.let {
+            Text(
+                text = it,
+                style = MaterialTheme.typography.bodyMedium,
+                color = LocalContentColor.current.copy(alpha = 0.5f),
+                textAlign = TextAlign.Center
+            )
+        }
     }
 }
