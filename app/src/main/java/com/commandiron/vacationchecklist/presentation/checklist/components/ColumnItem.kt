@@ -6,6 +6,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.commandiron.vacationchecklist.domain.model.ChecklistItem
 import com.commandiron.vacationchecklist.presentation.components.CustomCircularIcon
@@ -88,10 +89,10 @@ fun ColumnItem(
                 Text(
                     text = checklistItem.name,
                     style =  when(listScale){
-                        1 -> MaterialTheme.typography.bodyMedium
-                        2 -> MaterialTheme.typography.bodyLarge
-                        3 -> MaterialTheme.typography.titleLarge
-                        else -> MaterialTheme.typography.bodyLarge
+                        1 -> MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium)
+                        2 -> MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Medium)
+                        3 -> MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Medium)
+                        else -> MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Medium)
                     }
                 )
             }

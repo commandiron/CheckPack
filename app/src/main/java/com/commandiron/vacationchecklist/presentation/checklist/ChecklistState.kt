@@ -4,7 +4,7 @@ import com.commandiron.vacationchecklist.domain.model.Vacation
 
 data class ChecklistState(
     val activeVacation: Vacation? = null,
-    val doubleCheckEnabled: Boolean = true,
+    val doubleCheckEnabled: Boolean = false,
     val selectedIndex: Int? = null,
     val isLoading: Boolean = false,
     val showAlertDialog: Boolean = false,

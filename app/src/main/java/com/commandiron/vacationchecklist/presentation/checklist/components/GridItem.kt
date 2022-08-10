@@ -8,12 +8,15 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
 import com.commandiron.vacationchecklist.domain.model.ChecklistItem
 import com.commandiron.vacationchecklist.presentation.components.CustomCircularIcon
 import com.commandiron.vacationchecklist.presentation.components.ImportanceLevelDot
 import com.commandiron.vacationchecklist.ui.theme.checkedGreen
+import com.commandiron.vacationchecklist.ui.theme.iconBackgroundColor
 import com.commandiron.vacationchecklist.util.LocalSpacing
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -35,7 +38,7 @@ fun GridItem(
             ) { onClick() },
         colors = CardDefaults.cardColors(
             containerColor = if (isChecked) {
-                checkedGreen
+                MaterialTheme.colorScheme.tertiaryContainer
             }else MaterialTheme.colorScheme.secondaryContainer
         ),
         shape = RoundedCornerShape(
@@ -78,7 +81,15 @@ fun GridItem(
                     contentAlignment = Alignment.Center
                 ) {
                     CustomCircularIcon(
-                        iconDrawable = checklistItem.iconDrawable
+                        surfaceShape = RoundedCornerShape(spacing.spaceSmall),
+                        surfaceColor = iconBackgroundColor,
+                        iconDrawable = checklistItem.iconDrawable,
+                        iconPadding = when(listScale){
+                            1 -> 0.dp
+                            2 -> spacing.spaceExtraSmall
+                            3 -> spacing.spaceExtraSmall
+                            else -> spacing.spaceExtraSmall
+                        }
                     )
                 }
                 Spacer(modifier = Modifier.weight(1f))
@@ -93,10 +104,10 @@ fun GridItem(
                         modifier = Modifier.fillMaxHeight(),
                         text = checklistItem.name,
                         style = when(listScale){
-                            1 -> MaterialTheme.typography.labelLarge
-                            2 -> MaterialTheme.typography.bodySmall
-                            3 -> MaterialTheme.typography.titleSmall
-                            else -> MaterialTheme.typography.bodySmall
+                            1 -> MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Medium)
+                            2 -> MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.Medium)
+                            3 -> MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Medium)
+                            else -> MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.Medium)
                         },
                         textAlign = TextAlign.Center,
                         overflow = TextOverflow.Clip

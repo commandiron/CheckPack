@@ -13,13 +13,13 @@ private val vacations = listOf(
     Vacation(
         id = 0,
         name = "Summer Vacation",
-        iconDrawable = R.drawable.beach_chair,
+        iconDrawable = R.drawable.summer_vacation,
         checklistItems = commonChecklistItems + summerVacationChecklistItems
     ),
     Vacation(
         id = 1,
         name = "Ski Trip",
-        iconDrawable = R.drawable.snowboard,
+        iconDrawable = R.drawable.ski_trip,
         checklistItems = commonChecklistItems + skiTripChecklistItems
     )
 //    Vacation(

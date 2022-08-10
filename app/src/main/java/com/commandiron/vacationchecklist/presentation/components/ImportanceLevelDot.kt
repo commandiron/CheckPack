@@ -14,9 +14,9 @@ fun ImportanceLevelDot(
     Surface(
         modifier = modifier,
         color = when(importanceLevel){
-            1 -> Color.Red
-            2 -> Color.Blue
-            3 -> Color.Green
+            0 -> Color.Red
+            1 -> Color.Blue
+            2 -> Color.Green
             else -> Color.Red
         },
         shape = CircleShape

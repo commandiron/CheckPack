@@ -41,7 +41,7 @@ class DefaultPreferences(
     override fun loadShouldDoubleCheck(): Boolean {
         return sharedPref.getBoolean(
             Preferences.KEY_SHOULD_DOUBLE_CHECK,
-            true
+            false
         )
     }
 
