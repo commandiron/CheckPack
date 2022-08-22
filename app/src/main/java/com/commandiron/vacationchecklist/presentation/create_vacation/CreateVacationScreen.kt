@@ -15,7 +15,6 @@ import com.commandiron.vacationchecklist.util.Strings.English.CREATE_NEW_VACATIO
 import com.commandiron.vacationchecklist.util.Strings.English.CREATING
 import com.commandiron.vacationchecklist.util.Strings.English.YOU_CAN_CREATE_NEW_VACATION_FOR_GENERATE_CHECKLIST
 import com.commandiron.vacationchecklist.util.UiEvent
-import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
 
