@@ -21,7 +21,6 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun GetStartedScreen(
     viewModel: GetStartedViewModel = hiltViewModel(),

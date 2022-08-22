@@ -37,6 +37,8 @@ android {
         jvmTarget = "1.8"
         freeCompilerArgs = freeCompilerArgs + listOf(
             "-opt-in=com.google.accompanist.pager.ExperimentalPagerApi",
+            "-opt-in=androidx.compose.animation.ExperimentalAnimationApi",
+            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
         )
     }
     composeOptions {
@@ -66,9 +68,8 @@ dependencies {
     implementation(Compose.hiltNavigationCompose)
 
     implementation(Coroutines.coroutines)
-
-    implementation(DaggerHilt.hiltAndroid)
     kapt(DaggerHilt.hiltCompiler)
+    implementation(DaggerHilt.hiltAndroid)
 
     implementation(Google.material)
     implementation(Google.material3)

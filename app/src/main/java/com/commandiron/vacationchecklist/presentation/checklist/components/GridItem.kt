@@ -19,7 +19,6 @@ import com.commandiron.vacationchecklist.ui.theme.checkedGreen
 import com.commandiron.vacationchecklist.ui.theme.iconBackgroundColor
 import com.commandiron.vacationchecklist.util.LocalSpacing
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GridItem(
     checklistItem: ChecklistItem,

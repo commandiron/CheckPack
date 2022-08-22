@@ -14,7 +14,6 @@ import com.commandiron.vacationchecklist.presentation.components.ImportanceLevel
 import com.commandiron.vacationchecklist.ui.theme.iconBackgroundColor
 import com.commandiron.vacationchecklist.util.LocalSpacing
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ColumnItem(
     checklistItem: ChecklistItem,
