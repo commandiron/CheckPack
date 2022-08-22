@@ -1,9 +1,6 @@
 package com.commandiron.vacationchecklist.presentation.components
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,7 +18,6 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 
-@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun CreateVacationBody(
     pagerState: PagerState,
@@ -89,10 +85,10 @@ fun CreateVacationBody(
                         }
                         Spacer(modifier = Modifier.height(spacing.spaceLarge))
                         Column(modifier = Modifier.weight(2f)) {
-                            TextField(
+                            CustomTextField(
+                                modifier = Modifier.fillMaxWidth(0.75f),
                                 value = it.name,
-                                onValueChange = onVacationNameChange,
-                                singleLine = true
+                                onValueChange = onVacationNameChange
                             )
                             Spacer(modifier = Modifier.height(spacing.spaceLarge))
                             Button(

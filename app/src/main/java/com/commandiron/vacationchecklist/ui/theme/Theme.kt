@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.Color
 private val DarkColorPalette = darkColorScheme(
     background = Cultured,
     onBackground = OxfordBlue,
+    primary = OxfordBlue,
     primaryContainer = OxfordBlue,
     onPrimaryContainer = Color.White,
     secondaryContainer = Color.White,
@@ -21,6 +22,7 @@ private val DarkColorPalette = darkColorScheme(
 private val LightColorPalette = lightColorScheme(
     background = Cultured,
     onBackground = OxfordBlue,
+    primary = OxfordBlue,
     primaryContainer = OxfordBlue,
     onPrimaryContainer = Color.White,
     secondaryContainer = Color.White,

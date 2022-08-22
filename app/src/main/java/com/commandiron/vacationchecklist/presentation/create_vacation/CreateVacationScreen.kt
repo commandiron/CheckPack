@@ -8,7 +8,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.commandiron.vacationchecklist.presentation.components.*
 import com.commandiron.vacationchecklist.util.LocalSpacing
@@ -17,11 +16,9 @@ import com.commandiron.vacationchecklist.util.Strings.English.CREATING
 import com.commandiron.vacationchecklist.util.Strings.English.YOU_CAN_CREATE_NEW_VACATION_FOR_GENERATE_CHECKLIST
 import com.commandiron.vacationchecklist.util.UiEvent
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun CreateVacationScreen(
     viewModel: CreateVacationViewModel = hiltViewModel(),
