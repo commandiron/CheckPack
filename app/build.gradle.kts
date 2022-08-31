@@ -81,6 +81,8 @@ dependencies {
     kapt(Room.compiler)
     implementation(Room.ktx)
 
+    implementation("com.github.commandiron:HandyCompose:1.0.3")
+
     testImplementation(Testing.junit)
 
     androidTestImplementation(Testing.junitAndroidExt)

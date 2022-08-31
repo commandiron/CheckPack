@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
@@ -19,19 +18,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.commandiron.vacationchecklist.presentation.checklist.components.ChecklistHeader
-import com.commandiron.vacationchecklist.presentation.checklist.components.ColumnItem
-import com.commandiron.vacationchecklist.presentation.checklist.components.GridItem
-import com.commandiron.vacationchecklist.presentation.checklist.components.ReadyToGoView
+import com.commandiron.vacationchecklist.presentation.checklist.components.*
 import com.commandiron.vacationchecklist.presentation.components.CustomAlertDialog
 import com.commandiron.vacationchecklist.presentation.components.LoadingThreeDotAnimation
 import com.commandiron.vacationchecklist.util.LocalSpacing
-import com.commandiron.vacationchecklist.util.Strings
 import com.commandiron.vacationchecklist.util.Strings.English.IN_YOUR_BAG
 import com.commandiron.vacationchecklist.util.Strings.English.LOADING
-import com.commandiron.vacationchecklist.util.Strings.English.NO
 import com.commandiron.vacationchecklist.util.Strings.English.PLEASE_CREATE_VACATION
-import com.commandiron.vacationchecklist.util.Strings.English.YES
 import com.commandiron.vacationchecklist.util.UiEvent
 
 @Composable
@@ -136,7 +129,6 @@ fun ChecklistScreen(
                             GridItem(
                                 checklistItem = checklistItem,
                                 isChecked = checklistItem.isChecked,
-                                listScale = state.listScale,
                                 onClick = {
                                     viewModel.onEvent(ChecklistUserEvent.OnCheck(index, checklistItem))
                                 }
@@ -160,8 +152,17 @@ fun ChecklistScreen(
                     ) {
                         itemsIndexed(vacation.checklistItems){ index, checklistItem ->
                             ColumnItem(
+                                modifier = Modifier
+                                    .height(
+                                        when(state.listScale){
+                                            1 -> 32.dp
+                                            2 -> 64.dp
+                                            3 -> 96.dp
+                                            else -> 32.dp
+                                        }
+                                    )
+                                    .fillMaxWidth(),
                                 checklistItem = checklistItem,
-                                listScale = state.listScale,
                                 onCheckedChange = {
                                     viewModel.onEvent(ChecklistUserEvent.OnCheck(index, checklistItem))
                                 }

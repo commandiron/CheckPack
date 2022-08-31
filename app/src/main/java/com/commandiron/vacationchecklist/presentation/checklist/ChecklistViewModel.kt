@@ -103,7 +103,9 @@ class ChecklistViewModel @Inject constructor(
                     showAlertDialog = false
                 )
             }
-
+            is ChecklistUserEvent.OnAddAlarmClick -> {
+                //Burda alarm kurulacak.
+            }
         }
     }
 
