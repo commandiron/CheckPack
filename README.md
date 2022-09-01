@@ -28,6 +28,8 @@ CheckPack is a native android checklist app for those going on vacation, written
         * systemUi
     * [Hilt](https://dagger.dev/hilt/) - DI
     * [Material 3](https://m3.material.io) - design
+    * [Google Firebase](https://firebase.google.com)
+        * crashlytics
 * Architecture 🏗️
     * Model-View-Intent
     * [Android Architecture components](https://developer.android.com/topic/libraries/architecture) ([ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), [Navigation](https://developer.android.com/jetpack/androidx/releases/navigation))
