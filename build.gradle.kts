@@ -7,6 +7,8 @@ buildscript {
         classpath(Build.androidBuildTools)
         classpath(Build.kotlinGradlePlugin)
         classpath(DaggerHilt.hiltAndroidGradlePlugin)
+        classpath(Google.services)
+        classpath(Firebase.crashlyticsPlugin)
     }
 }
 

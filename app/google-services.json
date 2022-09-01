@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "954474646555",
+    "project_id": "checkpack-f2bb6",
+    "storage_bucket": "checkpack-f2bb6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:954474646555:android:29a77351bf45641949fcbe",
+        "android_client_info": {
+          "package_name": "com.commandiron.vacationchecklist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "954474646555-is8keins8qi823ts0u5gp582t555sk7v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOMmB8D9bygIqgrnXx-UplPkmjW9j3GPE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "954474646555-is8keins8qi823ts0u5gp582t555sk7v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

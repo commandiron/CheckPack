@@ -13,4 +13,7 @@ object Google {
 
     private const val gsonVersion = "2.9.1"
     const val gson = "com.google.code.gson:gson:$gsonVersion"
+
+    private const val servicesVersion = "4.3.13"
+    const val services = "com.google.gms:google-services:$servicesVersion"
 }

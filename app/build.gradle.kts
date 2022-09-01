@@ -3,6 +3,8 @@ plugins {
     kotlin("android")
     id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -77,11 +79,15 @@ dependencies {
     implementation(Google.materialIconsExtended)
     implementation(Google.gson)
 
+    implementation(platform(Firebase.bom))
+    implementation(Firebase.analytics)
+    implementation(Firebase.crashlytics)
+
     implementation(Room.runtime)
     kapt(Room.compiler)
     implementation(Room.ktx)
 
-    implementation("com.github.commandiron:HandyCompose:1.0.3")
+    implementation(HandyCompose.handyCompose)
 
     testImplementation(Testing.junit)
 
