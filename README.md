@@ -17,10 +17,6 @@
   </p>
 </h1>
 
-
-
-
-
 CheckPack is a native android checklist app for those going on vacation, written in Kotlin using Jetpack Compose.
 
 * Screenshots 🖼️
