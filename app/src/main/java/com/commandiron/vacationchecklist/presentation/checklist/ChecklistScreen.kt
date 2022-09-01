@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.itemsIndexed
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.GridView
 import androidx.compose.material.icons.rounded.ViewList
@@ -126,18 +124,23 @@ fun ChecklistScreen(
                             .padding(horizontal = spacing.spaceMedium),
                         columns = GridCells.Fixed(state.gridCellsCount)
                     ){
-                        itemsIndexed(vacation.checklistItems){ index, checklistItem ->
+                        items(
+                            count = vacation.checklistItems.size,
+                            key = {
+                                vacation.checklistItems[it].id
+                            }
+                        ){ index ->
                             GridItem(
                                 modifier = Modifier
                                     .aspectRatio(1f)
                                     .clickable {
                                         viewModel.onEvent(
-                                            ChecklistUserEvent.OnCheck(index, checklistItem)
+                                            ChecklistUserEvent.OnCheck(index, vacation.checklistItems[index])
                                         )
                                     }
                                     .padding(spacing.spaceExtraSmall),
                                 gridCellsCount = state.gridCellsCount,
-                                checklistItem = checklistItem
+                                checklistItem = vacation.checklistItems[index]
                             )
                             if(state.showAlertDialog){
                                 CustomAlertDialog(
@@ -156,15 +159,20 @@ fun ChecklistScreen(
                         modifier = Modifier
                             .padding(horizontal = spacing.spaceMedium)
                     ) {
-                        itemsIndexed(vacation.checklistItems){ index, checklistItem ->
+                        items(
+                            count = vacation.checklistItems.size,
+                            key = {
+                                vacation.checklistItems[it].id
+                            }
+                        ){ index ->
                             ColumnItem(
                                 modifier = Modifier
                                     .height(Dp(state.listItemHeightValue))
                                     .fillMaxWidth(),
                                 gridCellsCount = state.gridCellsCount,
-                                checklistItem = checklistItem,
+                                checklistItem = vacation.checklistItems[index],
                                 onCheckedChange = {
-                                    viewModel.onEvent(ChecklistUserEvent.OnCheck(index, checklistItem))
+                                    viewModel.onEvent(ChecklistUserEvent.OnCheck(index, vacation.checklistItems[index]))
                                 }
                             )
                             Spacer(modifier = Modifier.height(spacing.spaceSmall))
