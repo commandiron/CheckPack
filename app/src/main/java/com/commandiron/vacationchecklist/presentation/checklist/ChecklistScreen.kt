@@ -131,8 +131,9 @@ fun ChecklistScreen(
                                 modifier = Modifier
                                     .aspectRatio(1f)
                                     .clickable {
-                                        viewModel.onEvent(ChecklistUserEvent.OnCheck(index,
-                                            checklistItem))
+                                        viewModel.onEvent(
+                                            ChecklistUserEvent.OnCheck(index, checklistItem)
+                                        )
                                     }
                                     .padding(spacing.spaceExtraSmall),
                                 gridCellsCount = state.gridCellsCount,
