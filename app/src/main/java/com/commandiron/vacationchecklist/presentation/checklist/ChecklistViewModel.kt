@@ -70,27 +70,28 @@ class ChecklistViewModel @Inject constructor(
                 loadSettings()
             }
             is ChecklistUserEvent.OnSliderChange -> {
-                if(userEvent.value > 0f && userEvent.value <= 0.25f ){
-                    state = state.copy(
-                        sliderValue = userEvent.value,
-                        listScale = 1
-                    )
-                }
-                if(userEvent.value > 0.25f && userEvent.value <= 0.75f ){
-                    state = state.copy(
-                        sliderValue = userEvent.value,
-                        listScale = 2
-                    )
-                }
-                if(userEvent.value > 0.75f && userEvent.value <= 1f ){
-                    state = state.copy(
-                        sliderValue = userEvent.value,
-                        listScale = 3
-                    )
-                }
+                state = state.copy(
+                    sliderValue = userEvent.value,
+                    gridCellsCount = when(userEvent.value){
+                        0f -> 5
+                        0.25f -> 4
+                        0.50f -> 3
+                        0.75f -> 2
+                        1f -> 1
+                        else -> 3
+                    },
+                    listItemHeightValue =  when(userEvent.value){
+                        0f -> 24f
+                        0.25f -> 32f
+                        0.50f -> 64f
+                        0.75f -> 96f
+                        1f -> 128f
+                        else -> 64f
+                    }
+                )
             }
             ChecklistUserEvent.OnSliderValueChangeFinished -> {
-                preferences.saveListScale(state.listScale)
+                preferences.saveSliderValue(state.sliderValue)
             }
             is ChecklistUserEvent.OnAlertDialogConfirm -> {
                 state = state.copy(
@@ -112,15 +113,27 @@ class ChecklistViewModel @Inject constructor(
     private fun loadSettings() {
         state = state.copy(
             doubleCheckEnabled = preferences.loadShouldDoubleCheck(),
-            gridViewEnabled = preferences.loadShouldShowGridView(),
-            listScale = preferences.loadListScale()
+            gridViewEnabled = preferences.loadShouldShowGridView()
         )
         state = state.copy(
-            sliderValue = when(state.listScale){
-                1 -> 0f
-                2 -> 0.5f
-                3 -> 1f
-                else -> 0.5f
+            sliderValue = preferences.loadSliderValue()
+        )
+        state = state.copy(
+            gridCellsCount = when(state.sliderValue){
+                0f -> 5
+                0.25f -> 4
+                0.50f -> 3
+                0.75f -> 2
+                1f -> 1
+                else -> 3
+            },
+            listItemHeightValue =  when(state.sliderValue){
+                0f -> 24f
+                0.25f -> 32f
+                0.50f -> 64f
+                0.75f -> 96f
+                1f -> 128f
+                else -> 64f
             }
         )
     }

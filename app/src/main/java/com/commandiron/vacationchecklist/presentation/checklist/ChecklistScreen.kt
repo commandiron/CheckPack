@@ -1,6 +1,7 @@
 package com.commandiron.vacationchecklist.presentation.checklist
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -16,6 +17,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.commandiron.vacationchecklist.presentation.checklist.components.*
@@ -93,12 +95,18 @@ fun ChecklistScreen(
                 Slider(
                     modifier = Modifier.fillMaxWidth(),
                     value = state.sliderValue,
-                    onValueChange = { viewModel.onEvent(ChecklistUserEvent.OnSliderChange(it)) },
+                    onValueChange = {
+                        viewModel.onEvent(ChecklistUserEvent.OnSliderChange(it))
+                    },
+                    steps = 3,
                     colors = SliderDefaults.colors(
                         thumbColor = MaterialTheme.colorScheme.tertiaryContainer,
                         activeTrackColor = MaterialTheme.colorScheme.tertiaryContainer
                     ),
-                    onValueChangeFinished = { viewModel.onEvent(ChecklistUserEvent.OnSliderValueChangeFinished) }
+                    onValueChangeFinished = {
+
+                        viewModel.onEvent(ChecklistUserEvent.OnSliderValueChangeFinished)
+                    }
                 )
             }
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
@@ -116,22 +124,17 @@ fun ChecklistScreen(
                     LazyVerticalGrid(
                         modifier = Modifier
                             .padding(horizontal = spacing.spaceMedium),
-                        columns = GridCells.Fixed(
-                            when(state.listScale){
-                                1 -> 4
-                                2 -> 3
-                                3 -> 2
-                                else -> 3
-                            }
-                        )
+                        columns = GridCells.Fixed(state.gridCellsCount)
                     ){
                         itemsIndexed(vacation.checklistItems){ index, checklistItem ->
                             GridItem(
+                                modifier = Modifier
+                                    .aspectRatio(1f)
+                                    .clickable { viewModel.onEvent(ChecklistUserEvent.OnCheck(index, checklistItem)) }
+                                    .padding(spacing.spaceExtraSmall),
+                                gridCellsCount = state.gridCellsCount,
                                 checklistItem = checklistItem,
-                                isChecked = checklistItem.isChecked,
-                                onClick = {
-                                    viewModel.onEvent(ChecklistUserEvent.OnCheck(index, checklistItem))
-                                }
+                                isChecked = checklistItem.isChecked
                             )
                             if(state.showAlertDialog){
                                 CustomAlertDialog(
@@ -153,14 +156,7 @@ fun ChecklistScreen(
                         itemsIndexed(vacation.checklistItems){ index, checklistItem ->
                             ColumnItem(
                                 modifier = Modifier
-                                    .height(
-                                        when(state.listScale){
-                                            1 -> 32.dp
-                                            2 -> 64.dp
-                                            3 -> 96.dp
-                                            else -> 32.dp
-                                        }
-                                    )
+                                    .height(Dp(state.listItemHeightValue))
                                     .fillMaxWidth(),
                                 checklistItem = checklistItem,
                                 onCheckedChange = {

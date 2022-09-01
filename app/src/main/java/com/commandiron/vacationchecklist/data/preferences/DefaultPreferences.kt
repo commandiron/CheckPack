@@ -58,16 +58,16 @@ class DefaultPreferences(
         )
     }
 
-    override fun saveListScale(scale: Int) {
+    override fun saveSliderValue(sliderValue: Float) {
         sharedPref.edit()
-            .putInt(Preferences.KEY_SAVE_LOAD_LIST_SCALE, scale)
+            .putFloat(Preferences.KEY_SAVE_LOAD_SLIDER_VALUE, sliderValue)
             .apply()
     }
 
-    override fun loadListScale(): Int {
-        return sharedPref.getInt(
-            Preferences.KEY_SAVE_LOAD_LIST_SCALE,
-            2
+    override fun loadSliderValue(): Float {
+        return sharedPref.getFloat(
+            Preferences.KEY_SAVE_LOAD_SLIDER_VALUE,
+            0.5f
         )
     }
 }

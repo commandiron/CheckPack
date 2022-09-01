@@ -12,6 +12,8 @@ data class ChecklistState(
     val totalCheckCount: Int = 0,
     val isChecklistCompeted: Boolean = false,
     val gridViewEnabled: Boolean = false,
-    val listScale: Int = 2,
-    val sliderValue: Float = 0.50f
+    val sliderValue: Float = 0.5f,
+
+    val gridCellsCount: Int = 3,
+    val listItemHeightValue: Float = 64f,
 )
