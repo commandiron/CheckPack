@@ -4,7 +4,7 @@
 
 <h1>
   <p align="center">
-    <b>CheckPack</b>
+    CheckPack
   </p>
   <p align="center">
     <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" width="80" height="20"> 
