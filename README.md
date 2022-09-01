@@ -4,7 +4,7 @@
 
 <h1>
   <p align="center">
-    <b>CheckPack</p>
+    <b>CheckPack</b>
   </p>
   <p align="center">
     <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" width="80" height="20"> 
@@ -15,9 +15,14 @@
       <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="206.72" height="80">
     </a>
   </p>
+  <h4>
+  <p align="center">
+    CheckPack is a native android checklist app for those going on vacation, written in Kotlin using Jetpack Compose.
+  </p>
+  </h4>
 </h1>
 
-CheckPack is a native android checklist app for those going on vacation, written in Kotlin using Jetpack Compose.
+#
 
 * Screenshots 🖼️
 
