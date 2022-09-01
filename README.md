@@ -1,6 +1,6 @@
 # CheckPack <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" width="80" height="20"> <img src="https://img.shields.io/badge/Kotlin-0095D5?&style=for-the-badge&logo=kotlin&logoColor=white" width="80" height="20">
 
-[<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="323" height="125">](https://play.google.com/store/apps/details?id=com.commandiron.vacationchecklist)
+[<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="161.5" height="62.5">](https://play.google.com/store/apps/details?id=com.commandiron.vacationchecklist)
 
 CheckPack is a native android checklist app for those going on vacation, written in Kotlin using Jetpack Compose.
 
