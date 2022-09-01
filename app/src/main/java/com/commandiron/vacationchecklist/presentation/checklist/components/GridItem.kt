@@ -17,14 +17,13 @@ import com.commandiron.vacationchecklist.util.LocalSpacing
 fun GridItem(
     modifier: Modifier = Modifier,
     gridCellsCount: Int,
-    checklistItem: ChecklistItem,
-    isChecked: Boolean
+    checklistItem: ChecklistItem
 ) {
     val spacing = LocalSpacing.current
     Card(
         modifier = modifier,
         colors = CardDefaults.cardColors(
-            containerColor = if(isChecked) {
+            containerColor = if(checklistItem.isChecked) {
                 MaterialTheme.colorScheme.tertiaryContainer
             } else MaterialTheme.colorScheme.secondaryContainer,
         )
@@ -47,7 +46,7 @@ fun GridItem(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .weight(1.5f),
+                        .weight(1f),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
@@ -72,7 +71,7 @@ fun GridItem(
                     .padding(spacing.spaceSmall),
                 contentAlignment = Alignment.TopStart
             ) {
-                if(!isChecked){
+                if(!checklistItem.isChecked){
                     ImportanceLevelDot(
                         modifier = Modifier.size(spacing.spaceExtraSmall),
                         importanceLevel = checklistItem.importanceLevel

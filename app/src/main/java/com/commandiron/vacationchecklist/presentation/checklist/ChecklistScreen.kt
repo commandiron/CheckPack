@@ -133,8 +133,7 @@ fun ChecklistScreen(
                                     .clickable { viewModel.onEvent(ChecklistUserEvent.OnCheck(index, checklistItem)) }
                                     .padding(spacing.spaceExtraSmall),
                                 gridCellsCount = state.gridCellsCount,
-                                checklistItem = checklistItem,
-                                isChecked = checklistItem.isChecked
+                                checklistItem = checklistItem
                             )
                             if(state.showAlertDialog){
                                 CustomAlertDialog(
@@ -158,6 +157,7 @@ fun ChecklistScreen(
                                 modifier = Modifier
                                     .height(Dp(state.listItemHeightValue))
                                     .fillMaxWidth(),
+                                gridCellsCount = state.gridCellsCount,
                                 checklistItem = checklistItem,
                                 onCheckedChange = {
                                     viewModel.onEvent(ChecklistUserEvent.OnCheck(index, checklistItem))

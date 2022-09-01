@@ -5,17 +5,19 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
 import com.commandiron.vacationchecklist.domain.model.ChecklistItem
+import com.commandiron.vacationchecklist.presentation.components.ImportanceLevelDot
 import com.commandiron.vacationchecklist.util.LocalSpacing
 
 @Composable
 fun ColumnItem(
     modifier: Modifier = Modifier,
+    gridCellsCount: Int,
     checklistItem: ChecklistItem,
     onCheckedChange: (Boolean) -> Unit
 ) {
@@ -29,12 +31,24 @@ fun ColumnItem(
         Row(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = spacing.spaceSmall)
+                .padding(
+                    when(gridCellsCount){
+                        1 -> spacing.spaceSmall
+                        2 -> spacing.spaceSmall
+                        3 -> spacing.spaceSmall
+                        else -> 0.dp
+                    }
+                )
         ){
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .weight(1f),
+                    .weight(
+                        when(gridCellsCount){
+                            1 -> 1.5f
+                            else -> 1f
+                        }
+                    ),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
@@ -49,12 +63,27 @@ fun ColumnItem(
                     .weight(3f),
                 contentAlignment = Alignment.Center
             ) {
-                Text(
-                    text = checklistItem.name,
-                    textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.bodyLarge,
-                    overflow = TextOverflow.Ellipsis
-                )
+                Row(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Spacer(modifier = Modifier.width(spacing.spaceMedium))
+                    ImportanceLevelDot(
+                        modifier = Modifier.size(spacing.spaceExtraSmall),
+                        importanceLevel = checklistItem.importanceLevel
+                    )
+                    Spacer(modifier = Modifier.width(spacing.spaceSmall))
+                    Text(
+                        text = checklistItem.name,
+                        style = MaterialTheme.typography.bodyLarge,
+                        overflow = when(gridCellsCount){
+                            5 -> TextOverflow.Ellipsis
+                            4 -> TextOverflow.Ellipsis
+                            else -> TextOverflow.Clip
+                        }
+                    )
+                }
+
             }
             Box(
                 modifier = Modifier
