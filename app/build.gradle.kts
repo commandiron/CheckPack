@@ -41,6 +41,7 @@ android {
             "-opt-in=com.google.accompanist.pager.ExperimentalPagerApi",
             "-opt-in=androidx.compose.animation.ExperimentalAnimationApi",
             "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+            "-opt-in=androidx.compose.ui.ExperimentalComposeUiApi",
         )
     }
     composeOptions {

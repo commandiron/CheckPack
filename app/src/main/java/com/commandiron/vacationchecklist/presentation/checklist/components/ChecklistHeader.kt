@@ -9,16 +9,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import com.commandiron.vacationchecklist.domain.model.Vacation
 import com.commandiron.vacationchecklist.presentation.components.CustomCircularIcon
 import com.commandiron.vacationchecklist.util.LocalSpacing
-import com.commandiron.vacationchecklist.util.Strings
 import com.commandiron.vacationchecklist.util.Strings.English.CHECKLIST
 
 @Composable
 fun ChecklistHeader(
     modifier: Modifier = Modifier,
-    vacation: Vacation,
+    text: String,
+    drawableId: Int,
     checkCount: Int,
     totalCount: Int,
     isChecklistCompeted: Boolean
@@ -54,7 +53,7 @@ fun ChecklistHeader(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 CustomCircularIcon(
-                    iconDrawable = vacation.iconDrawable
+                    iconDrawable = drawableId
                 )
                 Spacer(modifier = Modifier.width(spacing.spaceMedium))
                 Row(
@@ -63,7 +62,7 @@ fun ChecklistHeader(
                 ) {
                     Text(
                         modifier = Modifier.weight(2f),
-                        text = vacation.name,
+                        text = text,
                         style = MaterialTheme.typography.bodyLarge,
                         overflow = TextOverflow.Ellipsis
                     )
