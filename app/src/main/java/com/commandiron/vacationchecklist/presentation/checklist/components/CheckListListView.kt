@@ -36,7 +36,7 @@ fun CheckListListView(
                 gridCellsCount = state.gridColumnCount,
                 checklistItem = vacation.checklistItems[index],
                 onCheckedChange = {
-                    viewModel.onEvent(ChecklistUserEvent.OnCheck(index, vacation.checklistItems[index]))
+                    viewModel.onEvent(ChecklistUserEvent.OnCheck(vacation.checklistItems[index]))
                 }
             )
         }

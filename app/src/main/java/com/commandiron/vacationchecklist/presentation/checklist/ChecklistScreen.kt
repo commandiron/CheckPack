@@ -67,7 +67,7 @@ fun ChecklistScreen(
                         checkListItems = vacation.checklistItems,
                         onItemClick = {
                             viewModel.onEvent(
-                                ChecklistUserEvent.OnCheck(it, vacation.checklistItems[it])
+                                ChecklistUserEvent.OnCheck(vacation.checklistItems[it])
                             )
                         }
                     )

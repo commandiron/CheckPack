@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.commandiron.vacationchecklist.domain.model.ChecklistItem
 import com.commandiron.vacationchecklist.domain.preferences.Preferences
 import com.commandiron.vacationchecklist.domain.use_cases.UseCases
 import com.commandiron.vacationchecklist.util.Response
@@ -37,22 +38,16 @@ class ChecklistViewModel @Inject constructor(
             is ChecklistUserEvent.OnCheck -> {
                 if(state.doubleCheckEnabled){
                     if(userEvent.checklistItem.isChecked){
-                        state = state.copy(
-                            selectedIndex = userEvent.index
-                        )
-                        check()
+                        check(userEvent.checklistItem)
                     }else{
                         state = state.copy(
                             showAlertDialog = true,
-                            selectedIndex = userEvent.index
+                            checkListItemForDialog = userEvent.checklistItem
                         )
                     }
 
                 }else{
-                    state = state.copy(
-                        selectedIndex = userEvent.index
-                    )
-                    check()
+                    check(userEvent.checklistItem)
                 }
             }
             ChecklistUserEvent.OnChecklistCompleteBack -> {
@@ -97,7 +92,9 @@ class ChecklistViewModel @Inject constructor(
                 state = state.copy(
                     showAlertDialog = false
                 )
-                check()
+                state.checkListItemForDialog?.let {
+                    check(it)
+                }
             }
             ChecklistUserEvent.OnAlertDialogDismiss -> {
                 state = state.copy(
@@ -138,22 +135,19 @@ class ChecklistViewModel @Inject constructor(
         )
     }
 
-    private fun check(){
+    private fun check(checklistItem: ChecklistItem){
         state.activeVacation?.let { vacation ->
-            state.selectedIndex?.let { selectedIndex ->
-                state = state.copy(
-                    activeVacation = vacation.copy(
-                        checklistItems = vacation.checklistItems.toMutableList().also {
-                            it[selectedIndex] = it[selectedIndex].copy(
-                                isChecked = !it[selectedIndex].isChecked
-                            )
-
-                        }
-                    )
+            state = state.copy(
+                activeVacation = vacation.copy(
+                    checklistItems = vacation.checklistItems.toMutableList().also {
+                        it[it.indexOf(checklistItem)] = it[it.indexOf(checklistItem)].copy(
+                            isChecked = !it[it.indexOf(checklistItem)].isChecked
+                        )
+                    }
                 )
-                calculateCheckCount()
-                createVacation()
-            }
+            )
+            calculateCheckCount()
+            createVacation()
         }
     }
 
