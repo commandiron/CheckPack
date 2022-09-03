@@ -1,10 +1,7 @@
 package com.commandiron.vacationchecklist.domain.di
 
 import com.commandiron.vacationchecklist.domain.repository.Repository
-import com.commandiron.vacationchecklist.domain.use_cases.CreateVacation
-import com.commandiron.vacationchecklist.domain.use_cases.GetVacation
-import com.commandiron.vacationchecklist.domain.use_cases.GetVacations
-import com.commandiron.vacationchecklist.domain.use_cases.UseCases
+import com.commandiron.vacationchecklist.domain.use_cases.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,9 +18,10 @@ object DomainModule {
         repository: Repository
     ): UseCases {
         return UseCases(
-            getVacations = GetVacations(),
-            createVacation = CreateVacation(repository),
-            getVacation = GetVacation(repository)
+            getAllVacations = GetAllVacations(),
+            insertAllChecklistItems = InsertAllChecklistItems(repository),
+            getChecklistItems = GetChecklistItems(repository),
+            insertChecklistItem = InsertChecklistItem(repository)
         )
     }
 }

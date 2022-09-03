@@ -26,9 +26,6 @@ fun CheckListGridView(
     ){
         items(
             count = checkListItems.size,
-            key = {
-                checkListItems[it].id
-            }
         ){ index ->
             GridItem(
                 modifier = Modifier

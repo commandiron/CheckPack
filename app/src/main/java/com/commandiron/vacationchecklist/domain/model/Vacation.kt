@@ -6,21 +6,18 @@ data class Vacation(
     val id: Int,
     val name: String,
     val iconDrawable: Int,
-    val checklistItems: List<ChecklistItem>
 )
 
 val vacations = listOf(
     Vacation(
         id = 0,
         name = "Summer Vacation",
-        iconDrawable = R.drawable.summer_vacation,
-        checklistItems = commonChecklistItems + summerVacationChecklistItems
+        iconDrawable = R.drawable.summer_vacation
     ),
     Vacation(
         id = 1,
         name = "Ski Trip",
-        iconDrawable = R.drawable.ski_trip,
-        checklistItems = commonChecklistItems + skiTripChecklistItems
+        iconDrawable = R.drawable.ski_trip
     )
 //    Vacation(
 //        id = 2,

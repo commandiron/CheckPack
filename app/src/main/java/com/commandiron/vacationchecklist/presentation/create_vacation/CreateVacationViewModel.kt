@@ -29,9 +29,7 @@ class CreateVacationViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
 
     init {
-        state = state.copy(
-            vacations = useCases.getVacations()
-        )
+
         state = state.copy(
             fakeLoading = false
         )
@@ -65,9 +63,7 @@ class CreateVacationViewModel @Inject constructor(
                 state = state.copy(
                     showAlertDialog = false
                 )
-                viewModelScope.launch {
-                    useCases.createVacation(userEvent.vacation)
-                }
+
                 preferences.saveActiveVacationId(userEvent.vacation.id)
                 viewModelScope.launch {
                     state = state.copy(

@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
+import com.commandiron.vacationchecklist.domain.model.ChecklistItem
 import com.commandiron.vacationchecklist.domain.model.Vacation
 import com.commandiron.vacationchecklist.presentation.checklist.ChecklistUserEvent
 import com.commandiron.vacationchecklist.presentation.checklist.ChecklistViewModel
@@ -16,7 +17,7 @@ import com.commandiron.vacationchecklist.util.LocalSpacing
 fun CheckListListView(
     modifier: Modifier = Modifier,
     viewModel: ChecklistViewModel,
-    vacation: Vacation
+    checklistItems: List<ChecklistItem>
 ) {
     val state = viewModel.state
     val spacing = LocalSpacing.current
@@ -24,19 +25,16 @@ fun CheckListListView(
         modifier = modifier
     ) {
         items(
-            count = vacation.checklistItems.size,
-            key = {
-                vacation.checklistItems[it].id
-            }
+            count = checklistItems.size,
         ){ index ->
             ColumnItem(
                 modifier = Modifier
                     .height(Dp(state.listItemHeightValue))
                     .fillMaxWidth(),
                 gridCellsCount = state.gridColumnCount,
-                checklistItem = vacation.checklistItems[index],
+                checklistItem = checklistItems[index],
                 onCheckedChange = {
-                    viewModel.onEvent(ChecklistUserEvent.OnCheck(vacation.checklistItems[index]))
+                    viewModel.onEvent(ChecklistUserEvent.OnCheck(checklistItems[index]))
                 }
             )
         }

@@ -32,61 +32,64 @@ fun ChecklistScreen(
     }
     val state = viewModel.state
     val spacing = LocalSpacing.current
+
     state.activeVacation?.let { vacation ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(top = spacing.defaultScreenPadding.calculateTopPadding())
-        ) {
-            ChecklistHeader(
-                text = vacation.name,
-                drawableId = vacation.iconDrawable,
-                checkCount = state.checkCount,
-                totalCount = state.totalCheckCount,
-                isChecklistCompeted = state.isChecklistCompeted
-            )
-            CheckListUiPrefView(
+        state.checklistItems?.let { checklistItems ->
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = spacing.spaceLarge),
-                gridViewEnabled = state.gridViewEnabled,
-                sliderValue = state.sliderValue,
-                onListViewClick = { viewModel.onEvent(ChecklistUserEvent.OnListViewClick) },
-                onGridViewClick = { viewModel.onEvent(ChecklistUserEvent.OnGridViewClick) },
-                onSliderValueChange = { viewModel.onEvent(ChecklistUserEvent.OnSliderChange(it)) },
-                onSliderValueChangeFinished = {
-                    viewModel.onEvent(ChecklistUserEvent.OnSliderValueChangeFinished)
-                }
-            )
-            Spacer(modifier = Modifier.height(spacing.spaceMedium))
-            if(!state.isChecklistCompeted){
-                if(state.gridViewEnabled){
-                    CheckListGridView(
-                        modifier = Modifier.padding(horizontal = spacing.spaceMedium),
-                        columnCount = state.gridColumnCount,
-                        checkListItems = vacation.checklistItems,
-                        onItemClick = {
-                            viewModel.onEvent(
-                                ChecklistUserEvent.OnCheck(vacation.checklistItems[it])
-                            )
-                        }
-                    )
-                }else{
-                    CheckListListView(
-                        modifier = Modifier.padding(horizontal = spacing.spaceMedium),
-                        viewModel = viewModel,
-                        vacation = vacation
-                    )
-                }
-            }else{
-                ReadyToGoView(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(bottom = spacing.bottomNavigationPadding.calculateBottomPadding())
-                        .padding(bottom = spacing.bottomNavigationHeight)
-                        .padding(bottom = spacing.spaceExtraLarge),
-                    onClick = {viewModel.onEvent(ChecklistUserEvent.OnChecklistCompleteBack)}
+                    .fillMaxSize()
+                    .padding(top = spacing.defaultScreenPadding.calculateTopPadding())
+            ) {
+                ChecklistHeader(
+                    text = vacation.name,
+                    drawableId = vacation.iconDrawable,
+                    checkCount = state.checkCount,
+                    totalCount = state.totalCheckCount,
+                    isChecklistCompeted = state.isChecklistCompeted
                 )
+                CheckListUiPrefView(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = spacing.spaceLarge),
+                    gridViewEnabled = state.gridViewEnabled,
+                    sliderValue = state.sliderValue,
+                    onListViewClick = { viewModel.onEvent(ChecklistUserEvent.OnListViewClick) },
+                    onGridViewClick = { viewModel.onEvent(ChecklistUserEvent.OnGridViewClick) },
+                    onSliderValueChange = { viewModel.onEvent(ChecklistUserEvent.OnSliderChange(it)) },
+                    onSliderValueChangeFinished = {
+                        viewModel.onEvent(ChecklistUserEvent.OnSliderValueChangeFinished)
+                    }
+                )
+                Spacer(modifier = Modifier.height(spacing.spaceMedium))
+                if(!state.isChecklistCompeted){
+                    if(state.gridViewEnabled){
+                        CheckListGridView(
+                            modifier = Modifier.padding(horizontal = spacing.spaceMedium),
+                            columnCount = state.gridColumnCount,
+                            checkListItems = checklistItems,
+                            onItemClick = {
+                                viewModel.onEvent(
+                                    ChecklistUserEvent.OnCheck(checklistItems[it])
+                                )
+                            }
+                        )
+                    }else{
+                        CheckListListView(
+                            modifier = Modifier.padding(horizontal = spacing.spaceMedium),
+                            viewModel = viewModel,
+                            checklistItems = checklistItems
+                        )
+                    }
+                }else{
+                    ReadyToGoView(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(bottom = spacing.bottomNavigationPadding.calculateBottomPadding())
+                            .padding(bottom = spacing.bottomNavigationHeight)
+                            .padding(bottom = spacing.spaceExtraLarge),
+                        onClick = {viewModel.onEvent(ChecklistUserEvent.OnChecklistCompleteBack)}
+                    )
+                }
             }
         }
     }

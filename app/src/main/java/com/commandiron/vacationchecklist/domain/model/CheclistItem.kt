@@ -4,7 +4,7 @@ import com.commandiron.vacationchecklist.R
 import java.util.*
 
 data class ChecklistItem(
-    val id: String = UUID.randomUUID().toString(),
+    val id: Int? = null,
     val name: String,
     val isChecked: Boolean = false,
     val iconDrawable: Int,
@@ -131,8 +131,6 @@ val commonChecklistItems = listOf(
         gender = ChecklistItem.Gender.UNISEX,
         category = ChecklistItem.Category.OTHER
     ),
-
-
 
 
     //OPTIONAL

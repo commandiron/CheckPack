@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.commandiron.vacationchecklist.domain.model.ChecklistItem
+import com.commandiron.vacationchecklist.domain.model.vacations
 import com.commandiron.vacationchecklist.domain.preferences.Preferences
 import com.commandiron.vacationchecklist.domain.use_cases.UseCases
 import com.commandiron.vacationchecklist.util.Response
@@ -29,8 +30,9 @@ class ChecklistViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
 
     init {
+        getActiveVacation()
         loadSettings()
-        getVacation()
+        getChecklistItems()
     }
 
     fun onEvent(userEvent: ChecklistUserEvent) {
@@ -136,66 +138,40 @@ class ChecklistViewModel @Inject constructor(
     }
 
     private fun check(checklistItem: ChecklistItem){
-        state.activeVacation?.let { vacation ->
-            state = state.copy(
-                activeVacation = vacation.copy(
-                    checklistItems = vacation.checklistItems.toMutableList().also {
-                        it[it.indexOf(checklistItem)] = it[it.indexOf(checklistItem)].copy(
-                            isChecked = !it[it.indexOf(checklistItem)].isChecked
-                        )
-                    }
+        state = state.copy(
+            checklistItems = state.checklistItems?.toMutableList()?.also {
+                it[it.indexOf(checklistItem)] = it[it.indexOf(checklistItem)].copy(
+                    isChecked = !it[it.indexOf(checklistItem)].isChecked
                 )
-            )
-            calculateCheckCount()
-            createVacation()
+            }
+        )
+        viewModelScope.launch {
+            useCases.insertChecklistItem(checklistItem.copy(isChecked = !checklistItem.isChecked))
         }
     }
 
-    private fun getVacation() {
+    private fun getActiveVacation() {
+        state = state.copy(
+            activeVacation = vacations.find { it.id ==  preferences.loadActiveVacationId()}
+        )
+    }
+
+    private fun getChecklistItems() {
         viewModelScope.launch {
-            useCases.getVacation(preferences.loadActiveVacationId()).collect{ response ->
-                when(response){
-                    is Response.Error -> {
-                        state = state.copy(
-                            isLoading = false
-                        )
-                    }
-                    Response.Loading -> {
-                        state = state.copy(
-                            isLoading = true
-                        )
-                    }
-                    is Response.Success -> {
-                        state = state.copy(
-                            activeVacation = response.data,
-                            isLoading = false,
-                            totalCheckCount = response.data.checklistItems.size
-                        )
-                        calculateCheckCount()
-                    }
-                }
-            }
+            state = state.copy(
+                checklistItems = useCases.getChecklistItems()
+            )
         }
     }
 
     private fun calculateCheckCount(){
         state.activeVacation?.let { vacation ->
-            state = state.copy(
-                checkCount = vacation.checklistItems.filter { it.isChecked }.size
-            )
+
         }
         if(state.checkCount == state.totalCheckCount){
             state = state.copy(
                 isChecklistCompeted = true
             )
-        }
-    }
-
-    private fun createVacation() {
-        viewModelScope.launch {
-            state.activeVacation?.let {
-                useCases.createVacation(it)
-            }
         }
     }
 

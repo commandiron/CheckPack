@@ -30,10 +30,8 @@ class GetStartedViewModel @Inject constructor(
 
     init {
         state = state.copy(
-            vacations = useCases.getVacations()
-        )
-        state = state.copy(
-            fakeLoading = false
+            fakeLoading = false,
+            vacations = useCases.getAllVacations()
         )
     }
 
@@ -52,16 +50,18 @@ class GetStartedViewModel @Inject constructor(
                 )
             }
             is GetStartedUserEvent.OnFinish -> {
-                viewModelScope.launch {
-                    useCases.createVacation(userEvent.vacation)
-                }
-                preferences.saveActiveVacationId(userEvent.vacation.id)
-                viewModelScope.launch {
-                    state = state.copy(
-                        fakeLoading = true
-                    )
-                    delay(state.fakeLoadingDelay)
-                    sendUiEvent(UiEvent.Navigate(NavigationItem.ChecklistScreen.route))
+                state.selectedVacation?.let {
+                    viewModelScope.launch {
+                        useCases.insertAllChecklistItems(it)
+                    }
+                    preferences.saveActiveVacationId(userEvent.vacation.id)
+                    viewModelScope.launch {
+                        state = state.copy(
+                            fakeLoading = true
+                        )
+                        delay(state.fakeLoadingDelay)
+                        sendUiEvent(UiEvent.Navigate(NavigationItem.ChecklistScreen.route))
+                    }
                 }
             }
         }
