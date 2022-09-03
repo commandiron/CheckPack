@@ -34,7 +34,6 @@ fun CheckListGridView(
                 modifier = Modifier
                     .aspectRatio(1f)
                     .clickable {
-                        println(index)
                         onItemClick(index)
                     }
                     .padding(spacing.spaceExtraSmall),
