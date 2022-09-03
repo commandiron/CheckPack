@@ -1,9 +1,9 @@
 package com.commandiron.vacationchecklist.domain.repository
 
-import com.commandiron.vacationchecklist.domain.model.ChecklistItem
+import com.commandiron.vacationchecklist.domain.model.CheckItem
 
 interface Repository {
-    suspend fun insertChecklistItems(checklistItems: List<ChecklistItem>)
-    suspend fun deleteAllChecklistItems()
-    suspend fun getAllChecklistItems(): List<ChecklistItem>
+    suspend fun insertCheckItems(checkItems: List<CheckItem>)
+    suspend fun deleteAllCheckItems()
+    suspend fun getAllCheckItems(): List<CheckItem>
 }

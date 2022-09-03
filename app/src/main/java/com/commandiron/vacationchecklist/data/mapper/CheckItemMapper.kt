@@ -1,10 +1,10 @@
 package com.commandiron.vacationchecklist.data.mapper
 
-import com.commandiron.vacationchecklist.data.local.entity.ChecklistItemEntity
-import com.commandiron.vacationchecklist.domain.model.ChecklistItem
+import com.commandiron.vacationchecklist.data.local.entity.CheckItemEntity
+import com.commandiron.vacationchecklist.domain.model.CheckItem
 
-fun ChecklistItemEntity.toChecklistItem(): ChecklistItem {
-    return ChecklistItem(
+fun CheckItemEntity.toCheckItem(): CheckItem {
+    return CheckItem(
         id = id,
         name = name,
         isChecked = isChecked,
@@ -16,8 +16,8 @@ fun ChecklistItemEntity.toChecklistItem(): ChecklistItem {
     )
 }
 
-fun ChecklistItem.toChecklistItemEntity(): ChecklistItemEntity {
-    return ChecklistItemEntity(
+fun CheckItem.toCheckItemEntity(): CheckItemEntity {
+    return CheckItemEntity(
         id = id,
         name = name,
         isChecked = isChecked,

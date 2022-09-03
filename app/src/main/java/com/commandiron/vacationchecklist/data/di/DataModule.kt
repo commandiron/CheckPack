@@ -2,8 +2,8 @@ package com.commandiron.vacationchecklist.data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.commandiron.vacationchecklist.data.local.ChecklistItemDao
-import com.commandiron.vacationchecklist.data.local.ChecklistItemDatabase
+import com.commandiron.vacationchecklist.data.local.ChecklistDao
+import com.commandiron.vacationchecklist.data.local.ChecklistDatabase
 import com.commandiron.vacationchecklist.data.repository.DefaultRepositoryImpl
 import com.commandiron.vacationchecklist.domain.repository.Repository
 import dagger.Module
@@ -19,26 +19,26 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun provideChecklistItemDatabase(
+    fun provideChecklistDatabase(
         @ApplicationContext context: Context,
-    ): ChecklistItemDatabase {
+    ): ChecklistDatabase {
         return Room.databaseBuilder(
             context,
-            ChecklistItemDatabase::class.java,
-            "checklistItem_db"
+            ChecklistDatabase::class.java,
+            "checklist_db"
         ).build()
     }
 
     @Provides
-    fun provideChecklistItemDao(database: ChecklistItemDatabase) = database.dao
+    fun provideChecklistDao(database: ChecklistDatabase) = database.dao
 
     @Provides
     @Singleton
     fun provideToolsRepository(
-        checklistItemDao: ChecklistItemDao
+        checklistDao: ChecklistDao
     ): Repository {
         return DefaultRepositoryImpl(
-            dao = checklistItemDao
+            dao = checklistDao
         )
     }
 }

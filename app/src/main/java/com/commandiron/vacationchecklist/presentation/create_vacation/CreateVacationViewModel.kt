@@ -66,8 +66,8 @@ class CreateVacationViewModel @Inject constructor(
                         showAlertDialog = false
                     )
                     viewModelScope.launch {
-                        useCases.deleteAllChecklistItems()
-                        useCases.insertAllChecklistItems(it)
+                        useCases.deleteAllCheckItems()
+                        useCases.insertAllCheckItems(it)
                     }
                     preferences.saveActiveVacationId(userEvent.vacation.id)
                     viewModelScope.launch {

@@ -1,9 +1,8 @@
 package com.commandiron.vacationchecklist.domain.model
 
 import com.commandiron.vacationchecklist.R
-import java.util.*
 
-data class ChecklistItem(
+data class CheckItem(
     val id: Int? = null,
     val name: String,
     val isChecked: Boolean = false,
@@ -37,638 +36,638 @@ data class ChecklistItem(
     }
 }
 
-val commonChecklistItems = listOf(
+val commonCheckItems = listOf(
 
     //MUST
-    ChecklistItem(
+    CheckItem(
         name = "Identification",
         iconDrawable = R.drawable.identification,
-        importanceLevel = ChecklistItem.ImportanceLevel.MUST,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.PROOF_OF_IDENTITY
+        importanceLevel = CheckItem.ImportanceLevel.MUST,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.PROOF_OF_IDENTITY
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Passport",
         iconDrawable = R.drawable.passport,
-        importanceLevel = ChecklistItem.ImportanceLevel.MUST,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.PROOF_OF_IDENTITY
+        importanceLevel = CheckItem.ImportanceLevel.MUST,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.PROOF_OF_IDENTITY
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Credit / Debit cards / Cash",
         iconDrawable = R.drawable.wallet,
-        importanceLevel = ChecklistItem.ImportanceLevel.MUST,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.PROOF_OF_IDENTITY
+        importanceLevel = CheckItem.ImportanceLevel.MUST,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.PROOF_OF_IDENTITY
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Cell phone",
         iconDrawable = R.drawable.smartphone,
-        importanceLevel = ChecklistItem.ImportanceLevel.MUST,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TECHNOLOGY
+        importanceLevel = CheckItem.ImportanceLevel.MUST,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TECHNOLOGY
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Cell phone charger",
         iconDrawable = R.drawable.charger,
-        importanceLevel = ChecklistItem.ImportanceLevel.MUST,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TECHNOLOGY
+        importanceLevel = CheckItem.ImportanceLevel.MUST,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TECHNOLOGY
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Medication",
         iconDrawable = R.drawable.medication,
-        importanceLevel = ChecklistItem.ImportanceLevel.MUST,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.HEALTH
+        importanceLevel = CheckItem.ImportanceLevel.MUST,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.HEALTH
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Prescription glasses",
         iconDrawable = R.drawable.prescription_glasses,
-        importanceLevel = ChecklistItem.ImportanceLevel.MUST,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.HEALTH
+        importanceLevel = CheckItem.ImportanceLevel.MUST,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.HEALTH
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Sunscreen",
         iconDrawable = R.drawable.sun_block,
-        importanceLevel = ChecklistItem.ImportanceLevel.MUST,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.HEALTH
+        importanceLevel = CheckItem.ImportanceLevel.MUST,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.HEALTH
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Contact lens supplies",
         iconDrawable = R.drawable.contact_lens,
-        importanceLevel = ChecklistItem.ImportanceLevel.MUST,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.HEALTH
+        importanceLevel = CheckItem.ImportanceLevel.MUST,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.HEALTH
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Tickets(airplane, train, etc)",
         iconDrawable = R.drawable.tickets,
-        importanceLevel = ChecklistItem.ImportanceLevel.MUST,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER
+        importanceLevel = CheckItem.ImportanceLevel.MUST,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Reservations for hotel",
         iconDrawable = R.drawable.hotel_reservation,
-        importanceLevel = ChecklistItem.ImportanceLevel.MUST,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER
+        importanceLevel = CheckItem.ImportanceLevel.MUST,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Car rental",
         iconDrawable = R.drawable.car_rental,
-        importanceLevel = ChecklistItem.ImportanceLevel.MUST,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER
+        importanceLevel = CheckItem.ImportanceLevel.MUST,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER
     ),
-    ChecklistItem(
+    CheckItem(
         name = "A good book",
         iconDrawable = R.drawable.book,
-        importanceLevel = ChecklistItem.ImportanceLevel.MUST,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER
+        importanceLevel = CheckItem.ImportanceLevel.MUST,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER
     ),
 
 
     //OPTIONAL
-    ChecklistItem(
+    CheckItem(
         name = "Headphones",
         iconDrawable = R.drawable.headphones,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TECHNOLOGY
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TECHNOLOGY
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Electrical converters or travel adapters",
         iconDrawable = R.drawable.electrical_converters,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TECHNOLOGY
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TECHNOLOGY
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Camera / Video camera",
         iconDrawable = R.drawable.camera,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TECHNOLOGY
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TECHNOLOGY
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Camera Charger",
         iconDrawable = R.drawable.camera_charger,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TECHNOLOGY
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TECHNOLOGY
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Laptop or tablet",
         iconDrawable = R.drawable.laptop,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TECHNOLOGY
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TECHNOLOGY
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Laptop or tablet charger",
         iconDrawable = R.drawable.laptop_charger,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TECHNOLOGY
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TECHNOLOGY
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Portable Charger",
         iconDrawable = R.drawable.portable_charger,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TECHNOLOGY
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TECHNOLOGY
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Sunglasses",
         iconDrawable = R.drawable.sunglasses,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Watch",
         iconDrawable = R.drawable.watch,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING
     ),
-    ChecklistItem(
+    CheckItem(
         name = "One casual outfit per day",
         iconDrawable = R.drawable.casual_outfit,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Sweater",
         iconDrawable = R.drawable.sweater,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Jacket",
         iconDrawable = R.drawable.jacket,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Underwear",
         iconDrawable = R.drawable.underwear,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Socks",
         iconDrawable = R.drawable.socks,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Extra shoes",
         iconDrawable = R.drawable.shoes,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Sandals",
         iconDrawable = R.drawable.sandals,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Pants",
         iconDrawable = R.drawable.pants,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Shorts",
         iconDrawable = R.drawable.shorts,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Jewelry",
         iconDrawable = R.drawable.jewelry,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Tank tops",
         iconDrawable = R.drawable.tank_tops,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Belt",
         iconDrawable = R.drawable.belt,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Pajamas",
         iconDrawable = R.drawable.pajamas,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Umbrella",
         iconDrawable = R.drawable.umbrella,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Raincoat",
         iconDrawable = R.drawable.raincoat,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Everyday bag (for carrying day items)",
         iconDrawable = R.drawable.everyday_bag,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Tampons or pads",
         iconDrawable = R.drawable.tampons_pad,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.WOMAN,
-        category = ChecklistItem.Category.HEALTH
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.WOMAN,
+        category = CheckItem.Category.HEALTH
     ),
-    ChecklistItem(
+    CheckItem(
         name = "First aid kit (travel size)",
         iconDrawable = R.drawable.first_aid_kit,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.HEALTH
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.HEALTH
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Toothbrush - Toothpaste",
         iconDrawable = R.drawable.toothbrush_toothpaste,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TOILETRIES
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TOILETRIES
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Personal care supplies",
         iconDrawable = R.drawable.personal_care,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TOILETRIES
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TOILETRIES
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Towel",
         iconDrawable = R.drawable.towel,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TOILETRIES
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TOILETRIES
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Comb / Brush",
         iconDrawable = R.drawable.comb,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TOILETRIES
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TOILETRIES
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Wet wipes and tissue paper",
         iconDrawable = R.drawable.wet_wipes,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TOILETRIES
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TOILETRIES
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Makeup",
         iconDrawable = R.drawable.makeup,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.WOMAN,
-        category = ChecklistItem.Category.TOILETRIES
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.WOMAN,
+        category = CheckItem.Category.TOILETRIES
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Razors",
         iconDrawable = R.drawable.razor,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TOILETRIES
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TOILETRIES
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Shaving cream",
         iconDrawable = R.drawable.shaving_cream,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.MAN,
-        category = ChecklistItem.Category.TOILETRIES
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.MAN,
+        category = CheckItem.Category.TOILETRIES
     ),
-    ChecklistItem(
+    CheckItem(
         name = "After shave",
         iconDrawable = R.drawable.after_shave,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.MAN,
-        category = ChecklistItem.Category.TOILETRIES
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.MAN,
+        category = CheckItem.Category.TOILETRIES
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Hand / Face cream",
         iconDrawable = R.drawable.hand_face_cream,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TOILETRIES
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TOILETRIES
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Nail clippers",
         iconDrawable = R.drawable.nail_clippers,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TOILETRIES
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TOILETRIES
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Parfume",
         iconDrawable = R.drawable.parfume,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TOILETRIES
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TOILETRIES
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Deodorant",
         iconDrawable = R.drawable.deodorant,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TOILETRIES
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TOILETRIES
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Shampoo - Conditioner",
         iconDrawable = R.drawable.shampoo_conditioner,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TOILETRIES
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TOILETRIES
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Soap",
         iconDrawable = R.drawable.soap,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TOILETRIES
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TOILETRIES
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Hand sanitizer",
         iconDrawable = R.drawable.hand_sanitizer,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TOILETRIES
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TOILETRIES
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Hairstyling products",
         iconDrawable = R.drawable.hair_spray,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.TOILETRIES
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.TOILETRIES
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Pillow case",
         iconDrawable = R.drawable.pillow_case,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Laundry bag",
         iconDrawable = R.drawable.laundry_bag,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Toys",
         iconDrawable = R.drawable.toys,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Game console / Notebook",
         iconDrawable = R.drawable.game_console,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Board Games",
         iconDrawable = R.drawable.board_game,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Snacks",
         iconDrawable = R.drawable.snack,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER
     )
 )
 
-val summerVacationChecklistItems = listOf(
+val summerVacationCheckItems = listOf(
 
     //OPTIONAL
-    ChecklistItem(
+    CheckItem(
         name = "Swimwear",
         iconDrawable = R.drawable.swimwear,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING,
-        vacationType = ChecklistItem.VacationType.SUMMER_VACATION
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING,
+        vacationType = CheckItem.VacationType.SUMMER_VACATION
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Beach Towel",
         iconDrawable = R.drawable.beach_towel,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING,
-        vacationType = ChecklistItem.VacationType.SUMMER_VACATION
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING,
+        vacationType = CheckItem.VacationType.SUMMER_VACATION
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Summer Hat",
         iconDrawable = R.drawable.sun_hat,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING,
-        vacationType = ChecklistItem.VacationType.SUMMER_VACATION
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING,
+        vacationType = CheckItem.VacationType.SUMMER_VACATION
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Water Shoes",
         iconDrawable = R.drawable.water_shoe,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER,
-        vacationType = ChecklistItem.VacationType.SUMMER_VACATION
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER,
+        vacationType = CheckItem.VacationType.SUMMER_VACATION
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Snorkel",
         iconDrawable = R.drawable.snorkel,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER,
-        vacationType = ChecklistItem.VacationType.SUMMER_VACATION
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER,
+        vacationType = CheckItem.VacationType.SUMMER_VACATION
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Beach Umbrella",
         iconDrawable = R.drawable.beach_umbrella,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER,
-        vacationType = ChecklistItem.VacationType.SUMMER_VACATION
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER,
+        vacationType = CheckItem.VacationType.SUMMER_VACATION
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Beach Foldable Chair",
         iconDrawable = R.drawable.beach_chair,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER,
-        vacationType = ChecklistItem.VacationType.SUMMER_VACATION
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER,
+        vacationType = CheckItem.VacationType.SUMMER_VACATION
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Frisbees, beach balls etc",
         iconDrawable = R.drawable.beach_ball,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER,
-        vacationType = ChecklistItem.VacationType.SUMMER_VACATION
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER,
+        vacationType = CheckItem.VacationType.SUMMER_VACATION
     ),
 )
 
-val skiTripChecklistItems = listOf(
+val skiTripCheckItems = listOf(
 
     //OPTIONAL
-    ChecklistItem(
+    CheckItem(
         name = "Heavy Coat or Parka",
         iconDrawable = R.drawable.heavy_coat,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING,
-        vacationType = ChecklistItem.VacationType.SKI_TRIP
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING,
+        vacationType = CheckItem.VacationType.SKI_TRIP
     ),
-    ChecklistItem(
+    CheckItem(
         name = "All-Weather Boots",
         iconDrawable = R.drawable.all_weather_boots,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING,
-        vacationType = ChecklistItem.VacationType.SKI_TRIP
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING,
+        vacationType = CheckItem.VacationType.SKI_TRIP
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Insulated Leather Gloves or Mittens",
         iconDrawable = R.drawable.leather_gloves,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING,
-        vacationType = ChecklistItem.VacationType.SKI_TRIP
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING,
+        vacationType = CheckItem.VacationType.SKI_TRIP
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Insulated Hat",
         iconDrawable = R.drawable.winter_hat,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING,
-        vacationType = ChecklistItem.VacationType.SKI_TRIP
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING,
+        vacationType = CheckItem.VacationType.SKI_TRIP
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Scarf",
         iconDrawable = R.drawable.scarf,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING,
-        vacationType = ChecklistItem.VacationType.SKI_TRIP
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING,
+        vacationType = CheckItem.VacationType.SKI_TRIP
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Balaclava",
         iconDrawable = R.drawable.balaclava,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.CLOTHING,
-        vacationType = ChecklistItem.VacationType.SKI_TRIP
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.CLOTHING,
+        vacationType = CheckItem.VacationType.SKI_TRIP
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Ski-Board Equipments",
         iconDrawable = R.drawable.ski_board_equipments,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER,
-        vacationType = ChecklistItem.VacationType.SKI_TRIP
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER,
+        vacationType = CheckItem.VacationType.SKI_TRIP
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Ski-Board Helmet",
         iconDrawable = R.drawable.ski_board_helmet,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER,
-        vacationType = ChecklistItem.VacationType.SKI_TRIP
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER,
+        vacationType = CheckItem.VacationType.SKI_TRIP
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Ski-Board Glasses",
         iconDrawable = R.drawable.ski_board_glasses,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER,
-        vacationType = ChecklistItem.VacationType.SKI_TRIP
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER,
+        vacationType = CheckItem.VacationType.SKI_TRIP
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Ski-Board Jacket",
         iconDrawable = R.drawable.ski_board_jacket,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER,
-        vacationType = ChecklistItem.VacationType.SKI_TRIP
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER,
+        vacationType = CheckItem.VacationType.SKI_TRIP
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Ski-Board Pants",
         iconDrawable = R.drawable.ski_board_pants,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER,
-        vacationType = ChecklistItem.VacationType.SKI_TRIP
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER,
+        vacationType = CheckItem.VacationType.SKI_TRIP
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Ski-Board Socks",
         iconDrawable = R.drawable.ski_board_socks,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER,
-        vacationType = ChecklistItem.VacationType.SKI_TRIP
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER,
+        vacationType = CheckItem.VacationType.SKI_TRIP
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Ski-Board Boots",
         iconDrawable = R.drawable.ski_board_boots,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER,
-        vacationType = ChecklistItem.VacationType.SKI_TRIP
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER,
+        vacationType = CheckItem.VacationType.SKI_TRIP
     ),
-    ChecklistItem(
+    CheckItem(
         name = "Ski-Board Gloves",
         iconDrawable = R.drawable.ski_board_gloves,
-        importanceLevel = ChecklistItem.ImportanceLevel.OPTIONAL,
-        gender = ChecklistItem.Gender.UNISEX,
-        category = ChecklistItem.Category.OTHER,
-        vacationType = ChecklistItem.VacationType.SKI_TRIP
+        importanceLevel = CheckItem.ImportanceLevel.OPTIONAL,
+        gender = CheckItem.Gender.UNISEX,
+        category = CheckItem.Category.OTHER,
+        vacationType = CheckItem.VacationType.SKI_TRIP
     )
 )
 

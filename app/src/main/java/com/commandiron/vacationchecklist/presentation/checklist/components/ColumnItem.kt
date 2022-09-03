@@ -1,16 +1,18 @@
 package com.commandiron.vacationchecklist.presentation.checklist.components
 
+import androidx.compose.compiler.plugins.kotlin.ComposeFqNames.remember
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.commandiron.vacationchecklist.domain.model.ChecklistItem
+import com.commandiron.vacationchecklist.domain.model.CheckItem
 import com.commandiron.vacationchecklist.presentation.components.ImportanceLevelDot
 import com.commandiron.vacationchecklist.util.LocalSpacing
 
@@ -18,7 +20,7 @@ import com.commandiron.vacationchecklist.util.LocalSpacing
 fun ColumnItem(
     modifier: Modifier = Modifier,
     gridCellsCount: Int,
-    checklistItem: ChecklistItem,
+    checkItem: CheckItem,
     onCheckedChange: (Boolean) -> Unit
 ) {
     val spacing = LocalSpacing.current
@@ -52,7 +54,7 @@ fun ColumnItem(
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
-                    painter = painterResource(checklistItem.iconDrawable),
+                    painter = painterResource(checkItem.iconDrawable),
                     contentDescription = null,
                     tint = Color.Unspecified
                 )
@@ -70,11 +72,11 @@ fun ColumnItem(
                     Spacer(modifier = Modifier.width(spacing.spaceMedium))
                     ImportanceLevelDot(
                         modifier = Modifier.size(spacing.spaceExtraSmall),
-                        importanceLevel = checklistItem.importanceLevel
+                        importanceLevel = checkItem.importanceLevel
                     )
                     Spacer(modifier = Modifier.width(spacing.spaceSmall))
                     Text(
-                        text = checklistItem.name,
+                        text = checkItem.name,
                         style = MaterialTheme.typography.bodyLarge,
                         overflow = when(gridCellsCount){
                             5 -> TextOverflow.Ellipsis
@@ -92,7 +94,7 @@ fun ColumnItem(
                 contentAlignment = Alignment.Center
             ) {
                 Checkbox(
-                    checked = checklistItem.isChecked,
+                    checked = checkItem.isChecked,
                     onCheckedChange = onCheckedChange,
                     colors = CheckboxDefaults.colors(
                         checkedColor = MaterialTheme.colorScheme.tertiaryContainer,

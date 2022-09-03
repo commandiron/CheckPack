@@ -9,7 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import com.commandiron.vacationchecklist.domain.model.ChecklistItem
+import com.commandiron.vacationchecklist.domain.model.CheckItem
 import com.commandiron.vacationchecklist.presentation.components.ImportanceLevelDot
 import com.commandiron.vacationchecklist.util.LocalSpacing
 
@@ -17,13 +17,13 @@ import com.commandiron.vacationchecklist.util.LocalSpacing
 fun GridItem(
     modifier: Modifier = Modifier,
     columnCount: Int,
-    checklistItem: ChecklistItem
+    checkItem: CheckItem
 ) {
     val spacing = LocalSpacing.current
     Card(
         modifier = modifier,
         colors = CardDefaults.cardColors(
-            containerColor = if(checklistItem.isChecked) {
+            containerColor = if(checkItem.isChecked) {
                 MaterialTheme.colorScheme.tertiaryContainer
             } else MaterialTheme.colorScheme.secondaryContainer,
         )
@@ -38,7 +38,7 @@ fun GridItem(
                 ) {
                     Icon(
                         modifier = Modifier.padding(spacing.spaceSmall),
-                        painter = painterResource(checklistItem.iconDrawable),
+                        painter = painterResource(checkItem.iconDrawable),
                         contentDescription = null,
                         tint = Color.Unspecified
                     )
@@ -51,7 +51,7 @@ fun GridItem(
                 ) {
                     Text(
                         modifier = Modifier.padding(spacing.spaceSmall),
-                        text = checklistItem.name,
+                        text = checkItem.name,
                         textAlign = TextAlign.Center,
                         overflow = TextOverflow.Ellipsis,
                         style = when(columnCount){
@@ -71,10 +71,10 @@ fun GridItem(
                     .padding(spacing.spaceSmall),
                 contentAlignment = Alignment.TopStart
             ) {
-                if(!checklistItem.isChecked){
+                if(!checkItem.isChecked){
                     ImportanceLevelDot(
                         modifier = Modifier.size(spacing.spaceExtraSmall),
-                        importanceLevel = checklistItem.importanceLevel
+                        importanceLevel = checkItem.importanceLevel
                     )
                 }
             }

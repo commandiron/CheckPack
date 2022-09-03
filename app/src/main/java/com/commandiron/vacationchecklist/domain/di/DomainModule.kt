@@ -19,10 +19,10 @@ object DomainModule {
     ): UseCases {
         return UseCases(
             getAllVacations = GetAllVacations(),
-            insertAllChecklistItems = InsertAllChecklistItems(repository),
-            deleteAllChecklistItems = DeleteAllChecklistItems(repository),
-            getAllChecklistItems = GetAllChecklistItems(repository),
-            insertChecklistItem = InsertChecklistItem(repository)
+            insertAllCheckItems = InsertAllCheckItems(repository),
+            deleteAllCheckItems = DeleteAllCheckItems(repository),
+            getAllCheckItems = GetAllCheckItems(repository),
+            insertCheckItem = InsertCheckItem(repository)
         )
     }
 }

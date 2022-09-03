@@ -1,25 +1,25 @@
 package com.commandiron.vacationchecklist.data.repository
 
-import com.commandiron.vacationchecklist.data.local.ChecklistItemDao
-import com.commandiron.vacationchecklist.data.mapper.toChecklistItem
-import com.commandiron.vacationchecklist.data.mapper.toChecklistItemEntity
-import com.commandiron.vacationchecklist.domain.model.ChecklistItem
+import com.commandiron.vacationchecklist.data.local.ChecklistDao
+import com.commandiron.vacationchecklist.data.mapper.toCheckItem
+import com.commandiron.vacationchecklist.data.mapper.toCheckItemEntity
+import com.commandiron.vacationchecklist.domain.model.CheckItem
 import com.commandiron.vacationchecklist.domain.repository.Repository
 
 class DefaultRepositoryImpl(
-    private val dao: ChecklistItemDao,
+    private val dao: ChecklistDao,
 ): Repository {
 
-    override suspend fun insertChecklistItems(checklistItems: List<ChecklistItem>) {
-        val checklistItemEntities = checklistItems.map { it.toChecklistItemEntity() }
+    override suspend fun insertCheckItems(checkItems: List<CheckItem>) {
+        val checklistItemEntities = checkItems.map { it.toCheckItemEntity() }
         dao.insert(*checklistItemEntities.toTypedArray())
     }
 
-    override suspend fun deleteAllChecklistItems() {
+    override suspend fun deleteAllCheckItems() {
         dao.deleteAll()
     }
 
-    override suspend fun getAllChecklistItems(): List<ChecklistItem> {
-        return dao.getAll().map { it.toChecklistItem() }
+    override suspend fun getAllCheckItems(): List<CheckItem> {
+        return dao.getAll().map { it.toCheckItem() }
     }
 }

@@ -1,14 +1,12 @@
 package com.commandiron.vacationchecklist.presentation.checklist
 
-import com.commandiron.vacationchecklist.domain.model.ChecklistItem
+import com.commandiron.vacationchecklist.domain.model.CheckItem
 import com.commandiron.vacationchecklist.domain.model.Vacation
 
 data class ChecklistState(
-
-    val checklistItems: List<ChecklistItem>? = null,
     val activeVacation: Vacation? = null,
-
-    val checkedChecklistItem: ChecklistItem? = null,
+    val checkItems: List<CheckItem>? = null,
+    val checkItem: CheckItem? = null,
 
 
     val doubleCheckEnabled: Boolean = false,

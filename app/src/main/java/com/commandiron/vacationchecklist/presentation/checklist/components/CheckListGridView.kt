@@ -7,35 +7,34 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.commandiron.vacationchecklist.domain.model.ChecklistItem
+import com.commandiron.vacationchecklist.domain.model.CheckItem
 import com.commandiron.vacationchecklist.util.LocalSpacing
 
 @Composable
 fun CheckListGridView(
     modifier: Modifier = Modifier,
     columnCount: Int,
-    checkListItems: List<ChecklistItem>,
-    onItemClick: (Int) -> Unit
+    checkListItems: List<CheckItem>,
+    onItemClick: (CheckItem) -> Unit
 ) {
     val spacing = LocalSpacing.current
     LazyVerticalGrid(
         modifier = modifier,
         columns = GridCells.Fixed(columnCount)
     ){
-        items(
-            count = checkListItems.size,
-        ){ index ->
+        itemsIndexed(checkListItems) { _, item ->
             GridItem(
                 modifier = Modifier
                     .aspectRatio(1f)
                     .clickable {
-                        onItemClick(index)
+                        onItemClick(item)
                     }
                     .padding(spacing.spaceExtraSmall),
                 columnCount = columnCount,
-                checklistItem = checkListItems[index]
+                checkItem = item
             )
         }
         item {

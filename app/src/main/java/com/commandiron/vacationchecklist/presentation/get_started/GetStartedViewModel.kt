@@ -52,8 +52,8 @@ class GetStartedViewModel @Inject constructor(
             is GetStartedUserEvent.OnFinish -> {
                 state.selectedVacation?.let {
                     viewModelScope.launch {
-                        useCases.deleteAllChecklistItems()
-                        useCases.insertAllChecklistItems(it)
+                        useCases.deleteAllCheckItems()
+                        useCases.insertAllCheckItems(it)
                     }
                     preferences.saveActiveVacationId(userEvent.vacation.id)
                     viewModelScope.launch {
