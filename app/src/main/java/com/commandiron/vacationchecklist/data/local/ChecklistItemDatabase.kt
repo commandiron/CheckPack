@@ -1,8 +1,7 @@
-package com.commandiron.vacationchecklist.data.local.checklistItem
+package com.commandiron.vacationchecklist.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.commandiron.vacationchecklist.data.local.checklistItem.ChecklistItemDao
 import com.commandiron.vacationchecklist.data.local.entity.ChecklistItemEntity
 
 @Database(

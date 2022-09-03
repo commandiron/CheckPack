@@ -31,7 +31,8 @@ class CreateVacationViewModel @Inject constructor(
     init {
 
         state = state.copy(
-            fakeLoading = false
+            fakeLoading = false,
+            vacations = useCases.getAllVacations()
         )
     }
 
@@ -60,20 +61,24 @@ class CreateVacationViewModel @Inject constructor(
                 )
             }
             is CreateVacationUserEvent.OnAlertDialogConfirm -> {
-                state = state.copy(
-                    showAlertDialog = false
-                )
-
-                preferences.saveActiveVacationId(userEvent.vacation.id)
-                viewModelScope.launch {
+                state.selectedVacation?.let {
                     state = state.copy(
-                        fakeLoading = true
+                        showAlertDialog = false
                     )
-                    delay(state.fakeLoadingDelay)
-                    sendUiEvent(UiEvent.Navigate(NavigationItem.ChecklistScreen.route))
+                    viewModelScope.launch {
+                        useCases.deleteAllChecklistItems()
+                        useCases.insertAllChecklistItems(it)
+                    }
+                    preferences.saveActiveVacationId(userEvent.vacation.id)
+                    viewModelScope.launch {
+                        state = state.copy(
+                            fakeLoading = true
+                        )
+                        delay(state.fakeLoadingDelay)
+                        sendUiEvent(UiEvent.Navigate(NavigationItem.ChecklistScreen.route))
+                    }
                 }
             }
-
         }
     }
 

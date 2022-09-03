@@ -9,7 +9,6 @@ import com.commandiron.vacationchecklist.domain.model.ChecklistItem
 import com.commandiron.vacationchecklist.domain.model.vacations
 import com.commandiron.vacationchecklist.domain.preferences.Preferences
 import com.commandiron.vacationchecklist.domain.use_cases.UseCases
-import com.commandiron.vacationchecklist.util.Response
 import com.commandiron.vacationchecklist.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -30,8 +29,8 @@ class ChecklistViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
 
     init {
-        getActiveVacation()
         loadSettings()
+        getActiveVacation()
         getChecklistItems()
     }
 
@@ -44,10 +43,9 @@ class ChecklistViewModel @Inject constructor(
                     }else{
                         state = state.copy(
                             showAlertDialog = true,
-                            checkListItemForDialog = userEvent.checklistItem
+                            checkedChecklistItem = userEvent.checklistItem
                         )
                     }
-
                 }else{
                     check(userEvent.checklistItem)
                 }
@@ -94,7 +92,7 @@ class ChecklistViewModel @Inject constructor(
                 state = state.copy(
                     showAlertDialog = false
                 )
-                state.checkListItemForDialog?.let {
+                state.checkedChecklistItem?.let {
                     check(it)
                 }
             }
@@ -103,18 +101,28 @@ class ChecklistViewModel @Inject constructor(
                     showAlertDialog = false
                 )
             }
-            is ChecklistUserEvent.OnAddAlarmClick -> {
-                //Burda alarm kurulacak.
-            }
+        }
+    }
+
+    private fun getActiveVacation() {
+        state = state.copy(
+            activeVacation = vacations.find { it.id ==  preferences.loadActiveVacationId()}
+        )
+    }
+
+    private fun getChecklistItems() {
+        viewModelScope.launch {
+            state = state.copy(
+                checklistItems = useCases.getAllChecklistItems()
+            )
+            calculateCheckCount()
         }
     }
 
     private fun loadSettings() {
         state = state.copy(
             doubleCheckEnabled = preferences.loadShouldDoubleCheck(),
-            gridViewEnabled = preferences.loadShouldShowGridView()
-        )
-        state = state.copy(
+            gridViewEnabled = preferences.loadShouldShowGridView(),
             sliderValue = preferences.loadSliderValue()
         )
         state = state.copy(
@@ -148,33 +156,24 @@ class ChecklistViewModel @Inject constructor(
         viewModelScope.launch {
             useCases.insertChecklistItem(checklistItem.copy(isChecked = !checklistItem.isChecked))
         }
+        calculateCheckCount()
     }
 
-    private fun getActiveVacation() {
-        state = state.copy(
-            activeVacation = vacations.find { it.id ==  preferences.loadActiveVacationId()}
-        )
-    }
-
-    private fun getChecklistItems() {
-        viewModelScope.launch {
-            state = state.copy(
-                checklistItems = useCases.getChecklistItems()
-            )
-        }
-    }
 
     private fun calculateCheckCount(){
-        state.activeVacation?.let { vacation ->
-
+        state.checklistItems?.let { checklistItem ->
+            state = state.copy(
+                totalCheckCount = checklistItem.size,
+                checkCount = checklistItem.filter { it.isChecked }.size
+            )
         }
+
         if(state.checkCount == state.totalCheckCount){
             state = state.copy(
                 isChecklistCompeted = true
             )
         }
     }
-
 
     private fun sendUiEvent(uiEvent: UiEvent){
         viewModelScope.launch() {

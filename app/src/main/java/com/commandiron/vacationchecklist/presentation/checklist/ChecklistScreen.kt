@@ -68,16 +68,18 @@ fun ChecklistScreen(
                             columnCount = state.gridColumnCount,
                             checkListItems = checklistItems,
                             onItemClick = {
-                                viewModel.onEvent(
-                                    ChecklistUserEvent.OnCheck(checklistItems[it])
-                                )
+                                viewModel.onEvent(ChecklistUserEvent.OnCheck(checklistItems[it]))
                             }
                         )
                     }else{
                         CheckListListView(
                             modifier = Modifier.padding(horizontal = spacing.spaceMedium),
-                            viewModel = viewModel,
-                            checklistItems = checklistItems
+                            listItemHeightValue = state.listItemHeightValue,
+                            gridColumnCount = state.gridColumnCount,
+                            checklistItems = checklistItems,
+                            onCheckedChange = {
+                                viewModel.onEvent(ChecklistUserEvent.OnCheck(checklistItems[it]))
+                            }
                         )
                     }
                 }else{

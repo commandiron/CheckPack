@@ -1,4 +1,4 @@
-package com.commandiron.vacationchecklist.data.local.checklistItem
+package com.commandiron.vacationchecklist.data.local
 
 import androidx.room.*
 import com.commandiron.vacationchecklist.data.local.entity.ChecklistItemEntity
@@ -8,8 +8,11 @@ import com.commandiron.vacationchecklist.domain.model.ChecklistItem
 interface ChecklistItemDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertChecklistItems(vararg checklistItemEntity: ChecklistItemEntity)
+    suspend fun insert(vararg checklistItemEntity: ChecklistItemEntity)
+
+    @Query("DELETE FROM checklistitementity")
+    suspend fun deleteAll()
 
     @Query("SELECT * FROM checklistitementity")
-    suspend fun getAllChecklistItems(): List<ChecklistItemEntity>
+    suspend fun getAll(): List<ChecklistItemEntity>
 }

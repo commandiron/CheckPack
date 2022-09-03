@@ -2,8 +2,8 @@ package com.commandiron.vacationchecklist.data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.commandiron.vacationchecklist.data.local.checklistItem.ChecklistItemDao
-import com.commandiron.vacationchecklist.data.local.checklistItem.ChecklistItemDatabase
+import com.commandiron.vacationchecklist.data.local.ChecklistItemDao
+import com.commandiron.vacationchecklist.data.local.ChecklistItemDatabase
 import com.commandiron.vacationchecklist.data.repository.DefaultRepositoryImpl
 import com.commandiron.vacationchecklist.domain.repository.Repository
 import dagger.Module
@@ -11,7 +11,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Provider
 import javax.inject.Singleton
 
 @Module
@@ -39,7 +38,7 @@ object DataModule {
         checklistItemDao: ChecklistItemDao
     ): Repository {
         return DefaultRepositoryImpl(
-            checklistItemDao = checklistItemDao
+            dao = checklistItemDao
         )
     }
 }

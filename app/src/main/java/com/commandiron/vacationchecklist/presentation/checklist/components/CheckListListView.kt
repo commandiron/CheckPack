@@ -16,10 +16,11 @@ import com.commandiron.vacationchecklist.util.LocalSpacing
 @Composable
 fun CheckListListView(
     modifier: Modifier = Modifier,
-    viewModel: ChecklistViewModel,
-    checklistItems: List<ChecklistItem>
+    listItemHeightValue: Float,
+    gridColumnCount: Int,
+    checklistItems: List<ChecklistItem>,
+    onCheckedChange: (Int) -> Unit
 ) {
-    val state = viewModel.state
     val spacing = LocalSpacing.current
     LazyColumn(
         modifier = modifier
@@ -29,13 +30,11 @@ fun CheckListListView(
         ){ index ->
             ColumnItem(
                 modifier = Modifier
-                    .height(Dp(state.listItemHeightValue))
+                    .height(Dp(listItemHeightValue))
                     .fillMaxWidth(),
-                gridCellsCount = state.gridColumnCount,
+                gridCellsCount = gridColumnCount,
                 checklistItem = checklistItems[index],
-                onCheckedChange = {
-                    viewModel.onEvent(ChecklistUserEvent.OnCheck(checklistItems[index]))
-                }
+                onCheckedChange = { onCheckedChange(index) }
             )
         }
         item {
