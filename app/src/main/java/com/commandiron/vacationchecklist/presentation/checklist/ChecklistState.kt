@@ -14,6 +14,6 @@ data class ChecklistState(
     val gridViewEnabled: Boolean = false,
     val sliderValue: Float = 0.5f,
 
-    val gridCellsCount: Int = 3,
+    val gridColumnCount: Int = 3,
     val listItemHeightValue: Float = 64f,
 )

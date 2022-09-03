@@ -3,7 +3,6 @@ package com.commandiron.vacationchecklist.presentation.checklist.components
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -11,9 +10,7 @@ import androidx.compose.ui.unit.Dp
 import com.commandiron.vacationchecklist.domain.model.Vacation
 import com.commandiron.vacationchecklist.presentation.checklist.ChecklistUserEvent
 import com.commandiron.vacationchecklist.presentation.checklist.ChecklistViewModel
-import com.commandiron.vacationchecklist.presentation.components.CustomAlertDialog
 import com.commandiron.vacationchecklist.util.LocalSpacing
-import com.commandiron.vacationchecklist.util.Strings
 
 @Composable
 fun CheckListListView(
@@ -36,7 +33,7 @@ fun CheckListListView(
                 modifier = Modifier
                     .height(Dp(state.listItemHeightValue))
                     .fillMaxWidth(),
-                gridCellsCount = state.gridCellsCount,
+                gridCellsCount = state.gridColumnCount,
                 checklistItem = vacation.checklistItems[index],
                 onCheckedChange = {
                     viewModel.onEvent(ChecklistUserEvent.OnCheck(index, vacation.checklistItems[index]))

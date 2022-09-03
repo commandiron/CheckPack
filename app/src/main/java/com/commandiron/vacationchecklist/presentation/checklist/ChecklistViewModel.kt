@@ -72,7 +72,7 @@ class ChecklistViewModel @Inject constructor(
             is ChecklistUserEvent.OnSliderChange -> {
                 state = state.copy(
                     sliderValue = userEvent.value,
-                    gridCellsCount = when(userEvent.value){
+                    gridColumnCount = when(userEvent.value){
                         0f -> 5
                         0.25f -> 4
                         0.50f -> 3
@@ -119,7 +119,7 @@ class ChecklistViewModel @Inject constructor(
             sliderValue = preferences.loadSliderValue()
         )
         state = state.copy(
-            gridCellsCount = when(state.sliderValue){
+            gridColumnCount = when(state.sliderValue){
                 0f -> 5
                 0.25f -> 4
                 0.50f -> 3

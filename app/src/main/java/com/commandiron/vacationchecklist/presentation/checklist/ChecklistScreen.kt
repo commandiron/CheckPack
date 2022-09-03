@@ -63,8 +63,13 @@ fun ChecklistScreen(
                 if(state.gridViewEnabled){
                     CheckListGridView(
                         modifier = Modifier.padding(horizontal = spacing.spaceMedium),
-                        viewModel = viewModel,
-                        vacation = vacation
+                        columnCount = state.gridColumnCount,
+                        checkListItems = vacation.checklistItems,
+                        onItemClick = {
+                            viewModel.onEvent(
+                                ChecklistUserEvent.OnCheck(it, vacation.checklistItems[it])
+                            )
+                        }
                     )
                 }else{
                     CheckListListView(

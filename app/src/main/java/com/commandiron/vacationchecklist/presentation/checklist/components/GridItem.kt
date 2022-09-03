@@ -16,7 +16,7 @@ import com.commandiron.vacationchecklist.util.LocalSpacing
 @Composable
 fun GridItem(
     modifier: Modifier = Modifier,
-    gridCellsCount: Int,
+    columnCount: Int,
     checklistItem: ChecklistItem
 ) {
     val spacing = LocalSpacing.current
@@ -54,7 +54,7 @@ fun GridItem(
                         text = checklistItem.name,
                         textAlign = TextAlign.Center,
                         overflow = TextOverflow.Ellipsis,
-                        style = when(gridCellsCount){
+                        style = when(columnCount){
                             1 -> MaterialTheme.typography.headlineSmall
                             2 -> MaterialTheme.typography.bodyMedium
                             3 -> MaterialTheme.typography.bodySmall

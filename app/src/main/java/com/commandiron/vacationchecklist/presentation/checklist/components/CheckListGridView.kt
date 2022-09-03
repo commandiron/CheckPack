@@ -9,42 +9,37 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.commandiron.vacationchecklist.domain.model.Vacation
-import com.commandiron.vacationchecklist.presentation.checklist.ChecklistUserEvent
-import com.commandiron.vacationchecklist.presentation.checklist.ChecklistViewModel
-import com.commandiron.vacationchecklist.presentation.components.CustomAlertDialog
+import com.commandiron.vacationchecklist.domain.model.ChecklistItem
 import com.commandiron.vacationchecklist.util.LocalSpacing
-import com.commandiron.vacationchecklist.util.Strings
 
 @Composable
 fun CheckListGridView(
     modifier: Modifier = Modifier,
-    viewModel: ChecklistViewModel,
-    vacation: Vacation
+    columnCount: Int,
+    checkListItems: List<ChecklistItem>,
+    onItemClick: (Int) -> Unit
 ) {
-    val state = viewModel.state
     val spacing = LocalSpacing.current
     LazyVerticalGrid(
         modifier = modifier,
-        columns = GridCells.Fixed(state.gridCellsCount)
+        columns = GridCells.Fixed(columnCount)
     ){
         items(
-            count = vacation.checklistItems.size,
+            count = checkListItems.size,
             key = {
-                vacation.checklistItems[it].id
+                checkListItems[it].id
             }
         ){ index ->
             GridItem(
                 modifier = Modifier
                     .aspectRatio(1f)
                     .clickable {
-                        viewModel.onEvent(
-                            ChecklistUserEvent.OnCheck(index, vacation.checklistItems[index])
-                        )
+                        println(index)
+                        onItemClick(index)
                     }
                     .padding(spacing.spaceExtraSmall),
-                gridCellsCount = state.gridCellsCount,
-                checklistItem = vacation.checklistItems[index]
+                columnCount = columnCount,
+                checklistItem = checkListItems[index]
             )
         }
         item {
