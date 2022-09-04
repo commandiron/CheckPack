@@ -85,6 +85,7 @@ class MainActivity : ComponentActivity() {
                             ){
                                 HotSplashScreen(
                                     onFinish = {
+                                        navController.popBackStack()
                                         navController.navigate(
                                             NavigationItem.GetStartedScreen.route
                                         )
@@ -106,6 +107,7 @@ class MainActivity : ComponentActivity() {
                             ){
                                 GetStartedScreen(
                                     navigate = {
+                                        navController.popBackStack()
                                         navController.navigate(it)
                                     }
                                 )
