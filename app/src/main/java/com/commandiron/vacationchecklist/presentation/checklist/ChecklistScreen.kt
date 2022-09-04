@@ -31,9 +31,10 @@ fun ChecklistScreen(
         }
     }
     val state = viewModel.state
+    val checkItems = viewModel.checkItems
     val spacing = LocalSpacing.current
     state.activeVacation?.let { vacation ->
-        state.checkItems?.let { checklistItems ->
+        checkItems.value?.let { checkItems ->
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -65,7 +66,7 @@ fun ChecklistScreen(
                         CheckListGridView(
                             modifier = Modifier.padding(horizontal = spacing.spaceMedium),
                             columnCount = state.gridColumnCount,
-                            checkListItems = checklistItems,
+                            checkItems = checkItems,
                             onItemClick = {
                                 viewModel.onEvent(ChecklistUserEvent.OnCheck(it))
                             }
@@ -75,7 +76,7 @@ fun ChecklistScreen(
                             modifier = Modifier.padding(horizontal = spacing.spaceMedium),
                             listItemHeightValue = state.listItemHeightValue,
                             gridColumnCount = state.gridColumnCount,
-                            checkItems = checklistItems,
+                            checkItems = checkItems,
                             onCheckedChange = {
                                 viewModel.onEvent(ChecklistUserEvent.OnCheck(it))
                             }

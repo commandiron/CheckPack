@@ -1,10 +1,12 @@
 package com.commandiron.vacationchecklist.presentation.checklist
 
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.commandiron.vacationchecklist.domain.model.CheckItem
 import com.commandiron.vacationchecklist.domain.model.vacations
 import com.commandiron.vacationchecklist.domain.preferences.Preferences
 import com.commandiron.vacationchecklist.domain.use_cases.UseCases
@@ -24,6 +26,9 @@ class ChecklistViewModel @Inject constructor(
     var state by mutableStateOf(ChecklistState())
         private set
 
+    private val _checkItems = mutableStateOf<List<CheckItem>?>(null)
+    val checkItems: State<List<CheckItem>?> = _checkItems
+
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
@@ -37,20 +42,20 @@ class ChecklistViewModel @Inject constructor(
         when (userEvent) {
             is ChecklistUserEvent.OnCheck -> {
                 if(state.doubleCheckEnabled){
-                    if(userEvent.checkItem.isChecked){
+                    if(userEvent.checkedItem.isChecked){
                         state = state.copy(
-                            checkItem = userEvent.checkItem
+                            checkedItem = userEvent.checkedItem
                         )
                         check()
                     }else{
                         state = state.copy(
                             showAlertDialog = true,
-                            checkItem = userEvent.checkItem
+                            checkedItem = userEvent.checkedItem
                         )
                     }
                 }else{
                     state = state.copy(
-                        checkItem = userEvent.checkItem
+                        checkedItem = userEvent.checkedItem
                     )
                     check()
                 }
@@ -97,7 +102,7 @@ class ChecklistViewModel @Inject constructor(
                 state = state.copy(
                     showAlertDialog = false
                 )
-                state.checkItem?.let {
+                state.checkedItem?.let {
                     check()
                 }
             }
@@ -117,9 +122,7 @@ class ChecklistViewModel @Inject constructor(
 
     private fun getChecklistItems() {
         viewModelScope.launch {
-            state = state.copy(
-                checkItems = useCases.getAllCheckItems()
-            )
+            _checkItems.value = useCases.getAllCheckItems()
             calculateCheckCount()
         }
     }
@@ -151,16 +154,14 @@ class ChecklistViewModel @Inject constructor(
     }
 
     private fun check(){
-        state.checkItem?.let { checkItem ->
-            state = state.copy(
-                checkItems = state.checkItems?.toMutableList()?.also {
-                    it[it.indexOf(checkItem)] = it[it.indexOf(checkItem)].copy(
-                        isChecked = !it[it.indexOf(checkItem)].isChecked
-                    )
-                }
-            )
+        state.checkedItem?.let { checkedItem ->
+            _checkItems.value = _checkItems.value?.toMutableList()?.also {
+                it[it.indexOf(checkedItem)] = it[it.indexOf(checkedItem)].copy(
+                    isChecked = !it[it.indexOf(checkedItem)].isChecked
+                )
+            }
             viewModelScope.launch {
-                useCases.insertCheckItem(checkItem.copy(isChecked = !checkItem.isChecked))
+                useCases.insertCheckItem(checkedItem.copy(isChecked = !checkedItem.isChecked))
             }
             calculateCheckCount()
         }
@@ -168,10 +169,10 @@ class ChecklistViewModel @Inject constructor(
 
 
     private fun calculateCheckCount(){
-        state.checkItems?.let { checklistItem ->
+        _checkItems.value?.let { checkItems ->
             state = state.copy(
-                totalCheckCount = checklistItem.size,
-                checkCount = checklistItem.filter { it.isChecked }.size
+                totalCheckCount = checkItems.size,
+                checkCount = checkItems.filter { it.isChecked }.size
             )
         }
 

@@ -5,9 +5,8 @@ import com.commandiron.vacationchecklist.domain.model.Vacation
 
 data class ChecklistState(
     val activeVacation: Vacation? = null,
-    val checkItems: List<CheckItem>? = null,
-    val checkItem: CheckItem? = null,
 
+    val checkedItem: CheckItem? = null,
 
     val doubleCheckEnabled: Boolean = false,
     val isLoading: Boolean = false,
@@ -17,7 +16,6 @@ data class ChecklistState(
     val isChecklistCompeted: Boolean = false,
     val gridViewEnabled: Boolean = false,
     val sliderValue: Float = 0.5f,
-
     val gridColumnCount: Int = 3,
     val listItemHeightValue: Float = 64f,
 )

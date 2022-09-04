@@ -17,7 +17,7 @@ import com.commandiron.vacationchecklist.util.LocalSpacing
 fun CheckListGridView(
     modifier: Modifier = Modifier,
     columnCount: Int,
-    checkListItems: List<CheckItem>,
+    checkItems: List<CheckItem>,
     onItemClick: (CheckItem) -> Unit
 ) {
     val spacing = LocalSpacing.current
@@ -25,7 +25,7 @@ fun CheckListGridView(
         modifier = modifier,
         columns = GridCells.Fixed(columnCount)
     ){
-        itemsIndexed(checkListItems) { _, item ->
+        itemsIndexed(checkItems) { _, item ->
             GridItem(
                 modifier = Modifier
                     .aspectRatio(1f)
