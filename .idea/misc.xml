@@ -3,24 +3,40 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/after_shave.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/all_weather_boots.xml" value="0.1925" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/backpack.xml" value="0.1" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/balaclava.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/beach_ball.xml" value="0.1925" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/beach_chair.xml" value="0.1" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/beach_towel.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/beach_umbrella.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/belt.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/board_game.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/book.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/camera.xml" value="0.1925" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/camera_charger.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/camping_tent.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/car_rental.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/caravan.xml" value="0.1" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/casual_outfit.xml" value="0.1925" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/charger.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/checkpack_logo.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/checkpack_logo_cold_splash.xml" value="0.1" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/comb.xml" value="0.1925" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/contact_lens.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/deodorant.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/digital.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/electrical_converters.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/everyday_bag.xml" value="0.1" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/first_aid_kit.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/game_console.xml" value="0.1925" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/hair_spray.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/hand_face_cream.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/hand_sanitizer.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/headphones.xml" value="0.1" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/heavy_coat.xml" value="0.1925" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/hotel_reservation.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/identification.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/jacket.xml" value="0.1" />
@@ -28,6 +44,7 @@
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/laptop.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/laptop_charger.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/laundry_bag.xml" value="0.1" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/leather_gloves.xml" value="0.1925" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/makeup.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/medication.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/nail_clippers.xml" value="0.1" />
@@ -36,14 +53,52 @@
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/parfume.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/passport.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/personal_care.xml" value="0.1" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/pillow_case.xml" value="0.1925" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/portable_charger.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/prescription_glasses.xml" value="0.1" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/raincoat.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/razor.xml" value="0.1925" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/reservations.xml" value="0.1" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/sandals.xml" value="0.1" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/scarf.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/shampoo_conditioner.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/shaving_cream.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/shoes.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/shorts.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/ski_board_boots.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/ski_board_equipments.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/ski_board_glasses.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/ski_board_gloves.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/ski_board_helmet.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/ski_board_jacket.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/ski_board_pants.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/ski_board_socks.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/ski_trip.xml" value="0.1925" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/smartphone.xml" value="0.1" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/snack.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/snorkel.xml" value="0.1925" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/snowboard.xml" value="0.1" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/soap.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/socks.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/summer_vacation.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/sun_block.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/sun_hat.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/sunglasses.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/sweater.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/swimwear.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/tampons_pad.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/tank_tops.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/tickets.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/toothbrush_toothpaste.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/towel.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/toys.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/umbrella.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/underwear.xml" value="0.1925" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/wallet.xml" value="0.1" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/watch.xml" value="0.1925" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/water_shoe.xml" value="0.1925" />
         <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/wet_wipes.xml" value="0.1" />
+        <entry key="..\:/Users/Emir/AndroidStudioProjects/VacationCheckList/app/src/main/res/drawable/winter_hat.xml" value="0.1925" />
       </map>
     </option>
   </component>
