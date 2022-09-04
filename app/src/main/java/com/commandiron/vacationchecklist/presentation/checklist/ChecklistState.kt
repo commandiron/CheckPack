@@ -5,6 +5,7 @@ import com.commandiron.vacationchecklist.domain.model.Vacation
 
 data class ChecklistState(
     val activeVacation: Vacation? = null,
+    val checkItems: List<CheckItem>? = null,
     val checkedItem: CheckItem? = null,
     val doubleCheckEnabled: Boolean = false,
     val isLoading: Boolean = false,

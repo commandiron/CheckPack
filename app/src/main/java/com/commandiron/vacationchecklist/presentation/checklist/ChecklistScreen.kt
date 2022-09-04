@@ -31,10 +31,9 @@ fun ChecklistScreen(
         }
     }
     val state = viewModel.state
-    val checkItems = viewModel.checkItems
     val spacing = LocalSpacing.current
     state.activeVacation?.let { vacation ->
-        checkItems.value?.let { checkItems ->
+        state.checkItems?.let { checkItems ->
             Column(
                 modifier = Modifier
                     .fillMaxSize()

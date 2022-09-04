@@ -1,12 +1,10 @@
 package com.commandiron.vacationchecklist.presentation.checklist
 
-import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.commandiron.vacationchecklist.domain.model.CheckItem
 import com.commandiron.vacationchecklist.domain.model.vacations
 import com.commandiron.vacationchecklist.domain.preferences.Preferences
 import com.commandiron.vacationchecklist.domain.use_cases.UseCases
@@ -25,9 +23,6 @@ class ChecklistViewModel @Inject constructor(
 
     var state by mutableStateOf(ChecklistState())
         private set
-
-    private val _checkItems = mutableStateOf<List<CheckItem>?>(null)
-    val checkItems: State<List<CheckItem>?> = _checkItems
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
@@ -122,7 +117,9 @@ class ChecklistViewModel @Inject constructor(
 
     private fun getChecklistItems() {
         viewModelScope.launch {
-            _checkItems.value = useCases.getAllCheckItems()
+            state = state.copy(
+                checkItems = useCases.getAllCheckItems()
+            )
             calculateCheckCount()
         }
     }
@@ -155,11 +152,13 @@ class ChecklistViewModel @Inject constructor(
 
     private fun check(){
         state.checkedItem?.let { checkedItem ->
-            _checkItems.value = _checkItems.value?.toMutableList()?.also {
-                it[it.indexOf(checkedItem)] = it[it.indexOf(checkedItem)].copy(
-                    isChecked = !it[it.indexOf(checkedItem)].isChecked
-                )
-            }
+            state = state.copy(
+                checkItems = state.checkItems?.toMutableList()?.also {
+                    it[it.indexOf(checkedItem)] = it[it.indexOf(checkedItem)].copy(
+                        isChecked = !it[it.indexOf(checkedItem)].isChecked
+                    )
+                }
+            )
             viewModelScope.launch {
                 useCases.insertCheckItem(checkedItem.copy(isChecked = !checkedItem.isChecked))
             }
@@ -169,13 +168,12 @@ class ChecklistViewModel @Inject constructor(
 
 
     private fun calculateCheckCount(){
-        _checkItems.value?.let { checkItems ->
+        state.checkItems?.let { checkItems ->
             state = state.copy(
                 totalCheckCount = checkItems.size,
                 checkCount = checkItems.filter { it.isChecked }.size
             )
         }
-
         if(state.checkCount == state.totalCheckCount){
             state = state.copy(
                 isChecklistCompeted = true
