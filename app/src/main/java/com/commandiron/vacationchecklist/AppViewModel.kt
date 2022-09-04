@@ -29,5 +29,5 @@ class AppViewModel @Inject constructor(
 
 data class AppState(
     val isColdSplashScreenVisible: Boolean = true,
-    val coldSplashScreenDelay: Long = 1000L
+    val coldSplashScreenDelay: Long = 500L
 )
