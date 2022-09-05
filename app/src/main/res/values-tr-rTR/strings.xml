@@ -24,4 +24,5 @@
     <string name="select_a_vacation_for_generate_checklist">Checklist için yeni bir tatil oluştur</string>
     <string name="settings">Ayarlar</string>
     <string name="double_Check">Çifte sorgu</string>
+    <string name="create_vacation">Tatil Oluştur</string>
 </resources>

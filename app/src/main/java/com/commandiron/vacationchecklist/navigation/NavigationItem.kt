@@ -8,10 +8,11 @@ import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.LibraryAddCheck
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.commandiron.vacationchecklist.R
 
 sealed class NavigationItem(
     val route: String,
-    val title: String = "",
+    val titleResource: Int = 0,
     val selectedIcon: ImageVector? = null,
     val unSelectedIcon: ImageVector? = null,
 ){
@@ -23,19 +24,19 @@ sealed class NavigationItem(
     )
     object ChecklistScreen : NavigationItem(
         route = "checklist",
-        title = "Checklist",
+        titleResource = R.string.checklist,
         selectedIcon = Icons.Default.LibraryAddCheck,
         unSelectedIcon = Icons.Outlined.LibraryAddCheck
     )
     object CreateVacationScreen : NavigationItem(
         route = "createVacation",
-        title = "Create Vacation",
+        titleResource = R.string.create_vacation,
         selectedIcon = Icons.Default.Add,
         unSelectedIcon = Icons.Outlined.Add
     )
     object SettingsScreen : NavigationItem(
         route = "settings",
-        title = "Settings",
+        titleResource = R.string.settings,
         selectedIcon = Icons.Default.Settings,
         unSelectedIcon = Icons.Outlined.Settings
     )
