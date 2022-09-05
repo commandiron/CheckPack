@@ -1,7 +1,12 @@
 package com.commandiron.vacationchecklist.domain.di
 
 import com.commandiron.vacationchecklist.domain.repository.Repository
-import com.commandiron.vacationchecklist.domain.use_cases.*
+import com.commandiron.vacationchecklist.domain.use_cases.DeleteAllCheckItems
+import com.commandiron.vacationchecklist.domain.use_cases.GetAllVacations
+import com.commandiron.vacationchecklist.domain.use_cases.InsertAllCheckItems
+import com.commandiron.vacationchecklist.domain.use_cases.GetAllCheckItems
+import com.commandiron.vacationchecklist.domain.use_cases.InsertCheckItem
+import com.commandiron.vacationchecklist.domain.use_cases.UseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

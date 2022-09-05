@@ -3,7 +3,10 @@ package com.commandiron.vacationchecklist.presentation.components
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import kotlinx.coroutines.delay
 
@@ -14,23 +17,23 @@ fun LoadingThreeDotAnimation(
     enableThreeDot: Boolean = true,
     delayBetweenDots: Long = 500
 ) {
-    var dotText by remember { mutableStateOf("")}
+    val dotText = remember { mutableStateOf("")}
     LaunchedEffect(key1 = Unit){
         while (enableThreeDot){
             delay(delayBetweenDots)
-            dotText = "."
+            dotText.value = "."
             delay(delayBetweenDots)
-            dotText = ".."
+            dotText.value = ".."
             delay(delayBetweenDots)
-            dotText = "..."
+            dotText.value = "..."
             delay(delayBetweenDots)
-            dotText = ""
+            dotText.value = ""
         }
     }
     Row {
-        Text(text = dotText, color = backgroundColor)
+        Text(text = dotText.value, color = backgroundColor)
         Text(text = text)
-        Text(text = dotText)
+        Text(text = dotText.value)
     }
 
 }
