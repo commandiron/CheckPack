@@ -1,6 +1,7 @@
 package com.commandiron.vacationchecklist.presentation.components
 
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.Spacer
@@ -13,8 +14,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import com.commandiron.vacationchecklist.R
 import com.commandiron.vacationchecklist.domain.model.Vacation
 import com.commandiron.vacationchecklist.util.LocalSpacing
@@ -87,25 +90,18 @@ fun CreateVacationBody(
                             )
                         }
                         Spacer(modifier = Modifier.height(spacing.spaceLarge))
-                        Column(modifier = Modifier.weight(2f)) {
+                        Column(
+                            modifier = Modifier.weight(2f),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
                             CustomTextField(
                                 modifier = Modifier.fillMaxWidth(0.75f),
                                 value = it.name,
                                 onValueChange = onVacationNameChange
                             )
                             Spacer(modifier = Modifier.height(spacing.spaceLarge))
-                            Button(
-                                modifier = Modifier.align(Alignment.CenterHorizontally),
-                                onClick = { onFinishClick(it) },
-                                colors = ButtonDefaults.buttonColors(
-                                    containerColor = MaterialTheme.colorScheme.primaryContainer
-                                )
-                            ) {
-                                Text(
-                                    text = stringResource(R.string.finish),
-                                    style = MaterialTheme.typography.titleMedium,
-                                    textAlign = TextAlign.Center
-                                )
+                            CustomButton(text = stringResource(R.string.finish)) {
+                                onFinishClick(it)
                             }
                         }
                         if(showAlertDialog){

@@ -29,6 +29,11 @@ class GetStartedViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
 
     init {
+        viewModelScope.launch {
+            if(useCases.getAllCheckItems().isNotEmpty()){
+                sendUiEvent(UiEvent.Navigate(NavigationItem.ChecklistScreen.route))
+            }
+        }
         state = state.copy(
             fakeLoading = false,
             vacations = useCases.getAllVacations()

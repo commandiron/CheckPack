@@ -66,7 +66,7 @@ class MainActivity : ComponentActivity() {
                             startDestination = if(shouldShowHotSplash) {
                                 NavigationItem.HotSplashScreen.route
                             } else {
-                                NavigationItem.ChecklistScreen.route
+                                NavigationItem.GetStartedScreen.route
                             }
                         ){
                             composable(

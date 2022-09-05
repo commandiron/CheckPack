@@ -3,6 +3,7 @@ package com.commandiron.vacationchecklist.presentation.checklist.components
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
@@ -29,7 +30,8 @@ fun CheckListListView(
                 ColumnItem(
                     modifier = Modifier
                         .height(Dp(listItemHeightValue))
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .padding(spacing.spaceXXSmall),
                     gridCellsCount = gridColumnCount,
                     checkItem = item,
                     onCheckedChange = {
