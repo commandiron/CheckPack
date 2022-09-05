@@ -5,16 +5,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import com.commandiron.vacationchecklist.R
 import com.commandiron.vacationchecklist.domain.model.Vacation
 import com.commandiron.vacationchecklist.util.LocalSpacing
-import com.commandiron.vacationchecklist.util.Strings.English.ENTER_VACATION_NAME
-import com.commandiron.vacationchecklist.util.Strings.English.FINISH
-import com.commandiron.vacationchecklist.util.Strings.English.NEXT
-import com.commandiron.vacationchecklist.util.Strings.English.NO
-import com.commandiron.vacationchecklist.util.Strings.English.YES
-import com.commandiron.vacationchecklist.util.Strings.English.YOUR_PREVIOUS_CHECKLIST_WILL_BE_LOST_ARE_YOU_SURE
-import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 
@@ -56,7 +51,7 @@ fun CreateVacationBody(
                                 )
                             ) {
                                 Text(
-                                    text = NEXT,
+                                    text = stringResource(R.string.next),
                                     style = MaterialTheme.typography.titleMedium,
                                     textAlign = TextAlign.Center
                                 )
@@ -72,7 +67,7 @@ fun CreateVacationBody(
                 ) {
                     selectedVacation?.let {
                         Text(
-                            text = ENTER_VACATION_NAME,
+                            text = stringResource(R.string.enter_vacation_name),
                             style = MaterialTheme.typography.titleMedium
                         )
                         Spacer(modifier = Modifier.height(spacing.spaceLarge))
@@ -99,7 +94,7 @@ fun CreateVacationBody(
                                 )
                             ) {
                                 Text(
-                                    text = FINISH,
+                                    text = stringResource(R.string.finish),
                                     style = MaterialTheme.typography.titleMedium,
                                     textAlign = TextAlign.Center
                                 )
@@ -107,7 +102,9 @@ fun CreateVacationBody(
                         }
                         if(showAlertDialog){
                             CustomAlertDialog(
-                                title = YOUR_PREVIOUS_CHECKLIST_WILL_BE_LOST_ARE_YOU_SURE,
+                                title = stringResource(R.string.your_previous_checklist_will_be_lost_are_you_sure),
+                                firstButtonText = stringResource(R.string.yes),
+                                secondButtonText = stringResource(R.string.no),
                                 onDismiss = onAlertDismiss,
                                 onConfirm = { onAlertConfirm(it) }
                             )

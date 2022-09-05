@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">CheckPack</string>
+    <string name="app_name_first_word">Check</string>
+    <string name="company_name">CITECH</string>
+    <string name="from">From</string>
+    <string name="checklist">Checklist</string>
+    <string name="you_are_ready_to_go">You are ready to go!</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="finish">Finish</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="loading">Loading</string>
+    <string name="creating">Creating</string>
+    <string name="get_started">Get Started</string>
+    <string name="select_vacation">Select vacation</string>
+    <string name="please_create_vacation">Please create vacation.</string>
+    <string name="create_new_vacation">Create New Vacation</string>
+    <string name="enter_vacation_name">Enter vacation name</string>
+    <string name="in_your_bag">In your bag?</string>
+    <string name="your_previous_checklist_will_be_lost_are_you_sure">Your previous checklist will be lost, are you sure?</string>
+    <string name="you_can_create_new_vacation_for_generate_checklist">You can create new vacation for generate checklist</string>
+    <string name="select_a_vacation_for_generate_checklist">Select a vacation for generate checklist</string>
+    <string name="settings">Settings</string>
+    <string name="double_Check">Double Check</string>
 </resources>

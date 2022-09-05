@@ -6,14 +6,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.commandiron.vacationchecklist.R
 import com.commandiron.vacationchecklist.presentation.checklist.components.*
 import com.commandiron.vacationchecklist.presentation.components.CustomAlertDialog
 import com.commandiron.vacationchecklist.presentation.components.LoadingThreeDotAnimation
 import com.commandiron.vacationchecklist.util.LocalSpacing
-import com.commandiron.vacationchecklist.util.Strings
-import com.commandiron.vacationchecklist.util.Strings.English.LOADING
-import com.commandiron.vacationchecklist.util.Strings.English.PLEASE_CREATE_VACATION
 import com.commandiron.vacationchecklist.util.UiEvent
 
 @Composable
@@ -40,7 +39,8 @@ fun ChecklistScreen(
                     .padding(top = spacing.defaultScreenPadding.calculateTopPadding())
             ) {
                 ChecklistHeader(
-                    text = vacation.name,
+                    title = stringResource(R.string.checklist),
+                    vacationName = vacation.name,
                     drawableId = vacation.iconDrawable,
                     checkCount = state.checkCount,
                     totalCount = state.totalCheckCount,
@@ -96,7 +96,9 @@ fun ChecklistScreen(
     }
     if(state.showAlertDialog){
         CustomAlertDialog(
-            title = Strings.English.IN_YOUR_BAG,
+            title = stringResource(R.string.in_your_bag),
+            firstButtonText = stringResource(R.string.yes),
+            secondButtonText = stringResource(R.string.no),
             onDismiss = { viewModel.onEvent(ChecklistUserEvent.OnAlertDialogDismiss) },
             onConfirm = { viewModel.onEvent(ChecklistUserEvent.OnAlertDialogConfirm) }
         )
@@ -108,7 +110,7 @@ fun ChecklistScreen(
                 .padding(top = spacing.defaultScreenPadding.calculateTopPadding()),
             contentAlignment = Alignment.Center
         ) {
-            LoadingThreeDotAnimation(text = LOADING)
+            LoadingThreeDotAnimation(stringResource(R.string.loading))
         }
     }else{
         if(state.activeVacation == null){
@@ -118,7 +120,7 @@ fun ChecklistScreen(
                     .padding(top = spacing.defaultScreenPadding.calculateTopPadding()),
                 contentAlignment = Alignment.Center
             ) {
-                Text(text = PLEASE_CREATE_VACATION)
+                Text(stringResource(R.string.please_create_vacation))
             }
         }
     }

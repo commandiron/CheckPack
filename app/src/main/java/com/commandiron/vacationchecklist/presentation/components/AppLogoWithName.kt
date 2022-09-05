@@ -9,12 +9,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.commandiron.vacationchecklist.R
 import com.commandiron.vacationchecklist.util.LocalSpacing
-import com.commandiron.vacationchecklist.util.Strings.APP_NAME_FIRST_WORD
 
 @Composable
 fun AppLogoWithName(
@@ -52,7 +52,7 @@ fun AppName(
 ) {
     Text(
         modifier = modifier,
-        text = APP_NAME_FIRST_WORD,
+        text = stringResource(R.string.app_name_first_word),
         style = MaterialTheme.typography.titleMedium.copy(
             fontWeight = FontWeight.Bold
         ),

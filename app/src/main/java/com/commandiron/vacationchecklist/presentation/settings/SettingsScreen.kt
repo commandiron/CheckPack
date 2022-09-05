@@ -8,14 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.LastBaseline
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.commandiron.vacationchecklist.R
 import com.commandiron.vacationchecklist.presentation.components.CustomHeader
-import com.commandiron.vacationchecklist.presentation.create_vacation.CreateVacationViewModel
 import com.commandiron.vacationchecklist.util.LocalSpacing
-import com.commandiron.vacationchecklist.util.Strings
-import com.commandiron.vacationchecklist.util.Strings.English.DOUBLE_CHECK
-import com.commandiron.vacationchecklist.util.Strings.English.SETTINGS
 
 @Composable
 fun SettingsScreen(
@@ -30,7 +27,7 @@ fun SettingsScreen(
     ) {
         CustomHeader(
             modifier = Modifier.fillMaxWidth(),
-            title = SETTINGS
+            title = stringResource(R.string.settings)
         )
         Spacer(modifier = Modifier.height(spacing.spaceMedium))
         Divider(color = LocalContentColor.current.copy(alpha = 0.2f))
@@ -41,7 +38,7 @@ fun SettingsScreen(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = DOUBLE_CHECK,
+                text = stringResource(R.string.double_Check),
                 style = MaterialTheme.typography.titleMedium
             )
             Switch(

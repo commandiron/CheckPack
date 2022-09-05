@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CheckPack</string>
+    <string name="app_name_first_word">Check</string>
+    <string name="company_name">CITECH</string>
+    <string name="from">From</string>
+    <string name="checklist">Checklist</string>
+    <string name="you_are_ready_to_go">Hazırsın!</string>
+    <string name="back">Geri</string>
+    <string name="next">İleri</string>
+    <string name="finish">Bitir</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="loading">Yükleniyor</string>
+    <string name="creating">Oluşturuluyor</string>
+    <string name="get_started">Başla</string>
+    <string name="select_vacation">Tatil seç</string>
+    <string name="please_create_vacation">Lütfen tatil oluşturun.</string>
+    <string name="create_new_vacation">Yeni tatil oluştur</string>
+    <string name="enter_vacation_name">Tatiline isim ver</string>
+    <string name="in_your_bag">Çantanda mı?</string>
+    <string name="your_previous_checklist_will_be_lost_are_you_sure">Önceki checklist\'in kaybolacak. Emin misin?</string>
+    <string name="you_can_create_new_vacation_for_generate_checklist">Checklist için yeni bir tatil oluşturabilirsin</string>
+    <string name="select_a_vacation_for_generate_checklist">Checklist için yeni bir tatil oluştur</string>
+    <string name="settings">Ayarlar</string>
+    <string name="double_Check">Çifte sorgu</string>
+</resources>

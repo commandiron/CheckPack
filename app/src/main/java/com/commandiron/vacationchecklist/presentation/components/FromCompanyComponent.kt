@@ -9,19 +9,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.commandiron.vacationchecklist.R
 import com.commandiron.vacationchecklist.ui.theme.companyColor
 import com.commandiron.vacationchecklist.util.LocalSpacing
-import com.commandiron.vacationchecklist.util.Strings.COMPANY_NAME
-import com.commandiron.vacationchecklist.util.Strings.English.FROM
 
 @Composable
 fun FromCompanyComponent(
     modifier: Modifier = Modifier,
-    companyName: String = COMPANY_NAME,
-    fromText: String = FROM
+    companyName: String = stringResource(R.string.company_name),
+    fromText: String = stringResource(R.string.from),
 ) {
     val spacing = LocalSpacing.current
     Column(

@@ -8,11 +8,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import com.commandiron.vacationchecklist.R
 import com.commandiron.vacationchecklist.util.LocalSpacing
-import com.commandiron.vacationchecklist.util.Strings.English.BACK
-import com.commandiron.vacationchecklist.util.Strings.English.YOU_ARE_READY_TO_GO
 
 @Composable
 fun ReadyToGoView(
@@ -26,7 +26,7 @@ fun ReadyToGoView(
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = YOU_ARE_READY_TO_GO,
+            text = stringResource(R.string.you_are_ready_to_go),
             style = MaterialTheme.typography.headlineLarge.copy(
                 fontWeight = FontWeight.Bold
             ),
@@ -40,7 +40,7 @@ fun ReadyToGoView(
             )
         ) {
             Text(
-                text = BACK,
+                text = stringResource(R.string.back),
                 style = MaterialTheme.typography.titleMedium,
                 textAlign = TextAlign.Center
             )

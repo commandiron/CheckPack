@@ -8,12 +8,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.commandiron.vacationchecklist.R
 import com.commandiron.vacationchecklist.presentation.components.*
 import com.commandiron.vacationchecklist.util.LocalSpacing
-import com.commandiron.vacationchecklist.util.Strings.English.CREATE_NEW_VACATION
-import com.commandiron.vacationchecklist.util.Strings.English.CREATING
-import com.commandiron.vacationchecklist.util.Strings.English.YOU_CAN_CREATE_NEW_VACATION_FOR_GENERATE_CHECKLIST
 import com.commandiron.vacationchecklist.util.UiEvent
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
@@ -43,8 +42,8 @@ fun CreateVacationScreen(
     ) {
         CustomHeader(
             modifier = Modifier.fillMaxWidth(),
-            title = CREATE_NEW_VACATION,
-            subTitle = YOU_CAN_CREATE_NEW_VACATION_FOR_GENERATE_CHECKLIST,
+            title = stringResource(R.string.create_new_vacation),
+            subTitle = stringResource(R.string.you_can_create_new_vacation_for_generate_checklist),
         )
         Spacer(modifier = Modifier.height(spacing.spaceMedium))
         Divider(color = LocalContentColor.current.copy(alpha = 0.2f))
@@ -83,7 +82,7 @@ fun CreateVacationScreen(
             ){
                 LoadingBarAnimation(loadingBarDurationMillis = state.fakeLoadingDelay.toInt())
                 Spacer(modifier = Modifier.height(spacing.spaceSmall))
-                LoadingThreeDotAnimation(text = CREATING)
+                LoadingThreeDotAnimation(stringResource(R.string.creating))
             }
         }
     }

@@ -11,12 +11,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import com.commandiron.vacationchecklist.presentation.components.CustomCircularIcon
 import com.commandiron.vacationchecklist.util.LocalSpacing
-import com.commandiron.vacationchecklist.util.Strings.English.CHECKLIST
 
 @Composable
 fun ChecklistHeader(
     modifier: Modifier = Modifier,
-    text: String,
+    title: String,
+    vacationName: String,
     drawableId: Int,
     checkCount: Int,
     totalCount: Int,
@@ -31,7 +31,7 @@ fun ChecklistHeader(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = CHECKLIST,
+                text = title,
                 style = MaterialTheme.typography.displayMedium
             )
             Divider(color = LocalContentColor.current.copy(alpha = 0.2f))
@@ -62,7 +62,7 @@ fun ChecklistHeader(
                 ) {
                     Text(
                         modifier = Modifier.weight(2f),
-                        text = text,
+                        text = vacationName,
                         style = MaterialTheme.typography.bodyLarge,
                         overflow = TextOverflow.Ellipsis
                     )

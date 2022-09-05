@@ -4,11 +4,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.commandiron.vacationchecklist.util.Strings
 
 sealed class NavigationItem(
     val route: String,
-    val title: String = Strings.EMPTY_STRING,
+    val title: String = "",
     val selectedIcon: ImageVector? = null,
     val unSelectedIcon: ImageVector? = null,
 ){

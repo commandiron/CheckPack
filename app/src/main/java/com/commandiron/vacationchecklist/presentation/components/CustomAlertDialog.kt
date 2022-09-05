@@ -2,11 +2,12 @@ package com.commandiron.vacationchecklist.presentation.components
 
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import com.commandiron.vacationchecklist.util.Strings
 
 @Composable
 fun CustomAlertDialog(
     title: String,
+    firstButtonText: String,
+    secondButtonText: String,
     onDismiss:() -> Unit,
     onConfirm:() -> Unit
 ) {
@@ -20,7 +21,7 @@ fun CustomAlertDialog(
                 )
             ) {
                 Text(
-                    text = Strings.English.YES,
+                    text = firstButtonText,
                     style = MaterialTheme.typography.titleSmall
                 )
             }
@@ -33,7 +34,7 @@ fun CustomAlertDialog(
                 )
             ) {
                 Text(
-                    text = Strings.English.NO,
+                    text = secondButtonText,
                     style = MaterialTheme.typography.titleSmall
                 )
             }
