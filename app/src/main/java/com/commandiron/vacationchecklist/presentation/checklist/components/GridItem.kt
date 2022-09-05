@@ -1,5 +1,6 @@
 package com.commandiron.vacationchecklist.presentation.checklist.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -17,15 +18,17 @@ import com.commandiron.vacationchecklist.util.LocalSpacing
 fun GridItem(
     modifier: Modifier = Modifier,
     columnCount: Int,
-    checkItem: CheckItem
+    checkItem: CheckItem,
+    onItemClick: (CheckItem) -> Unit
 ) {
     val spacing = LocalSpacing.current
     Card(
-        modifier = modifier,
+        modifier = modifier
+            .clickable {
+                onItemClick(checkItem)
+            },
         colors = CardDefaults.cardColors(
-            containerColor = if(checkItem.isChecked) {
-                MaterialTheme.colorScheme.tertiaryContainer
-            } else MaterialTheme.colorScheme.secondaryContainer,
+            containerColor = getContainerColor(checkItem.isChecked),
         )
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
@@ -80,4 +83,11 @@ fun GridItem(
             }
         }
     }
+}
+
+@Composable
+fun getContainerColor(isChecked: Boolean): Color{
+    return if(isChecked){
+        MaterialTheme.colorScheme.tertiaryContainer
+    }else MaterialTheme.colorScheme.secondaryContainer
 }

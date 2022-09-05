@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.key
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import com.commandiron.vacationchecklist.domain.model.CheckItem
@@ -24,16 +25,18 @@ fun CheckListListView(
         modifier = modifier
     ) {
         itemsIndexed(checkItems) { _, item ->
-            ColumnItem(
-                modifier = Modifier
-                    .height(Dp(listItemHeightValue))
-                    .fillMaxWidth(),
-                gridCellsCount = gridColumnCount,
-                checkItem = item,
-                onCheckedChange = {
-                    onCheckedChange(item)
-                }
-            )
+            key(item.id) {
+                ColumnItem(
+                    modifier = Modifier
+                        .height(Dp(listItemHeightValue))
+                        .fillMaxWidth(),
+                    gridCellsCount = gridColumnCount,
+                    checkItem = item,
+                    onCheckedChange = {
+                        onCheckedChange(item)
+                    }
+                )
+            }
         }
         item {
             Spacer(modifier = Modifier.height(spacing.spaceXXLarge))
