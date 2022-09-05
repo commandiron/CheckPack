@@ -18,6 +18,8 @@
     <string name="create_new_vacation">Create New Vacation</string>
     <string name="enter_vacation_name">Enter vacation name</string>
     <string name="in_your_bag">In your bag?</string>
+    <string name="mark_as_important">Mark as important?</string>
+    <string name="remove_mark">Remove Mark?</string>
     <string name="your_previous_checklist_will_be_lost_are_you_sure">Your previous checklist will be lost, are you sure?</string>
     <string name="you_can_create_new_vacation_for_generate_checklist">You can create new vacation for generate checklist</string>
     <string name="select_a_vacation_for_generate_checklist">Select a vacation for generate checklist</string>

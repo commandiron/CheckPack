@@ -1,7 +1,7 @@
 package com.commandiron.vacationchecklist.presentation.checklist.components
 
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,6 +15,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -26,6 +27,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.commandiron.vacationchecklist.domain.model.CheckItem
 import com.commandiron.vacationchecklist.presentation.components.ImportanceLevelDot
+import com.commandiron.vacationchecklist.ui.theme.importantBorderColor
+import com.commandiron.vacationchecklist.ui.theme.importantContainerColor
 import com.commandiron.vacationchecklist.util.LocalSpacing
 
 @Composable
@@ -33,17 +36,26 @@ fun GridItem(
     modifier: Modifier = Modifier,
     columnCount: Int,
     checkItem: CheckItem,
-    onItemClick: (CheckItem) -> Unit
+    onItemLongClick: (CheckItem) -> Unit,
+    onItemClick: (CheckItem) -> Unit,
 ) {
     val spacing = LocalSpacing.current
     Card(
         modifier = modifier
             .clip(shape = RoundedCornerShape(12.dp))
-            .clickable {
-                onItemClick(checkItem)
-            },
+            .combinedClickable(
+                interactionSource = remember { MutableInteractionSource()},
+                indication = if(!checkItem.isMarked) LocalIndication.current else null,
+                onLongClick = { onItemLongClick(checkItem) },
+                onClick = { onItemClick(checkItem) }
+            )
+            .border(
+                width = 2.dp,
+                color = if(checkItem.isMarked) importantBorderColor else Color.Transparent,
+                shape = RoundedCornerShape(12.dp)
+            ),
         colors = CardDefaults.cardColors(
-            containerColor = getContainerColor(checkItem.isChecked),
+            containerColor = getContainerColor(checkItem.isChecked, checkItem.isMarked),
         )
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
@@ -99,10 +111,16 @@ fun GridItem(
 }
 
 @Composable
-private fun getContainerColor(isChecked: Boolean): Color{
-    return if(isChecked){
-        MaterialTheme.colorScheme.tertiaryContainer
-    }else MaterialTheme.colorScheme.secondaryContainer
+private fun getContainerColor(isChecked: Boolean, isMarked: Boolean): Color{
+    return if(isMarked){
+        importantContainerColor
+    }else{
+        if(isChecked){
+            MaterialTheme.colorScheme.tertiaryContainer
+        }else{
+            MaterialTheme.colorScheme.secondaryContainer
+        }
+    }
 }
 
 @Composable

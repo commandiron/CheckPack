@@ -72,6 +72,9 @@ fun ChecklistScreen(
                             modifier = Modifier.padding(horizontal = spacing.spaceMedium),
                             columnCount = state.gridColumnCount,
                             checkItems = checkItems,
+                            onItemLongClick = {
+                                viewModel.onEvent(ChecklistUserEvent.OnMark(it))
+                            },
                             onItemClick = {
                                 viewModel.onEvent(ChecklistUserEvent.OnCheck(it))
                             }
@@ -100,14 +103,28 @@ fun ChecklistScreen(
             }
         }
     }
-    if(state.showAlertDialog){
+    if(state.showCheckAlertDialog){
         CustomAlertDialog(
             title = stringResource(R.string.in_your_bag),
             firstButtonText = stringResource(R.string.yes),
             secondButtonText = stringResource(R.string.no),
-            onDismiss = { viewModel.onEvent(ChecklistUserEvent.OnAlertDialogDismiss) },
-            onConfirm = { viewModel.onEvent(ChecklistUserEvent.OnAlertDialogConfirm) }
+            onDismiss = { viewModel.onEvent(ChecklistUserEvent.OnCheckAlertDialogDismiss) },
+            onConfirm = { viewModel.onEvent(ChecklistUserEvent.OnCheckAlertDialogConfirm) }
         )
+    }
+    if(state.showMarkAlertDialog){
+        state.markedItem?.isMarked?.let { isMarked ->
+            CustomAlertDialog(
+                title = if(isMarked) {
+                    stringResource(R.string.remove_mark)
+                } else stringResource(R.string.mark_as_important),
+                firstButtonText = stringResource(R.string.yes),
+                secondButtonText = stringResource(R.string.no),
+                onDismiss = { viewModel.onEvent(ChecklistUserEvent.OnMarkAlertDialogDismiss) },
+                onConfirm = { viewModel.onEvent(ChecklistUserEvent.OnMarkAlertDialogConfirm) }
+            )
+        }
+
     }
     if(state.isLoading){
         Box(

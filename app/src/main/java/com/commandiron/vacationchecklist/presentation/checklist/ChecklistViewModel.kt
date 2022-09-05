@@ -1,10 +1,12 @@
 package com.commandiron.vacationchecklist.presentation.checklist
 
+import android.text.TextUtils.indexOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.commandiron.vacationchecklist.R
 import com.commandiron.vacationchecklist.domain.model.vacations
 import com.commandiron.vacationchecklist.domain.preferences.Preferences
 import com.commandiron.vacationchecklist.domain.use_cases.UseCases
@@ -36,25 +38,57 @@ class ChecklistViewModel @Inject constructor(
     fun onEvent(userEvent: ChecklistUserEvent) {
         when (userEvent) {
             is ChecklistUserEvent.OnCheck -> {
-                if(state.doubleCheckEnabled){
-                    if(userEvent.checkedItem.isChecked){
+                if(!userEvent.checkedItem.isMarked){
+                    if(state.doubleCheckEnabled){
+                        if(userEvent.checkedItem.isChecked){
+                            state = state.copy(
+                                checkedItem = userEvent.checkedItem
+                            )
+                            check()
+                        }else{
+                            state = state.copy(
+                                showCheckAlertDialog = true,
+                                checkedItem = userEvent.checkedItem
+                            )
+                        }
+                    }else{
                         state = state.copy(
                             checkedItem = userEvent.checkedItem
                         )
                         check()
-                    }else{
-                        state = state.copy(
-                            showAlertDialog = true,
-                            checkedItem = userEvent.checkedItem
-                        )
                     }
-                }else{
-                    state = state.copy(
-                        checkedItem = userEvent.checkedItem
-                    )
-                    check()
                 }
             }
+            is ChecklistUserEvent.OnMark -> {
+                state = state.copy(
+                    showMarkAlertDialog = true,
+                    markedItem = userEvent.markedItem,
+                )
+            }
+            is ChecklistUserEvent.OnCheckAlertDialogConfirm -> {
+                state = state.copy(
+                    showCheckAlertDialog = false
+                )
+                check()
+            }
+            ChecklistUserEvent.OnCheckAlertDialogDismiss -> {
+                state = state.copy(
+                    showCheckAlertDialog = false
+                )
+            }
+
+            ChecklistUserEvent.OnMarkAlertDialogConfirm -> {
+                state = state.copy(
+                    showMarkAlertDialog = false
+                )
+                mark()
+            }
+            ChecklistUserEvent.OnMarkAlertDialogDismiss -> {
+                state = state.copy(
+                    showMarkAlertDialog = false
+                )
+            }
+
             ChecklistUserEvent.OnChecklistCompleteBack -> {
                 state = state.copy(
                     isChecklistCompeted = false
@@ -92,19 +126,6 @@ class ChecklistViewModel @Inject constructor(
             }
             ChecklistUserEvent.OnSliderValueChangeFinished -> {
                 preferences.saveSliderValue(state.sliderValue)
-            }
-            is ChecklistUserEvent.OnAlertDialogConfirm -> {
-                state = state.copy(
-                    showAlertDialog = false
-                )
-                state.checkedItem?.let {
-                    check()
-                }
-            }
-            ChecklistUserEvent.OnAlertDialogDismiss -> {
-                state = state.copy(
-                    showAlertDialog = false
-                )
             }
         }
     }
@@ -166,6 +187,24 @@ class ChecklistViewModel @Inject constructor(
         }
     }
 
+    private fun mark(){
+        state.markedItem?.let { markedItem ->
+            state = state.copy(
+                checkItems = state.checkItems?.toMutableList()?.also {
+                    it[it.indexOf(markedItem)] = it[it.indexOf(markedItem)].copy(
+                        isMarked = !it[it.indexOf(markedItem)].isMarked,
+                        isChecked = false
+                    )
+                }
+            )
+            viewModelScope.launch {
+                useCases.insertCheckItem(markedItem.copy(isMarked = !markedItem.isMarked, isChecked = false))
+            }
+        }
+        state = state.copy(
+            markedItem = null
+        )
+    }
 
     private fun calculateCheckCount(){
         state.checkItems?.let { checkItems ->
@@ -179,6 +218,9 @@ class ChecklistViewModel @Inject constructor(
                 isChecklistCompeted = true
             )
         }
+        state = state.copy(
+            checkedItem = null
+        )
     }
 
     private fun sendUiEvent(uiEvent: UiEvent){

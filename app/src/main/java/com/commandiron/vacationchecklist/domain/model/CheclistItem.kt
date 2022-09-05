@@ -6,6 +6,7 @@ data class CheckItem(
     val id: Int? = null,
     val name: String,
     val isChecked: Boolean = false,
+    val isMarked: Boolean = false,
     val iconDrawable: Int,
     val importanceLevel: ImportanceLevel,
     val gender: Int,

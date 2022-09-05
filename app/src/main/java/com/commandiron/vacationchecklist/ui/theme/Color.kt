@@ -7,6 +7,7 @@ val OxfordBlue = Color(0xFF001429)
 val Bluetiful = Color(0xFF266EF1)
 
 val companyColor = Color(0xFFED7600)
-val checkedGreen = Color(0xFF57BA46)
-val iconBackgroundColor = Color(0xFFECEFF3)
+
+val importantContainerColor = Color(0xFFfcbf49)
+val importantBorderColor = Color(0xFFf77f00)
 

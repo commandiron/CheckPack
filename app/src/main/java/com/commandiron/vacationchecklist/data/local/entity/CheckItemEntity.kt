@@ -9,6 +9,7 @@ data class CheckItemEntity(
     val id: Int? = null,
     val name: String,
     val isChecked: Boolean,
+    val isMarked: Boolean,
     val iconDrawable: Int,
     val importanceLevel: Int,
     val gender: Int,

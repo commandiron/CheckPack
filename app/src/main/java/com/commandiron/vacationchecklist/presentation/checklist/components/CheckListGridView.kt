@@ -18,6 +18,7 @@ fun CheckListGridView(
     modifier: Modifier = Modifier,
     columnCount: Int,
     checkItems: List<CheckItem>,
+    onItemLongClick: (CheckItem) -> Unit,
     onItemClick: (CheckItem) -> Unit
 ) {
     val spacing = LocalSpacing.current
@@ -33,6 +34,7 @@ fun CheckListGridView(
                         .padding(spacing.spaceExtraSmall),
                     columnCount = columnCount,
                     checkItem = item,
+                    onItemLongClick = onItemLongClick,
                     onItemClick = onItemClick
                 )
             }
