@@ -9,7 +9,7 @@ fun CheckItemEntity.toCheckItem(): CheckItem {
         name = name,
         isChecked = isChecked,
         iconDrawable = iconDrawable,
-        importanceLevel = importanceLevel,
+        importanceLevel = intToImportanceLevel(importanceLevel),
         gender = gender,
         category = category,
         vacationType = vacationType
@@ -22,9 +22,24 @@ fun CheckItem.toCheckItemEntity(): CheckItemEntity {
         name = name,
         isChecked = isChecked,
         iconDrawable = iconDrawable,
-        importanceLevel = importanceLevel,
+        importanceLevel = importanceLevelToInt(importanceLevel),
         gender = gender,
         category = category,
         vacationType = vacationType
     )
+}
+
+private fun importanceLevelToInt(importanceLevel: CheckItem.ImportanceLevel): Int {
+    return when(importanceLevel){
+        CheckItem.ImportanceLevel.MUST -> 0
+        CheckItem.ImportanceLevel.OPTIONAL -> 1
+    }
+}
+
+private fun intToImportanceLevel(importanceLevel: Int): CheckItem.ImportanceLevel {
+    return when(importanceLevel){
+        0 -> CheckItem.ImportanceLevel.MUST
+        1 -> CheckItem.ImportanceLevel.OPTIONAL
+        else -> CheckItem.ImportanceLevel.MUST
+    }
 }

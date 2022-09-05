@@ -7,14 +7,13 @@ data class CheckItem(
     val name: String,
     val isChecked: Boolean = false,
     val iconDrawable: Int,
-    val importanceLevel: Int,
+    val importanceLevel: ImportanceLevel,
     val gender: Int,
     val category: Int,
     val vacationType: Int = 0
 ){
-    object ImportanceLevel{
-        const val MUST = 0
-        const val OPTIONAL = 1
+    enum class ImportanceLevel{
+        MUST, OPTIONAL
     }
     object Gender{
         const val UNISEX = 0
