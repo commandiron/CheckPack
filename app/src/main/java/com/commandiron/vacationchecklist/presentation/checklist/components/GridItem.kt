@@ -1,5 +1,6 @@
 package com.commandiron.vacationchecklist.presentation.checklist.components
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -66,18 +68,16 @@ fun GridItem(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        modifier = Modifier.padding(spacing.spaceSmall),
+                        modifier = Modifier
+                            .padding(
+                                start = spacing.spaceExtraSmall,
+                                end = spacing.spaceExtraSmall,
+                                bottom = spacing.spaceExtraSmall
+                            ),
                         text = checkItem.name,
                         textAlign = TextAlign.Center,
                         overflow = TextOverflow.Ellipsis,
-                        style = when(columnCount){
-                            1 -> MaterialTheme.typography.headlineSmall
-                            2 -> MaterialTheme.typography.bodyMedium
-                            3 -> MaterialTheme.typography.bodySmall
-                            4 -> MaterialTheme.typography.labelLarge
-                            5 -> MaterialTheme.typography.labelLarge
-                            else -> MaterialTheme.typography.bodySmall
-                        }
+                        style = getTextStyle(columnCount)
                     )
                 }
             }
@@ -103,4 +103,16 @@ private fun getContainerColor(isChecked: Boolean): Color{
     return if(isChecked){
         MaterialTheme.colorScheme.tertiaryContainer
     }else MaterialTheme.colorScheme.secondaryContainer
+}
+
+@Composable
+private fun getTextStyle(columnCount: Int): TextStyle {
+    return when(columnCount){
+        1 -> MaterialTheme.typography.headlineSmall
+        2 -> MaterialTheme.typography.bodyMedium
+        3 -> MaterialTheme.typography.bodySmall
+        4 -> MaterialTheme.typography.labelLarge
+        5 -> MaterialTheme.typography.labelLarge
+        else -> MaterialTheme.typography.bodySmall
+    }
 }
