@@ -31,10 +31,10 @@
 
 * Application - Features ☕
    * One time splash screen
-   * Multiple view mode for checklist.
-   * View scale for checklist.
+   * Multiple view mode for checklist
+   * View scale for checklist
    * Settings
-   * Language - English
+   * Language - English, Turkish
 * Tech-stack ⚛️
     * [Kotlin](https://kotlinlang.org/) + [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - perform background operation
     * [Jetpack](https://developer.android.com/jetpack)
