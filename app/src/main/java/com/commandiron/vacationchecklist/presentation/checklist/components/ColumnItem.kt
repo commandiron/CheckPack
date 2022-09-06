@@ -2,6 +2,7 @@ package com.commandiron.vacationchecklist.presentation.checklist.components
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.Row
@@ -21,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -117,9 +119,13 @@ fun ColumnItem(
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
-                    modifier = Modifier.clickable {
-                        onFlagClick(checkItem)
-                    },
+                    modifier = Modifier
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource()},
+                            indication = null
+                        ) {
+                            onFlagClick(checkItem)
+                        },
                     imageVector = Icons.Default.Flag,
                     contentDescription = null,
                     tint = getFlagTintColor(checkItem.isMarked)
