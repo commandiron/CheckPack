@@ -70,4 +70,17 @@ class DefaultPreferences(
             0.5f
         )
     }
+
+    override fun saveListFirstVisibleItemIndex(itemIndex: Int) {
+        sharedPref.edit()
+            .putInt(Preferences.KEY_SAVE_LOAD_LIST_FIRST_VISIBLE_ITEM_INDEX, itemIndex)
+            .apply()
+    }
+
+    override fun loadListFirstVisibleItemIndex(): Int {
+        return sharedPref.getInt(
+            Preferences.KEY_SAVE_LOAD_LIST_FIRST_VISIBLE_ITEM_INDEX,
+            0
+        )
+    }
 }

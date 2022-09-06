@@ -35,6 +35,9 @@ class ChecklistViewModel @Inject constructor(
 
     fun onEvent(userEvent: ChecklistUserEvent) {
         when (userEvent) {
+            is ChecklistUserEvent.OnScrollCompleted -> {
+                preferences.saveListFirstVisibleItemIndex(userEvent.firstVisibleItemIndex)
+            }
             is ChecklistUserEvent.OnCheck -> {
                 if(!userEvent.checkedItem.isMarked){
                     if(state.doubleCheckEnabled){
@@ -145,6 +148,7 @@ class ChecklistViewModel @Inject constructor(
 
     private fun loadSettings() {
         state = state.copy(
+            firstVisibleItemIndex = preferences.loadListFirstVisibleItemIndex(),
             doubleCheckEnabled = preferences.loadShouldDoubleCheck(),
             gridViewEnabled = preferences.loadShouldShowGridView(),
             sliderValue = preferences.loadSliderValue()

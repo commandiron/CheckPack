@@ -8,6 +8,7 @@ data class ChecklistState(
     val checkItems: List<CheckItem>? = null,
     val checkedItem: CheckItem? = null,
     val markedItem: CheckItem? = null,
+    val firstVisibleItemIndex: Int = 0,
     val doubleCheckEnabled: Boolean = false,
     val isLoading: Boolean = false,
     val showCheckAlertDialog: Boolean = false,
