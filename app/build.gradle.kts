@@ -91,8 +91,6 @@ dependencies {
 
     implementation(HandyCompose.handyCompose)
 
-    implementation("androidx.work:work-runtime-ktx:2.1.0-alpha02")
-
     testImplementation(Testing.junit)
 
     androidTestImplementation(Testing.junitAndroidExt)

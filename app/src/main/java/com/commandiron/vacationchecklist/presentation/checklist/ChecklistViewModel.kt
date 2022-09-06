@@ -13,6 +13,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -83,6 +85,11 @@ class ChecklistViewModel @Inject constructor(
                 state = state.copy(
                     showSetAlarmAlertDialog = true,
                     showMarkAlertDialog = false
+                )
+                useCases.setAlarm(
+                    notificationTitle = "Test 1",
+                    notificationDesc = "Test 2",
+                    alarmTime = Calendar.getInstance().time
                 )
             }
             ChecklistUserEvent.OnMarkAlertDialogConfirm -> {

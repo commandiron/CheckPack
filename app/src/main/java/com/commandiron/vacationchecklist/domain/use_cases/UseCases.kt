@@ -5,5 +5,6 @@ class UseCases(
     val insertAllCheckItems: InsertAllCheckItems,
     val deleteAllCheckItems: DeleteAllCheckItems,
     val getAllCheckItems: GetAllCheckItems,
-    val insertCheckItem: InsertCheckItem
+    val insertCheckItem: InsertCheckItem,
+    val setAlarm: SetAlarm
 )
