@@ -19,6 +19,7 @@ fun CheckListListView(
     listItemHeightValue: Float,
     gridColumnCount: Int,
     checkItems: List<CheckItem>,
+    onFlagClick: (CheckItem) -> Unit,
     onCheckedChange: (CheckItem) -> Unit
 ) {
     val spacing = LocalSpacing.current
@@ -34,9 +35,8 @@ fun CheckListListView(
                         .padding(spacing.spaceXXSmall),
                     gridCellsCount = gridColumnCount,
                     checkItem = item,
-                    onCheckedChange = {
-                        onCheckedChange(item)
-                    }
+                    onFlagClick = onFlagClick,
+                    onCheckedChange = onCheckedChange
                 )
             }
         }

@@ -20,7 +20,7 @@
     <string name="enter_vacation_name">Tatiline isim ver</string>
     <string name="in_your_bag">Çantanda mı?</string>
     <string name="mark_as_important">Önemli olarak işaretle?</string>
-    <string name="remove_mark">İşareti Kaldır?</string>
+    <string name="remove_mark">İşareti Kaldırılsın mı?</string>
     <string name="your_previous_checklist_will_be_lost_are_you_sure">Önceki checklist\'in kaybolacak. Emin misin?</string>
     <string name="you_can_create_new_vacation_for_generate_checklist">Checklist için yeni bir tatil oluşturabilirsin</string>
     <string name="select_a_vacation_for_generate_checklist">Checklist için yeni bir tatil oluştur</string>

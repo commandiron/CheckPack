@@ -1,12 +1,10 @@
 package com.commandiron.vacationchecklist.presentation.checklist
 
-import android.text.TextUtils.indexOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.commandiron.vacationchecklist.R
 import com.commandiron.vacationchecklist.domain.model.vacations
 import com.commandiron.vacationchecklist.domain.preferences.Preferences
 import com.commandiron.vacationchecklist.domain.use_cases.UseCases
@@ -201,9 +199,7 @@ class ChecklistViewModel @Inject constructor(
                 useCases.insertCheckItem(markedItem.copy(isMarked = !markedItem.isMarked, isChecked = false))
             }
         }
-        state = state.copy(
-            markedItem = null
-        )
+        calculateCheckCount()
     }
 
     private fun calculateCheckCount(){

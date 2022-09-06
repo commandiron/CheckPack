@@ -1,5 +1,7 @@
 package com.commandiron.vacationchecklist.presentation.checklist.components
 
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.Row
@@ -8,6 +10,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Flag
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -24,6 +29,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.commandiron.vacationchecklist.domain.model.CheckItem
 import com.commandiron.vacationchecklist.presentation.components.ImportanceLevelDot
+import com.commandiron.vacationchecklist.ui.theme.importantBorderColor
+import com.commandiron.vacationchecklist.ui.theme.importantContainerColor
 import com.commandiron.vacationchecklist.util.LocalSpacing
 
 @Composable
@@ -31,11 +38,17 @@ fun ColumnItem(
     modifier: Modifier = Modifier,
     gridCellsCount: Int,
     checkItem: CheckItem,
-    onCheckedChange: (Boolean) -> Unit
+    onFlagClick: (CheckItem) -> Unit,
+    onCheckedChange: (CheckItem) -> Unit
 ) {
     val spacing = LocalSpacing.current
     Card(
-        modifier = modifier,
+        modifier = modifier
+            .border(
+                width = 2.dp,
+                color = if (checkItem.isMarked) importantBorderColor else Color.Transparent,
+                shape = RoundedCornerShape(12.dp)
+            ),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.secondaryContainer
         )
@@ -44,7 +57,7 @@ fun ColumnItem(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(
-                    when(gridCellsCount){
+                    when (gridCellsCount) {
                         1 -> spacing.spaceSmall
                         2 -> spacing.spaceSmall
                         3 -> spacing.spaceSmall
@@ -56,7 +69,7 @@ fun ColumnItem(
                 modifier = Modifier
                     .fillMaxHeight()
                     .weight(
-                        when(gridCellsCount){
+                        when (gridCellsCount) {
                             1 -> 1.5f
                             else -> 1f
                         }
@@ -103,9 +116,25 @@ fun ColumnItem(
                     .weight(1f),
                 contentAlignment = Alignment.Center
             ) {
+                Icon(
+                    modifier = Modifier.clickable {
+                        onFlagClick(checkItem)
+                    },
+                    imageVector = Icons.Default.Flag,
+                    contentDescription = null,
+                    tint = getFlagTintColor(checkItem.isMarked)
+                )
+            }
+            Box(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .weight(1f),
+                contentAlignment = Alignment.Center
+            ) {
                 Checkbox(
                     checked = checkItem.isChecked,
-                    onCheckedChange = onCheckedChange,
+                    onCheckedChange = { onCheckedChange(checkItem) },
+                    enabled = !checkItem.isMarked,
                     colors = CheckboxDefaults.colors(
                         checkedColor = MaterialTheme.colorScheme.tertiaryContainer,
                         uncheckedColor = MaterialTheme.colorScheme.tertiaryContainer,
@@ -114,5 +143,14 @@ fun ColumnItem(
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun getFlagTintColor(isMarked: Boolean): Color{
+    return if(isMarked){
+        importantContainerColor
+    }else{
+        MaterialTheme.colorScheme.onSurface.copy(0.38f)
     }
 }

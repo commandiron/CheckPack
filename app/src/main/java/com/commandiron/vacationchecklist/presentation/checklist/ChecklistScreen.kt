@@ -85,6 +85,9 @@ fun ChecklistScreen(
                             listItemHeightValue = state.listItemHeightValue,
                             gridColumnCount = state.gridColumnCount,
                             checkItems = checkItems,
+                            onFlagClick = {
+                                viewModel.onEvent(ChecklistUserEvent.OnMark(it))
+                            },
                             onCheckedChange = {
                                 viewModel.onEvent(ChecklistUserEvent.OnCheck(it))
                             }
