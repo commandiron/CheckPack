@@ -27,7 +27,7 @@
 
 <img src="https://user-images.githubusercontent.com/50905347/188006059-7ad6b080-0de1-4b65-81e3-ff57bc30b8e7.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/188006061-e9df62e5-660b-41e5-bd58-6b0b1a60b6e3.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/188006065-39ad2f1a-c058-42e7-a871-2b409fb19a9f.png" width="250" height="530">
 
-<img src="https://user-images.githubusercontent.com/50905347/188006070-badfb574-59ed-4bb2-8b8f-4d52cdfbffde.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/188006076-47ca3bab-c25a-49bf-8a56-2202a70fe0cf.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/188006080-cf92ce20-fc82-409a-b6e5-7b0ba92b17b2.png" width="250" height="530">
+<img src="https://user-images.githubusercontent.com/50905347/188601877-635ded7c-a93e-4f5f-b1c0-dd22da15eab3.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/188601886-6d308250-ebb1-4536-8bdf-22ee5c1b8ed8.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/188601893-b1802320-71c0-429e-ae57-22c11591ae0d.png" width="250" height="530">
 
 * Application - Features ☕
    * One time splash screen
