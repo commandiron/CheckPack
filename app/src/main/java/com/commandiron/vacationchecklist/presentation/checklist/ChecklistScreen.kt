@@ -117,17 +117,25 @@ fun ChecklistScreen(
     }
     if(state.showMarkAlertDialog){
         state.markedItem?.isMarked?.let { isMarked ->
-            CustomAlertDialog(
+            MarkAlertDialog(
                 title = if(isMarked) {
                     stringResource(R.string.remove_mark)
                 } else stringResource(R.string.mark_as_important),
                 firstButtonText = stringResource(R.string.yes),
                 secondButtonText = stringResource(R.string.no),
+                setAlarmButtonEnabled = !isMarked,
+                onSetAlarm = { viewModel.onEvent(ChecklistUserEvent.OnSetAlarm) },
                 onDismiss = { viewModel.onEvent(ChecklistUserEvent.OnMarkAlertDialogDismiss) },
                 onConfirm = { viewModel.onEvent(ChecklistUserEvent.OnMarkAlertDialogConfirm) }
             )
         }
-
+    }
+    if(state.showSetAlarmAlertDialog){
+        SetAlarmAlertDialog(
+            title = "Set Alarm",
+            onDismiss = { viewModel.onEvent(ChecklistUserEvent.OnMarkAlertDialogDismiss) },
+            onConfirm = { viewModel.onEvent(ChecklistUserEvent.OnMarkAlertDialogConfirm) }
+        )
     }
     if(state.isLoading){
         Box(

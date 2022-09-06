@@ -78,15 +78,24 @@ class ChecklistViewModel @Inject constructor(
                 )
             }
 
+
+            ChecklistUserEvent.OnSetAlarm -> {
+                state = state.copy(
+                    showSetAlarmAlertDialog = true,
+                    showMarkAlertDialog = false
+                )
+            }
             ChecklistUserEvent.OnMarkAlertDialogConfirm -> {
                 state = state.copy(
-                    showMarkAlertDialog = false
+                    showMarkAlertDialog = false,
+                    showSetAlarmAlertDialog = false,
                 )
                 mark()
             }
             ChecklistUserEvent.OnMarkAlertDialogDismiss -> {
                 state = state.copy(
-                    showMarkAlertDialog = false
+                    showMarkAlertDialog = false,
+                    showSetAlarmAlertDialog = false
                 )
             }
 

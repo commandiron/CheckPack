@@ -10,6 +10,7 @@ sealed class ChecklistUserEvent{
     object OnCheckAlertDialogDismiss : ChecklistUserEvent()
     object OnCheckAlertDialogConfirm : ChecklistUserEvent()
 
+    object OnSetAlarm : ChecklistUserEvent()
     object OnMarkAlertDialogDismiss : ChecklistUserEvent()
     object OnMarkAlertDialogConfirm : ChecklistUserEvent()
 

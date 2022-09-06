@@ -13,6 +13,7 @@ data class ChecklistState(
     val isLoading: Boolean = false,
     val showCheckAlertDialog: Boolean = false,
     val showMarkAlertDialog: Boolean = false,
+    val showSetAlarmAlertDialog: Boolean = false,
     val checkCount: Int = 0,
     val totalCheckCount: Int = 0,
     val isChecklistCompeted: Boolean = false,
