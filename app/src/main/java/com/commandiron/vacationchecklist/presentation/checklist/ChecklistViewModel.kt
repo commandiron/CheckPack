@@ -1,8 +1,6 @@
 package com.commandiron.vacationchecklist.presentation.checklist
 
 import android.os.Build
-import android.text.format.DateFormat
-import android.text.format.Time
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -16,10 +14,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.Month
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -104,8 +100,8 @@ class ChecklistViewModel @Inject constructor(
             ChecklistUserEvent.OnSetAlarmAlertDialogConfirm -> {
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
                     useCases.setAlarm(
-                        notificationTitle = "Test 1",
-                        notificationDesc = "Test 2",
+                        notificationTitle = "CheckPack",
+                        notificationDesc = state.markedItem?.name ?: "",
                         time = LocalDateTime.of(
                             2022,
                             Month.SEPTEMBER,

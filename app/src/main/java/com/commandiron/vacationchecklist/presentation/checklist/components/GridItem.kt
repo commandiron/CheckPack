@@ -28,7 +28,6 @@ import androidx.compose.ui.unit.dp
 import com.commandiron.vacationchecklist.domain.model.CheckItem
 import com.commandiron.vacationchecklist.presentation.components.ImportanceLevelDot
 import com.commandiron.vacationchecklist.ui.theme.importantBorderColor
-import com.commandiron.vacationchecklist.ui.theme.importantContainerColor
 import com.commandiron.vacationchecklist.util.LocalSpacing
 
 @Composable
@@ -113,10 +112,10 @@ fun GridItem(
 @Composable
 private fun getContainerColor(isChecked: Boolean, isMarked: Boolean): Color{
     return if(isMarked){
-        importantContainerColor
+        MaterialTheme.colorScheme.tertiaryContainer
     }else{
         if(isChecked){
-            MaterialTheme.colorScheme.tertiaryContainer
+            MaterialTheme.colorScheme.primaryContainer
         }else{
             MaterialTheme.colorScheme.secondaryContainer
         }

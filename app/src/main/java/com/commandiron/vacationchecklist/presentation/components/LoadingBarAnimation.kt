@@ -28,8 +28,8 @@ fun LoadingBarAnimation(
     thickness: Dp = 16.dp,
     fractionOfWidth: Float = 0.64f,
     backgroundColor: Color = MaterialTheme.colorScheme.background,
-    fillColor: Color = MaterialTheme.colorScheme.tertiaryContainer,
-    borderColor: Color = MaterialTheme.colorScheme.primaryContainer,
+    fillColor: Color = MaterialTheme.colorScheme.primaryContainer,
+    borderColor: Color = MaterialTheme.colorScheme.primary,
     loadingBarDurationMillis: Int = 5000
 ) {
     val loadingBarProgress = remember {

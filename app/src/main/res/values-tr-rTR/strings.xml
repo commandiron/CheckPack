@@ -11,6 +11,8 @@
     <string name="finish">Bitir</string>
     <string name="yes">Evet</string>
     <string name="no">Hayır</string>
+    <string name="set">Kur</string>
+    <string name="cancel">İptal</string>
     <string name="loading">Yükleniyor</string>
     <string name="creating">Oluşturuluyor</string>
     <string name="get_started">Başla</string>
@@ -27,4 +29,5 @@
     <string name="settings">Ayarlar</string>
     <string name="double_Check">Çifte sorgu</string>
     <string name="create_vacation">Tatil Oluştur</string>
+    <string name="set_alarm">Alarm</string>
 </resources>

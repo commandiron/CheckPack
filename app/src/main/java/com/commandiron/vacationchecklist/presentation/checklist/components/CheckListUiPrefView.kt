@@ -43,7 +43,7 @@ fun CheckListUiPrefView(
                 imageVector = Icons.Rounded.ViewList,
                 contentDescription = null,
                 tint = if(!gridViewEnabled){
-                    MaterialTheme.colorScheme.tertiaryContainer
+                    MaterialTheme.colorScheme.primaryContainer
                 } else Color.Gray.copy(
                     alpha = 0.2f
                 )
@@ -57,7 +57,7 @@ fun CheckListUiPrefView(
                 imageVector = Icons.Rounded.GridView,
                 contentDescription = null,
                 tint = if(gridViewEnabled){
-                    MaterialTheme.colorScheme.tertiaryContainer
+                    MaterialTheme.colorScheme.primaryContainer
                 } else Color.Gray.copy(
                     alpha = 0.2f
                 )
@@ -70,8 +70,8 @@ fun CheckListUiPrefView(
             onValueChange = onSliderValueChange,
             steps = 3,
             colors = SliderDefaults.colors(
-                thumbColor = MaterialTheme.colorScheme.tertiaryContainer,
-                activeTrackColor = MaterialTheme.colorScheme.tertiaryContainer
+                thumbColor = MaterialTheme.colorScheme.primaryContainer,
+                activeTrackColor = MaterialTheme.colorScheme.primaryContainer
             ),
             onValueChangeFinished = onSliderValueChangeFinished
         )

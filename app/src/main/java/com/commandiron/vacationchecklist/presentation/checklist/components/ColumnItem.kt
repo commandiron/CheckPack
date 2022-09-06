@@ -32,7 +32,6 @@ import androidx.compose.ui.unit.dp
 import com.commandiron.vacationchecklist.domain.model.CheckItem
 import com.commandiron.vacationchecklist.presentation.components.ImportanceLevelDot
 import com.commandiron.vacationchecklist.ui.theme.importantBorderColor
-import com.commandiron.vacationchecklist.ui.theme.importantContainerColor
 import com.commandiron.vacationchecklist.util.LocalSpacing
 
 @Composable
@@ -142,9 +141,9 @@ fun ColumnItem(
                     onCheckedChange = { onCheckedChange(checkItem) },
                     enabled = !checkItem.isMarked,
                     colors = CheckboxDefaults.colors(
-                        checkedColor = MaterialTheme.colorScheme.tertiaryContainer,
-                        uncheckedColor = MaterialTheme.colorScheme.tertiaryContainer,
-                        checkmarkColor = MaterialTheme.colorScheme.onTertiaryContainer
+                        checkedColor = MaterialTheme.colorScheme.primaryContainer,
+                        uncheckedColor = MaterialTheme.colorScheme.primaryContainer,
+                        checkmarkColor = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                 )
             }
@@ -155,7 +154,7 @@ fun ColumnItem(
 @Composable
 private fun getFlagTintColor(isMarked: Boolean): Color{
     return if(isMarked){
-        importantContainerColor
+        MaterialTheme.colorScheme.tertiaryContainer
     }else{
         MaterialTheme.colorScheme.onSurface.copy(0.38f)
     }

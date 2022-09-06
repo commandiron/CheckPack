@@ -55,10 +55,10 @@ fun SettingsScreen(
                 checked = state.switchChecked,
                 onCheckedChange = { viewModel.onEvent(SettingsUserEvent.OnSwitchCheckedChange) },
                 colors = SwitchDefaults.colors(
-                    checkedTrackColor = MaterialTheme.colorScheme.tertiaryContainer,
-                    uncheckedThumbColor = MaterialTheme.colorScheme.tertiaryContainer,
+                    checkedTrackColor = MaterialTheme.colorScheme.primaryContainer,
+                    uncheckedThumbColor = MaterialTheme.colorScheme.primaryContainer,
                     uncheckedTrackColor = Color.White,
-                    uncheckedBorderColor = MaterialTheme.colorScheme.tertiaryContainer
+                    uncheckedBorderColor = MaterialTheme.colorScheme.primaryContainer
                 )
             )
         }

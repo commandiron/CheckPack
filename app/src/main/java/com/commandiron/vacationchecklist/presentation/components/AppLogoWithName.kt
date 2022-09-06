@@ -52,7 +52,7 @@ fun AppLogo(
 @Composable
 fun AppName(
     modifier: Modifier = Modifier,
-    color: Color = MaterialTheme.colorScheme.tertiaryContainer
+    color: Color = MaterialTheme.colorScheme.primaryContainer
 ) {
     Text(
         modifier = modifier,

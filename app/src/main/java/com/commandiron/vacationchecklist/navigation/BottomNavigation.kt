@@ -53,8 +53,8 @@ fun BottomNavigation(
                     .padding(spacing.bottomNavigationPadding)
                     .height(spacing.bottomNavigationHeight)
                     .fillMaxWidth(),
-                color = MaterialTheme.colorScheme.primaryContainer,
-                contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                color = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary,
                 shape = RoundedCornerShape(spacing.spaceExtraLarge)
             ) {
                 Row(

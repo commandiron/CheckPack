@@ -11,13 +11,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.commandiron.vacationchecklist.ui.theme.importantContainerColor
 
 @Composable
 fun MarkAlertDialog(
     title: String,
-    firstButtonText: String,
-    secondButtonText: String,
+    setAlarmButtonText: String,
+    confirmButtonText: String,
+    dismissButtonText: String,
     setAlarmButtonEnabled: Boolean = false,
     onSetAlarm: () -> Unit,
     onDismiss: () -> Unit,
@@ -29,11 +29,11 @@ fun MarkAlertDialog(
             Button(
                 onClick = onConfirm,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.tertiaryContainer
+                    containerColor = MaterialTheme.colorScheme.primaryContainer
                 )
             ) {
                 Text(
-                    text = firstButtonText,
+                    text = confirmButtonText,
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
@@ -44,12 +44,12 @@ fun MarkAlertDialog(
                     Button(
                         onClick = onSetAlarm,
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = importantContainerColor,
-                            contentColor = MaterialTheme.colorScheme.primaryContainer
+                            containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                            contentColor = MaterialTheme.colorScheme.onTertiaryContainer
                         )
                     ) {
                         Text(
-                            text = "Set Alarm",
+                            text = setAlarmButtonText,
                             style = MaterialTheme.typography.bodyMedium
                         )
                     }
@@ -58,11 +58,11 @@ fun MarkAlertDialog(
                 Button(
                     onClick = onDismiss,
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.tertiaryContainer
+                        containerColor = MaterialTheme.colorScheme.primaryContainer
                     )
                 ) {
                     Text(
-                        text = secondButtonText,
+                        text = dismissButtonText,
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }
@@ -74,7 +74,7 @@ fun MarkAlertDialog(
                 style = MaterialTheme.typography.bodyLarge
             )
         },
-        containerColor = MaterialTheme.colorScheme.primaryContainer,
-        titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
+        containerColor = MaterialTheme.colorScheme.primary,
+        titleContentColor = MaterialTheme.colorScheme.onPrimary
     )
 }

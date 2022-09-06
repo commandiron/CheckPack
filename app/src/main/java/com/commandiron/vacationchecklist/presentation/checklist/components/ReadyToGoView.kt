@@ -34,13 +34,13 @@ fun ReadyToGoView(
             style = MaterialTheme.typography.headlineLarge.copy(
                 fontWeight = FontWeight.Bold
             ),
-            color = MaterialTheme.colorScheme.tertiaryContainer
+            color = MaterialTheme.colorScheme.primaryContainer
         )
         Spacer(modifier = Modifier.height(spacing.spaceMedium))
         Button(
             onClick = onClick,
             colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.tertiaryContainer
+                containerColor = MaterialTheme.colorScheme.primaryContainer
             )
         ) {
             Text(

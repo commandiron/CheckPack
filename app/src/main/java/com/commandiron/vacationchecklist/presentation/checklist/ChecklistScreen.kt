@@ -121,8 +121,9 @@ fun ChecklistScreen(
                 title = if(isMarked) {
                     stringResource(R.string.remove_mark)
                 } else stringResource(R.string.mark_as_important),
-                firstButtonText = stringResource(R.string.yes),
-                secondButtonText = stringResource(R.string.no),
+                setAlarmButtonText = stringResource(R.string.set_alarm),
+                confirmButtonText = stringResource(R.string.yes),
+                dismissButtonText = stringResource(R.string.no),
                 setAlarmButtonEnabled = !isMarked,
                 onSetAlarm = { viewModel.onEvent(ChecklistUserEvent.OnSetAlarm) },
                 onDismiss = { viewModel.onEvent(ChecklistUserEvent.OnMarkAlertDialogDismiss) },
@@ -132,7 +133,9 @@ fun ChecklistScreen(
     }
     if(state.showSetAlarmAlertDialog){
         SetAlarmAlertDialog(
-            title = "Set Alarm",
+            title = stringResource(R.string.set_alarm),
+            confirmButtonText = stringResource(R.string.set),
+            dismissButtonText = stringResource(R.string.cancel),
             onDismiss = { viewModel.onEvent(ChecklistUserEvent.OnSetAlarmAlertDialogDismiss) },
             onConfirm = { viewModel.onEvent(ChecklistUserEvent.OnSetAlarmAlertDialogConfirm) }
         )

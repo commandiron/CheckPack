@@ -11,24 +11,26 @@ private val DarkColorPalette = darkColorScheme(
     background = Cultured,
     onBackground = OxfordBlue,
     primary = OxfordBlue,
-    primaryContainer = OxfordBlue,
+    onPrimary = Color.White,
+    primaryContainer = Bluetiful,
     onPrimaryContainer = Color.White,
     secondaryContainer = Color.White,
     onSecondaryContainer = Color.Black,
-    tertiaryContainer = Bluetiful,
-    onTertiaryContainer = Color.White
+    tertiaryContainer = MaximumYellowRed,
+    onTertiaryContainer = OxfordBlue
 )
 
 private val LightColorPalette = lightColorScheme(
     background = Cultured,
     onBackground = OxfordBlue,
     primary = OxfordBlue,
-    primaryContainer = OxfordBlue,
+    onPrimary = Color.White,
+    primaryContainer = Bluetiful,
     onPrimaryContainer = Color.White,
     secondaryContainer = Color.White,
     onSecondaryContainer = Color.Black,
-    tertiaryContainer = Bluetiful,
-    onTertiaryContainer = Color.White
+    tertiaryContainer = MaximumYellowRed,
+    onTertiaryContainer = OxfordBlue
 )
 
 @Composable

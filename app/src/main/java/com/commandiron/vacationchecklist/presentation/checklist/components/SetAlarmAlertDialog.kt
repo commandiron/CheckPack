@@ -8,11 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.commandiron.vacationchecklist.ui.theme.importantContainerColor
 
 @Composable
 fun SetAlarmAlertDialog(
     title: String,
+    confirmButtonText: String,
+    dismissButtonText: String,
     onDismiss: () -> Unit,
     onConfirm: () -> Unit,
 ) {
@@ -27,11 +28,11 @@ fun SetAlarmAlertDialog(
             Button(
                 onClick = onConfirm,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer
+                    containerColor = MaterialTheme.colorScheme.primary
                 )
             ) {
                 Text(
-                    text = "Confirm",
+                    text = confirmButtonText,
                     style = MaterialTheme.typography.bodySmall
                 )
             }
@@ -40,11 +41,11 @@ fun SetAlarmAlertDialog(
             Button(
                 onClick = onDismiss,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer
+                    containerColor = MaterialTheme.colorScheme.primary
                 )
             ) {
                 Text(
-                    text = "Dismiss",
+                    text = dismissButtonText,
                     style = MaterialTheme.typography.bodySmall
                 )
             }
@@ -59,7 +60,7 @@ fun SetAlarmAlertDialog(
             }
         },
         onDismissRequest = onDismiss,
-        containerColor = importantContainerColor,
-        titleContentColor = MaterialTheme.colorScheme.primaryContainer
+        containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+        titleContentColor = MaterialTheme.colorScheme.primary
     )
 }

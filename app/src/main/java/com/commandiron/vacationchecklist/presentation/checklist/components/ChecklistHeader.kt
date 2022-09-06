@@ -56,7 +56,7 @@ fun ChecklistHeader(
                 topStart = spacing.spaceLarge,
                 bottomStart = spacing.spaceLarge
             ),
-            color = MaterialTheme.colorScheme.primaryContainer
+            color = MaterialTheme.colorScheme.primary
         ) {
             Row(
                 modifier = Modifier
