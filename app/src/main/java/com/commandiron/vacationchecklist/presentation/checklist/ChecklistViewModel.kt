@@ -1,5 +1,8 @@
 package com.commandiron.vacationchecklist.presentation.checklist
 
+import android.os.Build
+import android.text.format.DateFormat
+import android.text.format.Time
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -14,6 +17,8 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.Month
 import java.util.*
 import javax.inject.Inject
 
@@ -37,9 +42,6 @@ class ChecklistViewModel @Inject constructor(
 
     fun onEvent(userEvent: ChecklistUserEvent) {
         when (userEvent) {
-            is ChecklistUserEvent.OnScrollCompleted -> {
-                preferences.saveListFirstVisibleItemIndex(userEvent.firstVisibleItemIndex)
-            }
             is ChecklistUserEvent.OnCheck -> {
                 if(!userEvent.checkedItem.isMarked){
                     if(state.doubleCheckEnabled){
@@ -62,12 +64,6 @@ class ChecklistViewModel @Inject constructor(
                     }
                 }
             }
-            is ChecklistUserEvent.OnMark -> {
-                state = state.copy(
-                    showMarkAlertDialog = true,
-                    markedItem = userEvent.markedItem,
-                )
-            }
             is ChecklistUserEvent.OnCheckAlertDialogConfirm -> {
                 state = state.copy(
                     showCheckAlertDialog = false
@@ -80,16 +76,10 @@ class ChecklistViewModel @Inject constructor(
                 )
             }
 
-
-            ChecklistUserEvent.OnSetAlarm -> {
+            is ChecklistUserEvent.OnMark -> {
                 state = state.copy(
-                    showSetAlarmAlertDialog = true,
-                    showMarkAlertDialog = false
-                )
-                useCases.setAlarm(
-                    notificationTitle = "Test 1",
-                    notificationDesc = "Test 2",
-                    alarmTime = Calendar.getInstance().time
+                    showMarkAlertDialog = true,
+                    markedItem = userEvent.markedItem,
                 )
             }
             ChecklistUserEvent.OnMarkAlertDialogConfirm -> {
@@ -105,11 +95,44 @@ class ChecklistViewModel @Inject constructor(
                     showSetAlarmAlertDialog = false
                 )
             }
-
-            ChecklistUserEvent.OnChecklistCompleteBack -> {
+            ChecklistUserEvent.OnSetAlarm -> {
                 state = state.copy(
-                    isChecklistCompeted = false
+                    showSetAlarmAlertDialog = true,
+                    showMarkAlertDialog = false
                 )
+            }
+            ChecklistUserEvent.OnSetAlarmAlertDialogConfirm -> {
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                    useCases.setAlarm(
+                        notificationTitle = "Test 1",
+                        notificationDesc = "Test 2",
+                        time = LocalDateTime.of(
+                            2022,
+                            Month.SEPTEMBER,
+                            6,
+                            20,
+                            10,
+                            0,
+                            0
+                        )
+                    )
+                    state = state.copy(
+                        showSetAlarmAlertDialog = false
+                    )
+                    mark()
+                }else{
+                    state = state.copy(
+                        showSetAlarmAlertDialog = false
+                    )
+                    mark()
+                    //Lütfen bu özellik için versiyon güncelleyin, snackbar.
+                }
+            }
+            ChecklistUserEvent.OnSetAlarmAlertDialogDismiss -> {
+                state = state.copy(
+                    showSetAlarmAlertDialog = false
+                )
+                mark()
             }
             ChecklistUserEvent.OnGridViewClick -> {
                 preferences.saveShouldShowGridView(true)
@@ -143,6 +166,14 @@ class ChecklistViewModel @Inject constructor(
             }
             ChecklistUserEvent.OnSliderValueChangeFinished -> {
                 preferences.saveSliderValue(state.sliderValue)
+            }
+            is ChecklistUserEvent.OnScrollCompleted -> {
+                preferences.saveListFirstVisibleItemIndex(userEvent.firstVisibleItemIndex)
+            }
+            ChecklistUserEvent.OnChecklistCompleteBack -> {
+                state = state.copy(
+                    isChecklistCompeted = false
+                )
             }
         }
     }

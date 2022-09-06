@@ -1,4 +1,4 @@
-package com.commandiron.vacationchecklist.service
+package com.commandiron.vacationchecklist.data.service
 
 import android.app.NotificationChannel
 import android.app.NotificationManager

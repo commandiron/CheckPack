@@ -133,8 +133,8 @@ fun ChecklistScreen(
     if(state.showSetAlarmAlertDialog){
         SetAlarmAlertDialog(
             title = "Set Alarm",
-            onDismiss = { viewModel.onEvent(ChecklistUserEvent.OnMarkAlertDialogDismiss) },
-            onConfirm = { viewModel.onEvent(ChecklistUserEvent.OnMarkAlertDialogConfirm) }
+            onDismiss = { viewModel.onEvent(ChecklistUserEvent.OnSetAlarmAlertDialogDismiss) },
+            onConfirm = { viewModel.onEvent(ChecklistUserEvent.OnSetAlarmAlertDialogConfirm) }
         )
     }
     if(state.isLoading){
