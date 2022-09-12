@@ -1,22 +1,24 @@
 package com.commandiron.vacationchecklist.presentation.checklist.components
 
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import com.commandiron.wheel_picker_compose.WheelDateTimePicker
+import java.time.LocalDateTime
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun SetAlarmAlertDialog(
     title: String,
     confirmButtonText: String,
     dismissButtonText: String,
     onDismiss: () -> Unit,
-    onConfirm: () -> Unit,
+    onConfirm: (LocalDateTime) -> Unit,
 ) {
+    val snappedDateTime = remember { mutableStateOf(LocalDateTime.now())}
     AlertDialog(
         title = {
             Text(
@@ -26,7 +28,9 @@ fun SetAlarmAlertDialog(
         },
         confirmButton = {
             Button(
-                onClick = onConfirm,
+                onClick = {
+                    onConfirm(snappedDateTime.value)
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.primary
                 )
@@ -51,12 +55,10 @@ fun SetAlarmAlertDialog(
             }
         },
         text = {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .border(1.dp, Color.Red)
-            ){
-
+            WheelDateTimePicker(
+                disablePastDateTime = true
+            ) {
+                snappedDateTime.value = it
             }
         },
         onDismissRequest = onDismiss,

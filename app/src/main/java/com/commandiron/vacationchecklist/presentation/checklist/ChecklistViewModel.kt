@@ -6,16 +6,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.commandiron.vacationchecklist.R
 import com.commandiron.vacationchecklist.domain.model.vacations
 import com.commandiron.vacationchecklist.domain.preferences.Preferences
 import com.commandiron.vacationchecklist.domain.use_cases.UseCases
 import com.commandiron.vacationchecklist.util.UiEvent
+import com.commandiron.vacationchecklist.util.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import java.time.LocalDateTime
-import java.time.Month
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,6 +23,9 @@ class ChecklistViewModel @Inject constructor(
     private val useCases: UseCases,
     private val preferences: Preferences
 ): ViewModel() {
+
+    private val uiTextChannel = Channel<UiText>()
+    val uiText = uiTextChannel.receiveAsFlow()
 
     var state by mutableStateOf(ChecklistState())
         private set
@@ -93,24 +96,27 @@ class ChecklistViewModel @Inject constructor(
             }
             ChecklistUserEvent.OnSetAlarm -> {
                 state = state.copy(
-                    showSetAlarmAlertDialog = true,
                     showMarkAlertDialog = false
                 )
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                    state = state.copy(
+                        showSetAlarmAlertDialog = true
+                    )
+                }else{
+                    sendUiEvent(
+                        UiEvent.ShowSnackbar(
+                            UiText.StringResource(R.string.please_update_your_android_version),
+                        )
+                    )
+                    mark()
+                }
             }
-            ChecklistUserEvent.OnSetAlarmAlertDialogConfirm -> {
+            is ChecklistUserEvent.OnSetAlarmAlertDialogConfirm -> {
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
                     useCases.setAlarm(
-                        notificationTitle = "CheckPack",
+                        notificationTitle = "Checklist",
                         notificationDesc = state.markedItem?.name ?: "",
-                        time = LocalDateTime.of(
-                            2022,
-                            Month.SEPTEMBER,
-                            6,
-                            20,
-                            10,
-                            0,
-                            0
-                        )
+                        time = userEvent.dateTime
                     )
                     state = state.copy(
                         showSetAlarmAlertDialog = false
@@ -121,7 +127,6 @@ class ChecklistViewModel @Inject constructor(
                         showSetAlarmAlertDialog = false
                     )
                     mark()
-                    //Lütfen bu özellik için versiyon güncelleyin, snackbar.
                 }
             }
             ChecklistUserEvent.OnSetAlarmAlertDialogDismiss -> {

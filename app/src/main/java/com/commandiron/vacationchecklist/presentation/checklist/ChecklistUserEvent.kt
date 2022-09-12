@@ -1,6 +1,7 @@
 package com.commandiron.vacationchecklist.presentation.checklist
 
 import com.commandiron.vacationchecklist.domain.model.CheckItem
+import java.time.LocalDateTime
 
 sealed class ChecklistUserEvent{
     data class OnCheck(val checkedItem: CheckItem): ChecklistUserEvent()
@@ -12,7 +13,7 @@ sealed class ChecklistUserEvent{
     object OnMarkAlertDialogDismiss : ChecklistUserEvent()
 
     object OnSetAlarm : ChecklistUserEvent()
-    object OnSetAlarmAlertDialogConfirm : ChecklistUserEvent()
+    data class OnSetAlarmAlertDialogConfirm(val dateTime: LocalDateTime) : ChecklistUserEvent()
     object OnSetAlarmAlertDialogDismiss : ChecklistUserEvent()
 
     object OnGridViewClick: ChecklistUserEvent()

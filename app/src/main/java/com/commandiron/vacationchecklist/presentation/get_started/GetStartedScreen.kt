@@ -40,6 +40,7 @@ fun GetStartedScreen(
                 is UiEvent.Navigate -> {
                     navigate(event.route)
                 }
+                else -> {}
             }
         }
     }

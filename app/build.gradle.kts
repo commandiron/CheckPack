@@ -89,7 +89,7 @@ dependencies {
     kapt(Room.compiler)
     implementation(Room.ktx)
 
-    implementation(HandyCompose.handyCompose)
+    implementation(CommandIron.wheelPickerCompose)
 
     testImplementation(Testing.junit)
 

@@ -30,4 +30,5 @@
     <string name="double_Check">Çifte sorgu</string>
     <string name="create_vacation">Tatil Oluştur</string>
     <string name="set_alarm">Alarm</string>
+    <string name="please_update_your_android_version">Lütfen android versionunuzu güncelleyin</string>
 </resources>

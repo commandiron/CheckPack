@@ -13,7 +13,11 @@ import androidx.activity.viewModels
 import androidx.compose.material.Scaffold
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.commandiron.vacationchecklist.domain.preferences.Preferences
@@ -25,8 +29,10 @@ import com.commandiron.vacationchecklist.presentation.create_vacation.CreateVaca
 import com.commandiron.vacationchecklist.presentation.get_started.GetStartedScreen
 import com.commandiron.vacationchecklist.presentation.hot_splash.HotSplashScreen
 import com.commandiron.vacationchecklist.presentation.checklist.ChecklistScreen
+import com.commandiron.vacationchecklist.presentation.components.CustomSnackbar
 import com.commandiron.vacationchecklist.presentation.settings.SettingsScreen
 import com.commandiron.vacationchecklist.ui.theme.VacationCheckListTheme
+import com.commandiron.vacationchecklist.util.getProvidedValues
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -52,10 +58,15 @@ class MainActivity : ComponentActivity() {
             VacationCheckListTheme {
                 val navController = rememberAnimatedNavController()
                 val systemUiController = rememberSystemUiController()
+                val snackbarHostState = remember { SnackbarHostState() }
                 systemUiController.setSystemBarsColor(
                     color = MaterialTheme.colorScheme.background
                 )
-                CompositionLocalProvider {
+                CompositionLocalProvider(
+                    values = getProvidedValues(
+                        snackbarHostState = snackbarHostState
+                    )
+                ) {
                     Scaffold(
                         bottomBar = {
                             BottomNavigation(
@@ -65,6 +76,11 @@ class MainActivity : ComponentActivity() {
                                     navController.bottomNavigate(route = it)
                                 }
                             )
+                        },
+                        snackbarHost = {
+                            SnackbarHost(snackbarHostState) { data ->
+                                CustomSnackbar(data)
+                            }
                         },
                         backgroundColor = MaterialTheme.colorScheme.background
                     ) {

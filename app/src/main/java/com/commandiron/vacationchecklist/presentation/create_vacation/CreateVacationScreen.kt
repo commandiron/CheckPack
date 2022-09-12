@@ -38,6 +38,7 @@ fun CreateVacationScreen(
                 is UiEvent.Navigate -> {
                     navigate(event.route)
                 }
+                else -> {}
             }
         }
     }

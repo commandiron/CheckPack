@@ -1,5 +1,6 @@
 package com.commandiron.vacationchecklist.presentation.checklist
 
+import android.os.Build
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,12 +13,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.commandiron.vacationchecklist.R
 import com.commandiron.vacationchecklist.presentation.checklist.components.*
 import com.commandiron.vacationchecklist.presentation.components.CustomAlertDialog
 import com.commandiron.vacationchecklist.presentation.components.LoadingThreeDotAnimation
+import com.commandiron.vacationchecklist.util.LocalSnackbarHostState
 import com.commandiron.vacationchecklist.util.LocalSpacing
 import com.commandiron.vacationchecklist.util.UiEvent
 
@@ -26,11 +29,16 @@ fun ChecklistScreen(
     viewModel: ChecklistViewModel = hiltViewModel(),
     navigate: (String) -> Unit
 ) {
+    val snackbarHostState = LocalSnackbarHostState.current
+    val context = LocalContext.current
     LaunchedEffect(key1 = true){
         viewModel.uiEvent.collect{ event ->
             when(event) {
                 is UiEvent.Navigate -> {
                     navigate(event.route)
+                }
+                is UiEvent.ShowSnackbar -> {
+                    snackbarHostState.showSnackbar(event.uiText.asString(context))
                 }
             }
         }
@@ -132,13 +140,15 @@ fun ChecklistScreen(
         }
     }
     if(state.showSetAlarmAlertDialog){
-        SetAlarmAlertDialog(
-            title = stringResource(R.string.set_alarm),
-            confirmButtonText = stringResource(R.string.set),
-            dismissButtonText = stringResource(R.string.cancel),
-            onDismiss = { viewModel.onEvent(ChecklistUserEvent.OnSetAlarmAlertDialogDismiss) },
-            onConfirm = { viewModel.onEvent(ChecklistUserEvent.OnSetAlarmAlertDialogConfirm) }
-        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            SetAlarmAlertDialog(
+                title = stringResource(R.string.set_alarm),
+                confirmButtonText = stringResource(R.string.set),
+                dismissButtonText = stringResource(R.string.cancel),
+                onDismiss = { viewModel.onEvent(ChecklistUserEvent.OnSetAlarmAlertDialogDismiss) },
+                onConfirm = { viewModel.onEvent(ChecklistUserEvent.OnSetAlarmAlertDialogConfirm(it)) }
+            )
+        }
     }
     if(state.isLoading){
         Box(

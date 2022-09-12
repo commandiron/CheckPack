@@ -3,6 +3,7 @@ package com.commandiron.vacationchecklist.util
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.ripple.RippleAlpha
 import androidx.compose.material.ripple.RippleTheme
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ProvidedValue
 import androidx.compose.runtime.compositionLocalOf
@@ -36,10 +37,16 @@ data class Dimensions(
         end = spaceLarge
     ),
 )
+val LocalSnackbarHostState = compositionLocalOf<SnackbarHostState> {
+    error("No Permission State")
+}
 
 fun getProvidedValues(
+    snackbarHostState: SnackbarHostState
 ): Array<ProvidedValue<*>> {
-    return arrayOf()
+    return arrayOf(
+        LocalSnackbarHostState provides snackbarHostState
+    )
 }
 
 object NoRippleTheme : RippleTheme {
