@@ -6,6 +6,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.Color
 import com.commandiron.wheel_picker_compose.WheelDateTimePicker
 import java.time.LocalDateTime
 
@@ -55,9 +56,7 @@ fun SetAlarmAlertDialog(
             }
         },
         text = {
-            WheelDateTimePicker(
-                disablePastDateTime = true
-            ) {
+            WheelDateTimePicker(disablePastDateTime = true) {
                 snappedDateTime.value = it
             }
         },
