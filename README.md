@@ -30,6 +30,7 @@
 <img src="https://user-images.githubusercontent.com/50905347/188601877-635ded7c-a93e-4f5f-b1c0-dd22da15eab3.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/188601886-6d308250-ebb1-4536-8bdf-22ee5c1b8ed8.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/188601893-b1802320-71c0-429e-ae57-22c11591ae0d.png" width="250" height="530">
 
 * Application - Features ☕
+   * Set alarm
    * One time splash screen
    * Multiple view mode for checklist
    * View scale for checklist
