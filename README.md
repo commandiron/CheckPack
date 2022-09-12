@@ -27,7 +27,7 @@
 
 <img src="https://user-images.githubusercontent.com/50905347/188006059-7ad6b080-0de1-4b65-81e3-ff57bc30b8e7.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/188006061-e9df62e5-660b-41e5-bd58-6b0b1a60b6e3.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/188006065-39ad2f1a-c058-42e7-a871-2b409fb19a9f.png" width="250" height="530">
 
-<img src="https://user-images.githubusercontent.com/50905347/188601877-635ded7c-a93e-4f5f-b1c0-dd22da15eab3.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/188601886-6d308250-ebb1-4536-8bdf-22ee5c1b8ed8.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/188601893-b1802320-71c0-429e-ae57-22c11591ae0d.png" width="250" height="530">
+<img src="https://user-images.githubusercontent.com/50905347/188601877-635ded7c-a93e-4f5f-b1c0-dd22da15eab3.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/188601886-6d308250-ebb1-4536-8bdf-22ee5c1b8ed8.png" width="250" height="530">&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/50905347/189700689-93dbc961-f0af-449c-ab47-aab6ac0e1537.png" width="250" height="530">
 
 * Application - Features ☕
    * Set alarm
