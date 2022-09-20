@@ -30,4 +30,5 @@
     <string name="create_vacation">Create Vacation</string>
     <string name="set_alarm">Set Alarm</string>
     <string name="please_update_your_android_version">Please update your android version</string>
+    <string name="we_set_your_alarm">We set your alarm</string>
 </resources>

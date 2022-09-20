@@ -31,4 +31,5 @@
     <string name="create_vacation">Tatil Oluştur</string>
     <string name="set_alarm">Alarm</string>
     <string name="please_update_your_android_version">Lütfen android versionunuzu güncelleyin</string>
+    <string name="we_set_your_alarm">Alarmınızı kurduk</string>
 </resources>

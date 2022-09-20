@@ -121,11 +121,7 @@ class ChecklistViewModel @Inject constructor(
                     state = state.copy(
                         showSetAlarmAlertDialog = false
                     )
-                    mark()
-                }else{
-                    state = state.copy(
-                        showSetAlarmAlertDialog = false
-                    )
+                    sendUiEvent(UiEvent.ShowSnackbar(UiText.StringResource(R.string.we_set_your_alarm)))
                     mark()
                 }
             }

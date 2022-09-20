@@ -2,11 +2,13 @@ package com.commandiron.vacationchecklist.presentation.checklist.components
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import com.commandiron.vacationchecklist.ui.theme.importantBorderColor
 import com.commandiron.wheel_picker_compose.WheelDateTimePicker
 import java.time.LocalDateTime
 
@@ -33,7 +35,8 @@ fun SetAlarmAlertDialog(
                     onConfirm(snappedDateTime.value)
                 },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary
+                    containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onTertiaryContainer
                 )
             ) {
                 Text(
@@ -46,7 +49,8 @@ fun SetAlarmAlertDialog(
             Button(
                 onClick = onDismiss,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary
+                    containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onTertiaryContainer
                 )
             ) {
                 Text(
@@ -56,12 +60,17 @@ fun SetAlarmAlertDialog(
             }
         },
         text = {
-            WheelDateTimePicker(disablePastDateTime = true) {
+            WheelDateTimePicker(
+                disablePastDateTime = true,
+                textColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                selectorColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.75f),
+                selectorBorder = BorderStroke(1.dp, importantBorderColor)
+            ) {
                 snappedDateTime.value = it
             }
         },
         onDismissRequest = onDismiss,
-        containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-        titleContentColor = MaterialTheme.colorScheme.primary
+        containerColor = MaterialTheme.colorScheme.primary,
+        titleContentColor = MaterialTheme.colorScheme.onPrimary
     )
 }
