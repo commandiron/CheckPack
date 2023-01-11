@@ -21,7 +21,7 @@ CheckPack is a native android checklist app for those going on vacation, written
 </p>
 </br>
 
-<img src="https://user-images.githubusercontent.com/50905347/211842840-f330fcea-398c-4c43-adb2-29b25107d59d.png"> 
+<img src="https://user-images.githubusercontent.com/50905347/211844341-e2ea000c-f418-417f-a7fb-53d69c467167.png"> 
 
 * Application - Features ☕
    * Set alarm
